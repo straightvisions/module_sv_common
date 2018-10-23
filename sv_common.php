@@ -46,6 +46,11 @@
 			add_action('wp_print_styles', function(){ wp_dequeue_style( 'megamenu-fontawesome' ); }, 100); // already loaded through bootstrap, so no need to load it again with font awesome
 			
 			add_action('wp_logout', function(){ wp_redirect(home_url()); exit(); });
+
+			add_action('after_setup_theme', array($this, 'after_setup_theme'));
+			add_action('pre_get_posts', array($this, 'pre_get_posts'));
+
+			$this->credits();
 		}
 		public function init(){
 			add_action('wp_head', array($this, 'wp_head'));
@@ -56,6 +61,27 @@
 				<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 				<link rel="icon" href="'.$this->get_url('lib/img/favicon.png').'">
 			';
+		}
+		public function after_setup_theme(){
+			load_theme_textdomain('sv_100', get_template_directory().'/lib/lang');
+			add_theme_support('post-thumbnails');
+			add_theme_support('title-tag');
+			add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption'));
+			add_theme_support('woocommerce');
+			add_post_type_support('page', 'excerpt');
+			register_taxonomy_for_object_type('post_tag', 'page'); // Make the metabox appear on the page editing screen
+		}
+		public function pre_get_posts($wp_query){
+			// When displaying a tag archive, also show pages
+			if($wp_query->get('tag')){
+				$wp_query->set('post_type', 'any');
+			}
+		}
+		public function credits(){
+			add_filter('wp_headers', function($headers){ $headers['X-Website-Developed-By'] = 'straightvisions.com'; return $headers; });
+			add_action('wp_footer', function(){ echo "\n\n".'<!-- Website developed by straightvisions.com -->'."\n\n"; }, 999999);
+			add_filter('rocket_buffer', function($buffer){ return $buffer."\n\n".'<!-- Website developed by straightvisions.com -->'."\n\n"; }, 999999);
+			define('WP_ROCKET_WHITE_LABEL_FOOTPRINT', true);
 		}
 	}
 ?>
