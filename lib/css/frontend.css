@@ -421,4 +421,7 @@ article > p{
 	display:none;
 }
 /* / sonstige ----------------------------------------------------------------*/
-
+.gform_validation_container{
+	display:none;
+}
+}
