@@ -20,7 +20,7 @@
 			// needed for bt4 support
 			add_action( 'wp_enqueue_scripts', function() {
 				wp_deregister_script( 'jquery' );
-				wp_enqueue_script( 'jquery', $this->get_url( 'lib/js/jquery.min.js' ), false, filemtime( $this->get_path( 'lib/js/jquery.min.js' ) ), true );
+				wp_enqueue_script( 'jquery', $this->get_file_url( 'lib/js/jquery.min.js' ), false, filemtime( $this->get_file_path( 'lib/js/jquery.min.js' ) ), true );
 			}, 0, 9999);
 			
 			$this->module_enqueue_scripts(
