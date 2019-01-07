@@ -23,12 +23,14 @@ class sv_common extends init {
 			true,
 			array(
 				$this->get_module_name() . '_css_bootstrap',
+				$this->get_module_name() . '_css_default',
 			),
 			array(
 				$this->get_module_name() . '_js_bootstrap',
 			),
 			array(
 				'css/bootstrap.min.css'             => false,
+				'css/default.css'                  => $this->get_module_name() . '_css_bootstrap',
 			),
 			array(
 				'js/jquery-3.3.1.min.js'            => false,
