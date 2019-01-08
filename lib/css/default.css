@@ -219,3 +219,32 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 .post-author-description {
 	color: rgba( 0, 0, 0, .6 );
 }
+
+/* Inputs */
+form.search-form span.screen-reader-text {
+	display: none;
+}
+
+input.search-field,
+input.search-submit {
+	border: 1px solid rgba( 0, 0, 0, .5 );
+	padding: 5px 10px;
+	border-radius: 5px;
+	outline: none;
+	box-shadow: none;
+	transition: .25s ease;
+}
+
+input.search-field:hover,
+input.search-field:active,
+input.search-field:focus,
+input.search-submit:hover,
+input.search-submit:active,
+input.search-submit:focus {
+	border-color: rgba( 0, 0, 0, 1 );
+}
+
+input.search-submit {
+	cursor: pointer;
+	background-color: transparent;
+}
