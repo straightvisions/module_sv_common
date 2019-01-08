@@ -17,40 +17,8 @@
 			$this->url								= $url;
 			$this->name								= get_class($this);
 
-			// needed for bt4 support
-			add_action( 'wp_enqueue_scripts', function() {
-				wp_deregister_script( 'jquery' );
-				wp_enqueue_script( 'jquery', $this->get_file_url( 'lib/js/jquery.min.js' ), false, filemtime( $this->get_file_path( 'lib/js/jquery.min.js' ) ), true );
-			}, 0, 9999);
-			
-			$this->module_enqueue_scripts(
-				true,
-					array(
-						$this->get_module_name() . '_css/bootstrap.min.css'
-					),
-					array(
-						$this->get_module_name() . '_js/bootstrap.bundle.min.js'
-					),
-					array(
-						'css/bootstrap.min.css'                     => false,
-						'css/ekko-lightbox.css'                     => 'css/bootstrap.min.css',
-						'js/alertify/css/alertify.min.css'          => 'js/alertify/css/alertify.min.css',
-						'js/alertify/css/themes/bootstrap.min.css'  => 'js/alertify/css/themes/bootstrap.min.css',
-					),
-					array(
-							'js/alertify/alertify.min.js'		=> array(),
-							'js/frontend.js'					=> array('jquery',$this->get_module_name().'_js/bootstrap.bundle.min.js',$this->get_module_name().'_js/alertify/alertify.min.js'),
-							'js/tether.min.js'					=> array('jquery'),
-							'js/bootstrap.bundle.min.js'		=> array('jquery'),
-							'js/ekko-lightbox.min.js'			=> array('jquery',$this->get_module_name().'_js/bootstrap.bundle.min.js',$this->get_module_name().'_js/frontend.js'),
-							'js/sv_grid_overrides.js'			=> array($this->get_module_name().'_js/bootstrap.bundle.min.js'),
-						)
-					);
-
 			add_action( 'wp_head', array( $this, 'wp_head' ) );
-			add_action( 'wp_print_styles', function() {
-				wp_dequeue_style( 'megamenu-fontawesome' );
-			}, 100 );
+
 			add_action( 'wp_logout', function() {
 				wp_redirect( home_url() );
 				exit();
@@ -61,6 +29,41 @@
 			$this->credits();
 		}
 
+		public function init(){
+			// needed for bt4 support
+			add_action( 'wp_enqueue_scripts', function() {
+				wp_deregister_script( 'jquery' );
+				wp_enqueue_script( 'jquery', $this->get_file_url( 'lib/js/jquery.min.js' ), false, filemtime( $this->get_file_path( 'lib/js/jquery.min.js' ) ), true );
+			}, 0, 9999);
+
+			$this->module_enqueue_scripts(
+				true,
+				array(
+					$this->get_module_name() . '_css/bootstrap.min.css'
+				),
+				array(
+					$this->get_module_name() . '_js/bootstrap.bundle.min.js'
+				),
+				array(
+					'css/bootstrap.min.css'                     => false,
+					'css/ekko-lightbox.css'                     => 'css/bootstrap.min.css',
+					'js/alertify/css/alertify.min.css'          => 'js/alertify/css/alertify.min.css',
+					'js/alertify/css/themes/bootstrap.min.css'  => 'js/alertify/css/themes/bootstrap.min.css',
+				),
+				array(
+					'js/alertify/alertify.min.js'		=> array(),
+					'js/frontend.js'					=> array('jquery',$this->get_module_name().'_js/bootstrap.bundle.min.js',$this->get_module_name().'_js/alertify/alertify.min.js'),
+					'js/tether.min.js'					=> array('jquery'),
+					'js/bootstrap.bundle.min.js'		=> array('jquery'),
+					'js/ekko-lightbox.min.js'			=> array('jquery',$this->get_module_name().'_js/bootstrap.bundle.min.js',$this->get_module_name().'_js/frontend.js'),
+					'js/sv_grid_overrides.js'			=> array($this->get_module_name().'_js/bootstrap.bundle.min.js'),
+				)
+			);
+
+			add_action( 'wp_print_styles', function() {
+				wp_dequeue_style( 'megamenu-fontawesome' );
+			}, 100 );
+		}
 		public function wp_head() {
 			echo '
 				<meta charset="' . get_bloginfo( 'charset' ) . '" />
