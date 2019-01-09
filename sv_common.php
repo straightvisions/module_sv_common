@@ -16,33 +16,48 @@ class sv_common extends init {
 	public function __construct( $path, $url ) {
 		$this->path								= $path;
 		$this->url								= $url;
-		$this->name								= get_class($this);
-
-		// Enqueues Dependencies
-		$this->module_enqueue_scripts(
-			true,
-			array(
-				$this->get_module_name() . '_css_bootstrap',
-				$this->get_module_name() . '_css_default',
-			),
-			array(
-				$this->get_module_name() . '_js_bootstrap',
-			),
-			array(
-				'css/bootstrap.min.css'             => false,
-				'css/default.css'                  => $this->get_module_name() . '_css_bootstrap',
-			),
-			array(
-				'js/jquery-3.3.1.min.js'            => false,
-				'js/bootstrap.bundle.min.js'        => array( 'jquery' ),
-			)
-		);
-
+	}
+	public function init(){
+		// CSS
+		$css_bootstrap							= static::$scripts->create( $this );
+		$css_bootstrap
+			->set_ID('bootstrap')
+			->set_source($this->get_file_url('lib/css/bootstrap.min.css'), $this->get_file_path('lib/css/bootstrap.min.css'))
+			->set_inline(true);
+		
+		$css_default							= static::$scripts->create( $this );
+		$css_default
+			->set_ID('default')
+			->set_source($this->get_file_url('lib/css/default.css'), $this->get_file_path('lib/css/default.css'))
+			->set_deps(array($css_bootstrap->get_handle()))
+			->set_inline(true);
+		
+		// JS
+		if (!is_admin()){
+			add_action("wp_enqueue_scripts", array($this, 'wp_enqueue_scripts'), 11);
+		}
+		
+		$js_jquery							= static::$scripts->create( $this );
+		$js_jquery
+			->set_ID('jquery')
+			->set_type('js')
+			->set_no_prefix(true)
+			->set_source($this->get_file_url('lib/js/jquery-3.3.1.min.js'), $this->get_file_path('lib/js/jquery-3.3.1.min.js'));
+		
+		$js_bootstrap							= static::$scripts->create( $this );
+		$js_bootstrap
+			->set_ID('bootstrap')
+			->set_type('js')
+			->set_source($this->get_file_url('lib/js/bootstrap.bundle.min.js'), $this->get_file_path('lib/js/bootstrap.bundle.min.js'))
+			->set_deps(array($js_jquery->get_handle()));
+		
 		// Action Hooks
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 		add_action( 'wp_footer', array( $this, 'wp_footer' ), 999999 );
 	}
-
+	public function wp_enqueue_scripts(){
+		wp_deregister_script('jquery');
+	}
 	public function after_setup_theme() {
 		load_theme_textdomain( 'sv_100', get_template_directory() . '/lib/lang' );
 
