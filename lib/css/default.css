@@ -112,17 +112,15 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 	}
 }
 
-/* Post - Categories & Tags */
-.post-categories,
-.post-tags {
+/* Post - Categories */
+.post-categories {
 	text-transform: uppercase;
 	font-size: 10px;
 	letter-spacing: 2px;
 	flex-wrap: wrap;
 }
 
-.post-categories a,
-.post-tags a {
+.post-categories a {
 	text-decoration: none;
 	padding: 3px 8px;
 	background-color: #343a40;
@@ -132,20 +130,6 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 	border-radius: 3px;
 	font-weight: 500;
 	z-index: 10;
-}
-
-.post-tags a {
-	padding: 5px 10px;
-	color: #343a40;
-	background-color: #eff0f4;
-	transition: .25s ease;
-	display: inline-block;
-	margin-bottom: 5px;
-}
-
-.post-tags a:hover {
-	background-color: #343a40;
-	color: #FFF;
 }
 
 /* Post - List */
