@@ -259,3 +259,8 @@ input[type="button"] {
 	cursor: pointer;
 	background-color: transparent;
 }
+
+input.search-submit {
+	padding: 5px;
+}
+
