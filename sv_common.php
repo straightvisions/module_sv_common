@@ -44,7 +44,7 @@ class sv_common extends init {
 		static::$scripts->create( $this )
 			->set_ID( 'bootstrap' )
 			->set_type( 'js' )
-			->set_source( $this->get_file_url( 'lib/js/bootstrap.bundle.min.js' ), $this->get_file_path( 'lib/js/bootstrap.bundle.min.js' ) )
+			->set_source( $this->get_file_url( 'lib/js/bootstrap.min.js' ), $this->get_file_path( 'lib/js/bootstrap.min.js' ) )
 			->set_deps( array( $js_jquery->get_handle() ) );
 		
 		// Action Hooks
