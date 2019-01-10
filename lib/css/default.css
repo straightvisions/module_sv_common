@@ -188,7 +188,7 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 	transform: scale( 1.1 );
 }
 
-.post-author-info {
+.post-author-info.is_author_image {
 	margin-top: -80px;
 }
 
