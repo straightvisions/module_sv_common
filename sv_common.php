@@ -23,14 +23,12 @@ class sv_common extends init {
 		// Loads Styles
 		$css_bootstrap = static::$scripts->create( $this )
 			->set_ID( 'bootstrap' )
-			->set_source( $this->get_file_url( 'lib/css/bootstrap.min.css' ), $this->get_file_path( 'lib/css/bootstrap.min.css' ) )
-			->set_inline( true );
+			->set_source( $this->get_file_url( 'lib/css/bootstrap.min.css' ), $this->get_file_path( 'lib/css/bootstrap.min.css' ) );
 		
 		static::$scripts->create( $this )
 			->set_ID( 'default' )
 			->set_source( $this->get_file_url( 'lib/css/default.css' ), $this->get_file_path( 'lib/css/default.css' ) )
-			->set_deps( array( $css_bootstrap->get_handle() ) )
-			->set_inline( true );
+			->set_deps( array( $css_bootstrap->get_handle() ) );
 
 		// Loads Scripts
 		if ( ! is_admin() ) {
