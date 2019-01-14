@@ -88,8 +88,7 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 	background-color: rgba( 0, 0, 0, 0.6 );
 }
 
-.post-thumbnail-wrapper .post-details a,
-.post-thumbnail-wrapper .post-details a,
+.post-thumbnail-wrapper .post-details .category,
 .post-thumbnail-wrapper.highlight .post-title,
 .post-thumbnail-wrapper.highlight .post-author,
 .post-thumbnail-wrapper.highlight .post-date {
@@ -97,8 +96,8 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 	text-decoration: none;
 }
 
-.post-thumbnail-wrapper .post-details a:hover,
-.post-thumbnail-wrapper .post-details a:focus {
+.post-thumbnail-wrapper .post-details .category:hover,
+.post-thumbnail-wrapper .post-details .category:focus {
 	color: #fff;
 	text-decoration: none;
 }
@@ -121,7 +120,7 @@ body.single .post-thumbnail-wrapper.highlight .post-details {
 	flex-wrap: wrap;
 }
 
-.post-categories a {
+.post-categories .category {
 	text-decoration: none;
 	padding: 3px 8px;
 	background-color: #343a40;
