@@ -53,7 +53,7 @@ class sv_common extends init {
 	}
 
 	public function wp_enqueue_scripts() {
-		wp_deregister_script('jquery');
+		//wp_deregister_script('jquery'); @todo Removed jquery, check if this line is still needed
 	}
 
 	public function after_setup_theme() {
