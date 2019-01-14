@@ -32,7 +32,7 @@ class sv_common extends init {
 
 		// Loads Scripts
 		if ( ! is_admin() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ), 11 );
+			//add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ), 11 );  @todo Removed jquery, check if this line is still needed
 		}
 		
 		$js_jquery = static::$scripts->create( $this )
@@ -53,7 +53,7 @@ class sv_common extends init {
 	}
 
 	public function wp_enqueue_scripts() {
-		//wp_deregister_script('jquery'); @todo Removed jquery, check if this line is still needed
+		wp_deregister_script('jquery');
 	}
 
 	public function after_setup_theme() {
