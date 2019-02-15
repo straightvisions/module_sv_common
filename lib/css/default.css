@@ -9,16 +9,14 @@ body {
 	}
 }
 
-a {
-	color: #000;
-	text-decoration: none;
-	transition: color .25s ease;
-}
-
 img {
 	max-width: 100%;
 }
 
+a {
+	text-decoration: none;
+	transition: color .25s ease;
+}
 a:hover,
 a:focus {
 	color: #1fa9f0;
