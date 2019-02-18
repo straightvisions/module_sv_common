@@ -200,6 +200,7 @@ del, del *{
 .sv-sidebar-body{
 	background:white;
 	padding:20px 15px;
+	overflow: auto;
 }
 .sv-sidebar ul:not(.list-group),
 .sv-sidebar ul:not(.list-group) > li{
