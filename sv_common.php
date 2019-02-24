@@ -2,6 +2,7 @@
 namespace sv_100;
 
 /**
+ * @version         1.00
  * @author			straightvisions
  * @package			sv_100
  * @copyright		2019 straightvisions GmbH
@@ -21,32 +22,21 @@ class sv_common extends init {
 		$this->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', $this->get_module_name() ) );
 
 		// Loads Styles
-		$css_bootstrap = static::$scripts->create( $this )
-			->set_ID( 'bootstrap' )
-			->set_source( $this->get_file_url( 'lib/css/bootstrap.min.css' ), $this->get_file_path( 'lib/css/bootstrap.min.css' ) );
-		
 		static::$scripts->create( $this )
-			->set_ID( 'default' )
-			->set_source( $this->get_file_url( 'lib/css/default.css' ), $this->get_file_path( 'lib/css/default.css' ) )
-			->set_deps( array( $css_bootstrap->get_handle() ) );
+		                ->set_ID( 'frontend' )
+		                ->set_source( $this->get_file_url( 'lib/css/frontend.css' ), $this->get_file_path( 'lib/css/frontend.css' ) );
 
 		// Loads Scripts
 		if ( ! is_admin() ) {
 			//add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ), 11 );  @todo Removed jquery, check if this line is still needed
 		}
-		
+
 		$js_jquery = static::$scripts->create( $this )
-			->set_ID( 'jquery' )
-			->set_type( 'js' )
-			->set_no_prefix( true )
-			->set_source( $this->get_file_url( 'lib/js/jquery-3.3.1.min.js' ), $this->get_file_path( 'lib/js/jquery-3.3.1.min.js' ) );
-		
-		static::$scripts->create( $this )
-			->set_ID( 'bootstrap' )
-			->set_type( 'js' )
-			->set_source( $this->get_file_url( 'lib/js/bootstrap.min.js' ), $this->get_file_path( 'lib/js/bootstrap.min.js' ) )
-			->set_deps( array( $js_jquery->get_handle() ) );
-		
+		                             ->set_ID( 'jquery' )
+		                             ->set_type( 'js' )
+		                             ->set_no_prefix( true )
+		                             ->set_source( $this->get_file_url( 'lib/js/jquery-3.3.1.min.js' ), $this->get_file_path( 'lib/js/jquery-3.3.1.min.js' ) );
+
 		// Action Hooks
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 		add_action( 'wp_footer', array( $this, 'wp_footer' ), 999999 );

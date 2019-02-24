@@ -1,0 +1,42 @@
+/* ==== General ===================================================================================================== */
+body {
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+
+@media ( min-width: 800px ) {
+	body {
+		font-size: 16px;
+	}
+}
+
+.sv_container {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	transition: .25s ease;
+}
+/* ===/ General ===================================================================================================== */
+
+/* ==== Breakpoints ================================================================================================= */
+@media ( min-width: 800px ) {
+	.sv_container {
+		width: 770px;
+	}
+
+}
+@media ( min-width: 1000px ) {
+	.sv_container {
+		width: 970px;
+	}
+}
+
+@media ( min-width: 1200px ) {
+	.sv_container {
+		width: 1170px;
+	}
+}
+/* ===/ Breakpoints ================================================================================================= */
