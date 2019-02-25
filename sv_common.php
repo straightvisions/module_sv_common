@@ -23,8 +23,9 @@ class sv_common extends init {
 
 		// Loads Styles
 		static::$scripts->create( $this )
-		                ->set_ID( 'frontend' )
-		                ->set_source( $this->get_file_url( 'lib/css/frontend.css' ), $this->get_file_path( 'lib/css/frontend.css' ) );
+			->set_ID( 'frontend' )
+			->set_source( $this->get_file_url( 'lib/css/frontend.css' ), $this->get_file_path( 'lib/css/frontend.css' ) )
+			->set_inline(true);
 
 		// Loads Scripts
 		if ( ! is_admin() ) {
