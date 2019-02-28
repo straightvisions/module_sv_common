@@ -1,12 +1,21 @@
 /* Global Vars */
 :root {
-	--color-primary: #333333;
-	--color-secondary: #85868c;
-	--color-highlight: #2dcecb;
-	--color-contrast: #ffffff;
-	--color-bg-primary: #ffffff;
-	--color-bg-secondary: #f7f7f7;
-	--color-bg-highlight: #1a1c20;
+	/** The Colors are in RGB.
+	 ** To use them you need to put them into an rgb()
+	 ** or rgba() property.
+	 **
+	 ** Examples:
+	 ** rgb( var( --color-primary ) );
+	 ** rgba( var( --color-primary ), .5 );
+	 */
+
+	--color-primary: 51, 51, 51;
+	--color-secondary: 133, 134, 140;
+	--color-highlight: 45, 206, 203;
+	--color-contrast: 255, 255, 255;
+	--color-bg-primary: 255, 255, 255;
+	--color-bg-secondary: 247, 247, 247;
+	--color-bg-highlight: 26, 28, 32;
 	--padding: 20px;
 	--width-lg: 1300px;
 	--width-dt: 1000px;
