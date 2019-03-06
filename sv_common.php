@@ -24,7 +24,7 @@ class sv_common extends init {
 		// Loads Styles
 		static::$scripts->create( $this )
 			->set_ID( 'frontend' )
-			->set_source( $this->get_file_url( 'lib/css/frontend.css' ), $this->get_file_path( 'lib/css/frontend.css' ) )
+			->set_path( 'lib/css/frontend.css' )
 			->set_inline(true);
 
 		// Loads Scripts
@@ -36,7 +36,7 @@ class sv_common extends init {
 		                             ->set_ID( 'jquery' )
 		                             ->set_type( 'js' )
 		                             ->set_no_prefix( true )
-		                             ->set_source( $this->get_file_url( 'lib/js/jquery-3.3.1.min.js' ), $this->get_file_path( 'lib/js/jquery-3.3.1.min.js' ) );
+		                             ->set_path( 'lib/js/jquery-3.3.1.min.js' );
 
 		// Action Hooks
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
