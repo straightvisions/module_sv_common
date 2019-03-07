@@ -42,7 +42,6 @@ class sv_common extends init {
 
 		// Action Hooks
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
-		add_action( 'wp_footer', array( $this, 'wp_footer' ), 999999 );
 	}
 
 	public function wp_enqueue_scripts() {
@@ -59,11 +58,5 @@ class sv_common extends init {
 		add_post_type_support( 'page', 'excerpt' );
 
 		register_taxonomy_for_object_type( 'post_tag', 'page' );
-	}
-
-	public function wp_footer() {
-		$theme = wp_get_theme();
-
-		echo "\n\n" . '<!-- This website uses the ' . $theme->get( 'Name' ) . ' Theme by ' . $theme->get( 'Author' ) . ' (' . $theme->get( 'AuthorURI' ) . ') -->' . "\n\n";
 	}
 }
