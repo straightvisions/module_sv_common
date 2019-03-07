@@ -25,18 +25,20 @@ class sv_common extends init {
 		static::$scripts->create( $this )
 			->set_ID( 'frontend' )
 			->set_path( 'lib/css/frontend.css' )
-			->set_inline(true);
+			->set_inline(true)
+			->set_is_enqueued();
 
 		// Loads Scripts
 		if ( ! is_admin() ) {
 			//add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ), 11 );  @todo Removed jquery, check if this line is still needed
 		}
 
-		$js_jquery = static::$scripts->create( $this )
-		                             ->set_ID( 'jquery' )
-		                             ->set_type( 'js' )
-		                             ->set_no_prefix( true )
-		                             ->set_path( 'lib/js/jquery-3.3.1.min.js' );
+		static::$scripts->create( $this )
+			->set_ID( 'jquery' )
+			->set_type( 'js' )
+			->set_no_prefix( true )
+			->set_path( 'lib/js/jquery-3.3.1.min.js' )
+			->set_is_enqueued();
 
 		// Action Hooks
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
