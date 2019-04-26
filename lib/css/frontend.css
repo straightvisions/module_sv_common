@@ -23,12 +23,6 @@
 	--width-txt: 620px;
 }
 
-/* Devicon */
-[class*=" devicon-"], [class^=devicon-] {
-	font-size: 120px;
-	margin-top: 0;
-}
-
 /* General */
 *,
 *::before,
@@ -48,33 +42,4 @@ html, body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
-}
-
-/* Helper */
-.sv_common_container {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: var( --padding );
-	padding-right: var( --padding );
-	transition: max-width .25s ease;
-}
-
-/* Breakpoints */
-@media ( min-width: 850px ) {
-	.sv_common_container {
-		max-width: var( --width-mb );
-	}
-}
-
-@media ( min-width: 1050px ) {
-	.sv_common_container {
-		max-width: var( --width-dt );
-	}
-}
-
-@media ( min-width: 1350px ) {
-	.sv_common_container {
-		max-width: var( --width-lg );
-	}
 }
