@@ -5,17 +5,20 @@
 	 ** or rgba() property.
 	 **
 	 ** Examples:
-	 ** rgb( var( --color-primary ) );
-	 ** rgba( var( --color-primary ), .5 );
-	 */
+	 ** rgb( var( --sv-100-color-primary ) );
+	 ** rgba( var( --sv-100-color-primary ), .5 );
 
-	--color-primary: 30, 31, 34;
-	--color-secondary: 133, 134, 140;
-	--color-highlight: 45, 206, 203;
-	--color-contrast: 255, 255, 255;
-	--color-bg-primary: 255, 255, 255;
-	--color-bg-secondary: 247, 247, 247;
-	--color-bg-highlight: 30, 31, 34;
+	*/
+
+	/* BackUp Colors */
+	--sv-100-color-primary: 30, 31, 34;
+	--sv-100-color-secondary: 133, 134, 140;
+	--sv-100-color-highlight: 45, 206, 203;
+	--sv-100-color-contrast: 255, 255, 255;
+	--sv-100-color-bg-primary: 255, 255, 255;
+	--sv-100-color-bg-secondary: 247, 247, 247;
+	--sv-100-color-bg-highlight: 30, 31, 34;
+
 	--padding: 20px;
 	--width-lg: 1300px;
 	--width-dt: 1000px;
@@ -32,8 +35,8 @@
 }
 
 *::selection {
-	background-color: rgba( var( --color-highlight ), .5 );
-	color: rgb( var( --color-contrast ) );
+	background-color: rgba( var( --sv-100-color-highlight ), .5 );
+	color: rgb( var( --sv-100-color-contrast ) );
 }
 
 html, body {
