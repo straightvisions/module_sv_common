@@ -19,7 +19,7 @@ class sv_common extends init {
 	public function init() {
 		// Module Info
 		$this->set_module_title( 'SV Common' );
-		$this->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', $this->get_module_name() ) );
+		$this->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', 'sv_common' ) );
 
 		// Loads Styles
 		static::$scripts->create( $this )
