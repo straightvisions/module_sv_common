@@ -19,7 +19,7 @@ class sv_common extends init {
 	public function init() {
 		// Module Info
 		$this->set_module_title( 'SV Common' );
-		$this->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', 'sv_common' ) );
+		$this->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', 'sv_100' ) );
 
 		// Loads Styles
 		static::$scripts->create( $this )
@@ -49,8 +49,6 @@ class sv_common extends init {
 	}
 
 	public function after_setup_theme() {
-		load_theme_textdomain( 'sv_100', get_template_directory() . '/lib/lang' );
-
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
