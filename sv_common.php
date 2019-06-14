@@ -59,26 +59,7 @@ class sv_common extends init {
 				->set_description(__('Base Font Size in Pixel', 'sv_100'))
 				->set_default_value(16)
 				->load_type('number');
-
-		$this->s['font_weight'] =
-			$this->get_setting()
-				->set_ID('font_weight')
-				->set_title(__('Font Weight', 'sv_100'))
-				->set_description(__('Base Font Weight', 'sv_100'))
-				->set_default_value(400)
-				->load_type('select')
-				->set_options(array(
-					100 => 100,
-					200 => 200,
-					300 => 300,
-					400 => 400,
-					500 => 500,
-					600 => 600,
-					700 => 700,
-					800 => 800,
-					900 => 900
-				));
-
+		
 		$this->s['font_color'] =
 			$this->get_setting()
 				->set_ID('font_color')
