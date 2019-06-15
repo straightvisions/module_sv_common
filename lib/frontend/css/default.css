@@ -1,0 +1,29 @@
+/* Global Vars */
+:root {
+	--padding: 20px;
+	--width-lg: 1300px;
+	--width-dt: 1000px;
+	--width-mb: 800px;
+	--width-txt: 620px;
+}
+
+/* General */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	word-break: break-word;
+}
+
+*::selection {
+	background-color: rgba( var( --sv-100-color-highlight ), .5 );
+	color: rgb( var( --sv-100-color-contrast ) );
+}
+
+html, body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}

@@ -18,10 +18,12 @@ class sv_common extends init {
 		$this->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', 'straightvisions_100' ) );
 
 		// Section Info
-		$this->set_section_title( __( 'Common', 'straightvisions_100' ) );
-		$this->set_section_desc( __( 'Settings', 'straightvisions_100' ) );
-		$this->set_section_type( 'settings' );
-		$this->get_root()->add_section( $this );
+		$this->set_section_title( __( 'Common', 'straightvisions_100' ) )
+			->set_section_desc( __( 'Base settings for the whole frontend.', 'straightvisions_100' ) )
+			->set_section_type( 'settings' )
+			->set_section_template_path($this->get_path('lib/backend/tpl/settings.php'));
+
+		$this->get_root()->add_section($this);
 
 		$this->load_settings()->register_scripts();
 
@@ -32,14 +34,14 @@ class sv_common extends init {
 		$this->scripts_queue['frontend'] =
 			static::$scripts->create( $this )
 				->set_ID( 'frontend' )
-				->set_path( 'lib/css/frontend.css' )
+				->set_path( 'lib/frontend/css/default.css' )
 				->set_inline(true)
 				->set_is_enqueued();
 
 		return $this;
 	}
 	public function load_settings(): sv_common{
-		$fonts			= array();
+		$fonts			= array('' => __('choose...', 'straightvisions_100'));
 		foreach($this->get_root()->sv_webfontloader->get_setting('fonts')->run_type()->get_data() as $font){
 			$fonts[$font['family']]		= $font['entry_label'];
 		}
@@ -48,7 +50,7 @@ class sv_common extends init {
 			$this->get_setting()
 				->set_ID('font_family')
 				->set_title(__('Font Family', 'straightvisions_100'))
-				->set_description(__('Base Font Family', 'straightvisions_100'))
+				->set_description(__('Base font for all frontend elements.', 'straightvisions_100'))
 				->load_type('select')
 				->set_options($fonts);
 
@@ -56,7 +58,7 @@ class sv_common extends init {
 			$this->get_setting()
 				->set_ID('font_size')
 				->set_title(__('Font Size', 'straightvisions_100'))
-				->set_description(__('Base Font Size in Pixel', 'straightvisions_100'))
+				->set_description(__('Default Font Size in Pixel', 'straightvisions_100'))
 				->set_default_value(16)
 				->load_type('number');
 
@@ -64,15 +66,15 @@ class sv_common extends init {
 			$this->get_setting()
 				->set_ID('font_color')
 				->set_title(__('Font Color', 'straightvisions_100'))
-				->set_description(__('Base Font Color', 'straightvisions_100'))
-				->set_default_value('0,0,0')
-				->load_type('text');
+				->set_description(__('Default Font Color', 'straightvisions_100'))
+				->set_default_value('#000000')
+				->load_type('color');
 
 		$this->s['font_line_height'] =
 			$this->get_setting()
 				->set_ID('font_line_height')
 				->set_title(__('Font Line Height', 'straightvisions_100'))
-				->set_description(__('Base Line Height in Pixel', 'straightvisions_100'))
+				->set_description(__('Default Line Height in Pixel', 'straightvisions_100'))
 				->set_default_value(23)
 				->load_type('number');
 
@@ -80,37 +82,69 @@ class sv_common extends init {
 			$this->get_setting()
 				->set_ID('background_color')
 				->set_title(__('Background Color', 'straightvisions_100'))
-				->set_description(__('Base Background Color', 'straightvisions_100'))
-				->set_default_value('45,206,203')
-				->load_type('text');
+				->set_description(__('Background Color for Body', 'straightvisions_100'))
+				->set_default_value('#2dcecb')
+				->load_type('color');
 
 		$this->s['background_image'] =
 			$this->get_setting()
 				->set_ID('background_image')
 				->set_title(__('Background Image', 'straightvisions_100'))
-				->set_description(__('Base Background Image', 'straightvisions_100'))
+				->set_description(__('Background Image for Body', 'straightvisions_100'))
 				->load_type('upload');
 
 		$this->s['background_position'] =
 			$this->get_setting()
 				->set_ID('background_position')
 				->set_title(__('Background Position', 'straightvisions_100'))
-				->set_description(__('Base Background Position', 'straightvisions_100'))
+				->set_description(__('Background Image Position Value', 'straightvisions_100'))
+				->set_placeholder('center top')
+				->set_default_value('center top')
+				->load_type('text');
+
+		$this->s['background_size'] =
+			$this->get_setting()
+				->set_ID('background_size')
+				->set_title(__('Background Size', 'straightvisions_100'))
+				->set_description(__('Background Image Size Value', 'straightvisions_100'))
+				->set_placeholder('cover')
+				->set_default_value('cover')
 				->load_type('text');
 
 		$this->s['background_repeat'] =
 			$this->get_setting()
 				->set_ID('background_repeat')
 				->set_title(__('Background Repeat', 'straightvisions_100'))
-				->set_description(__('Base Background Repeat', 'straightvisions_100'))
-				->load_type('text');
+				->set_description(__('Background Image Repeat', 'straightvisions_100'))
+				->set_default_value('no-repeat')
+				->load_type('select')
+				->set_options(array(
+					'' => __('choose...', 'straightvisions_100'),
+					'repeat' => 'repeat',
+					'repeat-x' => 'repeat-x',
+					'repeat-y' => 'repeat-y',
+					'no-repeat' => 'no-repeat',
+					'space' => 'space',
+					'round' => 'round',
+					'initial' => 'initial',
+					'inherit' => 'inherit'
+				));
 
 		$this->s['background_attachment'] =
 			$this->get_setting()
 				->set_ID('background_attachment')
 				->set_title(__('Background Attachment', 'straightvisions_100'))
-				->set_description(__('Base Background Attachment', 'straightvisions_100'))
-				->load_type('text');
+				->set_description(__('Background Image Attachment', 'straightvisions_100'))
+				->set_default_value('fixed')
+				->load_type('select')
+				->set_options(array(
+					'' => __('choose...', 'straightvisions_100'),
+					'scroll' => 'scroll',
+					'fixed' => 'fixed',
+					'local' => 'local',
+					'initial' => 'initial',
+					'inherit' => 'inherit'
+				));
 
 		return $this;
 	}
