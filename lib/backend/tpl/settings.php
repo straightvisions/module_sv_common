@@ -14,12 +14,18 @@ if(current_user_can('activate_plugins')):
 		<div class="sv_setting_flex">
 			<?php echo $module->get_settings()['background_color']->run_type()->form(); ?>
 			<?php echo $module->get_settings()['background_image']->run_type()->form(); ?>
+			<?php echo $module->get_settings()['background_image_media_size']->run_type()->form(); ?>
 		</div>
 		<div class="sv_setting_flex">
-			<?php echo $module->get_settings()['background_position']->run_type()->form(); ?>
-			<?php echo $module->get_settings()['background_size']->run_type()->form(); ?>
-			<?php echo $module->get_settings()['background_repeat']->run_type()->form(); ?>
-			<?php echo $module->get_settings()['background_attachment']->run_type()->form(); ?>
+			<?php echo $module->get_settings()['background_image_position']->run_type()->form(); ?>
+			<?php echo $module->get_settings()['background_image_size']->run_type()->form(); ?>
+			<?php echo $module->get_settings()['background_image_repeat']->run_type()->form(); ?>
+			<?php echo $module->get_settings()['background_image_attachment']->run_type()->form(); ?>
 		</div>
+	</div>
+	<h4>Selection</h4>
+	<div class="sv_setting_flex">
+		<?php echo $module->get_settings()['selection_color']->run_type()->form(); ?>
+		<?php echo $module->get_settings()['selection_color_background']->run_type()->form(); ?>
 	</div>
 <?php endif; ?>

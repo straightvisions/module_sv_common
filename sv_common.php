@@ -83,7 +83,7 @@ class sv_common extends init {
 				->set_ID('background_color')
 				->set_title(__('Background Color', 'straightvisions_100'))
 				->set_description(__('Background Color for Body', 'straightvisions_100'))
-				->set_default_value('#2dcecb')
+				->set_default_value('#FFFFFF')
 				->load_type('color');
 
 		$this->s['background_image'] =
@@ -93,27 +93,36 @@ class sv_common extends init {
 				->set_description(__('Background Image for Body', 'straightvisions_100'))
 				->load_type('upload');
 
-		$this->s['background_position'] =
+		$this->s['background_image_media_size'] =
 			$this->get_setting()
-				->set_ID('background_position')
+				->set_ID('background_image_media_size')
+				->set_title(__('Background Image Media Size', 'straightvisions_100'))
+				->set_description(__('Background Image Media Size for Body', 'straightvisions_100'))
+				->set_default_value('large')
+				->load_type('select')
+				->set_options(array_combine(get_intermediate_image_sizes(), get_intermediate_image_sizes()));
+
+		$this->s['background_image_position'] =
+			$this->get_setting()
+				->set_ID('background_image_position')
 				->set_title(__('Background Position', 'straightvisions_100'))
 				->set_description(__('Background Image Position Value', 'straightvisions_100'))
 				->set_placeholder('center top')
 				->set_default_value('center top')
 				->load_type('text');
 
-		$this->s['background_size'] =
+		$this->s['background_image_size'] =
 			$this->get_setting()
-				->set_ID('background_size')
+				->set_ID('background_image_size')
 				->set_title(__('Background Size', 'straightvisions_100'))
 				->set_description(__('Background Image Size Value', 'straightvisions_100'))
 				->set_placeholder('cover')
 				->set_default_value('cover')
 				->load_type('text');
 
-		$this->s['background_repeat'] =
+		$this->s['background_image_repeat'] =
 			$this->get_setting()
-				->set_ID('background_repeat')
+				->set_ID('background_image_repeat')
 				->set_title(__('Background Repeat', 'straightvisions_100'))
 				->set_description(__('Background Image Repeat', 'straightvisions_100'))
 				->set_default_value('no-repeat')
@@ -130,9 +139,9 @@ class sv_common extends init {
 					'inherit' => 'inherit'
 				));
 
-		$this->s['background_attachment'] =
+		$this->s['background_image_attachment'] =
 			$this->get_setting()
-				->set_ID('background_attachment')
+				->set_ID('background_image_attachment')
 				->set_title(__('Background Attachment', 'straightvisions_100'))
 				->set_description(__('Background Image Attachment', 'straightvisions_100'))
 				->set_default_value('fixed')
@@ -145,6 +154,22 @@ class sv_common extends init {
 					'initial' => 'initial',
 					'inherit' => 'inherit'
 				));
+
+		$this->s['selection_color'] =
+			$this->get_setting()
+				->set_ID('selection_color')
+				->set_title(__('Selection Color', 'straightvisions_100'))
+				->set_description(__('Color of selected text', 'straightvisions_100'))
+				->set_default_value('#FFFFFF')
+				->load_type('color');
+
+		$this->s['selection_color_background'] =
+			$this->get_setting()
+				->set_ID('selection_color_background')
+				->set_title(__('Selection Background Color', 'straightvisions_100'))
+				->set_description(__('Background color of selected text', 'straightvisions_100'))
+				->set_default_value('#779a76')
+				->load_type('color');
 
 		return $this;
 	}
