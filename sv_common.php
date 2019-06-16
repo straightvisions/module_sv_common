@@ -43,7 +43,7 @@ class sv_common extends init {
 	public function load_settings(): sv_common{
 		$fonts			= array('' => __('choose...', 'straightvisions_100'));
 		foreach($this->get_root()->sv_webfontloader->get_setting('fonts')->run_type()->get_data() as $font){
-			$fonts[$font['family']]		= $font['entry_label'];
+			$fonts[$font['entry_label']]		= $font['entry_label'];
 		}
 
 		$this->s['font_family'] =

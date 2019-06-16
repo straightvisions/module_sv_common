@@ -1,5 +1,9 @@
 <?php
 $font_family					= $script->get_parent()->get_setting('font_family')->run_type()->get_data();
+if($font_family){
+	$font						= $script->get_parent()->get_module('sv_webfontloader')->get_font_by_label($font_family);
+}
+
 $font_size						= $script->get_parent()->get_setting('font_size')->run_type()->get_data();
 $font_color						= $script->get_parent()->get_setting('font_color')->run_type()->get_data();
 $font_line_height				= $script->get_parent()->get_setting('font_line_height')->run_type()->get_data();
@@ -43,7 +47,8 @@ html, body {
 	overflow-x: hidden;
 }
 body{
-	font-family: <?php echo ($font_family ? '"'.$font_family.'", ' : ''); ?>sans-serif;
+	font-family: <?php echo ($font ? '"'.$font['family'].'", ' : ''); ?>sans-serif;
+	font-weight: <?php echo ($font ? '"'.$font['weight'].'", ' : '400'); ?>;
 	font-size: <?php echo $font_size; ?>px;
 	color: <?php echo $font_color; ?>;
 	line-height: <?php echo $font_line_height; ?>px;
