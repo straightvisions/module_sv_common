@@ -66,3 +66,7 @@ body {
 		background-attachment:<?php echo $background_image_attachment; ?>;
 	<?php } ?>
 }
+
+input, textarea {
+	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
+}
