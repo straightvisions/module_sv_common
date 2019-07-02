@@ -2,7 +2,8 @@
 	if ( current_user_can( 'activate_plugins' ) ) {
 	?>
 	<div class="sv_section_description"><?php echo $module->get_section_desc(); ?></div>
-	<h3 class="divider">Font</h3>
+
+	<h3 class="divider"><?php _e( 'Font', 'sv100' ); ?></h3>
 	<div class="sv_setting_flex">
 		<?php
 			echo $module->get_settings()['font_family']->run_type()->form();
@@ -11,7 +12,8 @@
 			echo $module->get_settings()['font_line_height']->run_type()->form();
 		?>
 	</div>
-	<h3 class="divider">Background</h3>
+
+	<h3 class="divider"><?php _e( 'Background', 'sv100' ); ?></h3>
 	<div>
 		<div class="sv_setting_flex">
 			<?php
@@ -29,7 +31,8 @@
 			?>
 		</div>
 	</div>
-	<h3 class="divider">Selection</h3>
+
+	<h3 class="divider"><?php _e( 'Selection', 'sv100' ); ?></h3>
 	<div class="sv_setting_flex">
 		<?php
 			echo $module->get_settings()['selection_color']->run_type()->form();
