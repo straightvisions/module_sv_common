@@ -44,7 +44,7 @@
 		
 		public function load_settings(): sv_common{
 			$fonts			= array( '' => __( 'choose...', 'sv100' ) );
-			$font_array 	= $this->get_module( 'sv_webfontloader' )->get_setting( 'fonts' )->run_type()->get_data();
+			$font_array 	= $this->get_module( 'sv_webfontloader') ? $this->get_module( 'sv_webfontloader')->get_setting( 'fonts' )->run_type()->get_data() : '';
 	
 			if ( $font_array ) {
 				foreach( $font_array as $font ) {
