@@ -180,6 +180,14 @@
 					 ->set_description( __( 'Background color of selected text', 'sv100' ) )
 					 ->set_default_value( '#779a76' )
 					 ->load_type( 'color' );
+			
+			$this->s['padding'] =
+				$this->get_setting()
+					 ->set_ID( 'padding' )
+					 ->set_title( __( 'Distance to border', 'sv100' ) )
+					 ->set_description( __( 'Defines the distance between your content and the window border in pixel.', 'sv100' ) )
+					 ->set_default_value( 20 )
+					 ->load_type( 'number' );
 	
 			return $this;
 		}
