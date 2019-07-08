@@ -3,6 +3,13 @@
 	?>
 	<div class="sv_section_description"><?php echo $module->get_section_desc(); ?></div>
 
+		<h3 class="divider"><?php _e( 'General', 'sv100' ); ?></h3>
+		<div class="sv_setting_flex">
+			<?php
+				echo $module->get_settings()['padding']->run_type()->form();
+			?>
+		</div>
+	
 	<h3 class="divider"><?php _e( 'Font', 'sv100' ); ?></h3>
 	<div class="sv_setting_flex">
 		<?php

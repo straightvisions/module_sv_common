@@ -24,11 +24,11 @@
 
 	 /* Global Vars */
 :root {
-	--padding: 20px;
-	--width-lg: 1300px;
-	--width-dt: 1000px;
-	--width-mb: 800px;
-	--width-txt: 620px;
+	--sv100_sv_common-padding: <?php echo $script->get_parent()->get_setting( 'padding' )->run_type()->get_data() . 'px' ?>;
+	--sv100_sv_common-max-width-lg: 1300px;
+	--sv100_sv_common-max-width-dt: 1000px;
+	--sv100_sv_common-max-width-mb: 800px;
+	--sv100_sv_common-max-width-txt: 620px;
 }
 
 /* General */
