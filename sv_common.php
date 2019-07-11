@@ -46,9 +46,9 @@
 		public function load_settings(): sv_common{
 			// Text Settings
 			$this->get_settings_component( 'font_family','font_family' );
-			$this->get_settings_component( 'font_size','font_size' );
-			$this->get_settings_component( 'line_height','line_height' );
-			$this->get_settings_component( 'text_color','text_color' );
+			$this->get_settings_component( 'font_size','font_size', 16 );
+			$this->get_settings_component( 'line_height','line_height', 23 );
+			$this->get_settings_component( 'text_color','text_color', '#1e1f22' );
 			
 			/*
 			// Link Settings
@@ -77,14 +77,14 @@
 			*/
 			
 			// Background Settings
-			$this->get_settings_component( 'bg_color','background_color' );
+			$this->get_settings_component( 'bg_color','background_color', '#ffffff' );
 			$this->get_settings_component( 'bg_image','background_image' );
-			$this->get_settings_component( 'bg_media_size','background_media_size' );
-			$this->get_settings_component( 'bg_position','background_position' );
-			$this->get_settings_component( 'bg_size','background_size' );
-			$this->get_settings_component( 'bg_fit','background_fit' );
-			$this->get_settings_component( 'bg_repeat','background_repeat' );
-			$this->get_settings_component( 'bg_attachment','background_attachment' );
+			$this->get_settings_component( 'bg_media_size','background_media_size', 'large' );
+			$this->get_settings_component( 'bg_position','background_position', 'center top' );
+			$this->get_settings_component( 'bg_size','background_size', 0 );
+			$this->get_settings_component( 'bg_fit','background_fit', 'cover' );
+			$this->get_settings_component( 'bg_repeat','background_repeat', 'no-repeat' );
+			$this->get_settings_component( 'bg_attachment','background_attachment', 'fixed' );
 			
 			// Selection Settings
 			$this->s['selection_color'] =
@@ -100,7 +100,7 @@
 					 ->set_ID( 'selection_color_background' )
 					 ->set_title( __( 'Selection Background Color', 'sv100' ) )
 					 ->set_description( __( 'Background color of selected text', 'sv100' ) )
-					 ->set_default_value( '#779a76' )
+					 ->set_default_value( '#358ae9' )
 					 ->load_type( 'color' );
 			
 			$this->s['padding'] =
@@ -118,6 +118,7 @@
 			add_theme_support( 'post-thumbnails' );
 			add_theme_support( 'title-tag' );
 			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+			add_theme_support( 'custom-logo' );
 	
 			add_post_type_support( 'page', 'excerpt' );
 		}
