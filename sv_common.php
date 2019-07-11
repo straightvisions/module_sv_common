@@ -35,136 +35,58 @@
 			$this->scripts_queue['frontend'] =
 				static::$scripts->create( $this )
 								->set_ID( 'frontend' )
-								->set_path( 'lib/frontend/css/default.css' )
-								->set_inline( true )
+								->set_path( 'lib/frontend/css/config.php' )
+								->set_inline(true)
 								->set_is_enqueued();
+			
 	
 			return $this;
 		}
 		
 		public function load_settings(): sv_common{
-			$fonts			= array( '' => __( 'choose...', 'sv100' ) );
-			$font_array 	= $this->get_module( 'sv_webfontloader' )->get_setting( 'fonts' )->run_type()->get_data();
-	
-			if ( $font_array ) {
-				foreach( $font_array as $font ) {
-					$fonts[ $font['entry_label'] ]		= $font['entry_label'];
-				}
-			}
-	
-			$this->s['font_family'] =
+			// Text Settings
+			$this->get_settings_component( 'font_family','font_family' );
+			$this->get_settings_component( 'font_size','font_size', 16 );
+			$this->get_settings_component( 'line_height','line_height', 23 );
+			$this->get_settings_component( 'text_color','text_color', '#1e1f22' );
+			
+			/*
+			// Link Settings
+			$this->get_settings_component( 'font_family_link','font_family' );
+			$this->get_settings_component( 'text_color_link','text_color' );
+			$this->get_settings_component( 'text_deco_link','text_decoration' );
+			$this->get_settings_component( 'text_bg_link','background_color' );
+			$this->s['text_bg_active_link'] =
 				$this->get_setting()
-					 ->set_ID( 'font_family' )
-					 ->set_title( __( 'Font Family', 'sv100' ) )
-					 ->set_description( __( 'Base font for all frontend elements.', 'sv100' ) )
-					 ->load_type( 'select' )
-					 ->set_options( $fonts );
-	
-			$this->s['font_size'] =
+					 ->set_ID( 'text_bg_active_link' )
+					 ->set_title( __( 'Activate Background Color', 'sv100' ) )
+					 ->set_default_value( 0 )
+					 ->load_type( 'checkbox' );
+			
+			// Link Settings (Hover/Focus)
+			$this->get_settings_component( 'font_family_link_hover','font_family' );
+			$this->get_settings_component( 'text_color_link_hover','text_color' );
+			$this->get_settings_component( 'text_deco_link_hover','text_decoration' );
+			$this->get_settings_component( 'text_bg_link_hover','background_color' );
+			$this->s['text_bg_active_link_hover'] =
 				$this->get_setting()
-					 ->set_ID( 'font_size' )
-					 ->set_title( __( 'Font Size', 'sv100' ) )
-					 ->set_description( __( 'Default Font Size in Pixel', 'sv100' ) )
-					 ->set_default_value( 16 )
-					 ->load_type( 'number' );
-	
-			$this->s['font_color'] =
-				$this->get_setting()
-					 ->set_ID( 'font_color' )
-					 ->set_title( __( 'Font Color', 'sv100' ) )
-					 ->set_description( __( 'Default Font Color', 'sv100' ) )
-					 ->set_default_value( '#000000' )
-					 ->load_type( 'color' );
-	
-			$this->s['font_line_height'] =
-				$this->get_setting()
-					 ->set_ID( 'font_line_height' )
-					 ->set_title( __( 'Font Line Height', 'sv100' ) )
-					 ->set_description( __( 'Default Line Height in Pixel', 'sv100' ) )
-					 ->set_default_value( 23 )
-					 ->load_type( 'number' );
-	
-			$this->s['background_color'] =
-				$this->get_setting()
-					 ->set_ID( 'background_color' )
-					 ->set_title( __( 'Background Color', 'sv100' ) )
-					 ->set_description( __( 'Background Color for Body', 'sv100' ) )
-					 ->set_default_value( '#FFFFFF' )
-					 ->load_type( 'color' );
-	
-			$this->s['background_image'] =
-				$this->get_setting()
-					 ->set_ID( 'background_image' )
-					 ->set_title( __('Background Image', 'sv100' ) )
-					 ->set_description( __( 'Background Image for Body', 'sv100' ) )
-					 ->load_type( 'upload' );
-	
-			$this->s['background_image_media_size'] =
-				$this->get_setting()
-					 ->set_ID( 'background_image_media_size' )
-					 ->set_title( __( 'Background Image Media Size', 'sv100' ) )
-					 ->set_description( __( 'Background Image Media Size for Body', 'sv100' ) )
-					 ->set_default_value( 'large' )
-					 ->load_type( 'select' )
-					 ->set_options( array_combine( get_intermediate_image_sizes(), get_intermediate_image_sizes() ) );
-	
-			$this->s['background_image_position'] =
-				$this->get_setting()
-					 ->set_ID( 'background_image_position' )
-					 ->set_title( __( 'Background Position', 'sv100' ) )
-					 ->set_description( __( 'Background Image Position Value', 'sv100' ) )
-					 ->set_placeholder( 'center top' )
-					 ->set_default_value( 'center top' )
-					 ->load_type( 'text' );
-	
-			$this->s['background_image_size'] =
-				$this->get_setting()
-					 ->set_ID( 'background_image_size' )
-					 ->set_title( __( 'Background Size', 'sv100' ) )
-					 ->set_description( __( 'Background Image Size Value', 'sv100' ) )
-					 ->set_placeholder( 'cover' )
-					 ->set_default_value( 'cover' )
-					 ->load_type( 'text' );
-	
-			$this->s['background_image_repeat'] =
-				$this->get_setting()
-					 ->set_ID( 'background_image_repeat' )
-					 ->set_title( __( 'Background Repeat', 'sv100' ) )
-					 ->set_description( __( 'Background Image Repeat', 'sv100' ) )
-					 ->set_default_value( 'no-repeat' )
-					 ->load_type( 'select' )
-					 ->set_options(
-						array(
-							'' 			=> __( 'choose...', 'sv100' ),
-							'repeat' 	=> 'repeat',
-							'repeat-x' 	=> 'repeat-x',
-							'repeat-y' 	=> 'repeat-y',
-							'no-repeat' => 'no-repeat',
-							'space' 	=> 'space',
-							'round' 	=> 'round',
-							'initial' 	=> 'initial',
-							'inherit' 	=> 'inherit'
-						)
-					);
-	
-			$this->s['background_image_attachment'] =
-				$this->get_setting()
-					 ->set_ID( 'background_image_attachment' )
-					 ->set_title( __( 'Background Attachment', 'sv100' ) )
-					 ->set_description( __( 'Background Image Attachment', 'sv100' ) )
-					 ->set_default_value( 'fixed' )
-					 ->load_type( 'select' )
-					 ->set_options(
-						array(
-							'' 			=> __('choose...', 'sv100'),
-							'scroll' 	=> 'scroll',
-							'fixed' 	=> 'fixed',
-							'local' 	=> 'local',
-							'initial' 	=> 'initial',
-							'inherit' 	=> 'inherit'
-						)
-					);
-	
+					 ->set_ID( 'text_bg_active_link_hover' )
+					 ->set_title( __( 'Activate Background Color', 'sv100' ) )
+					 ->set_default_value( 0 )
+					 ->load_type( 'checkbox' );
+			*/
+			
+			// Background Settings
+			$this->get_settings_component( 'bg_color','background_color', '#ffffff' );
+			$this->get_settings_component( 'bg_image','background_image' );
+			$this->get_settings_component( 'bg_media_size','background_media_size', 'large' );
+			$this->get_settings_component( 'bg_position','background_position', 'center top' );
+			$this->get_settings_component( 'bg_size','background_size', 0 );
+			$this->get_settings_component( 'bg_fit','background_fit', 'cover' );
+			$this->get_settings_component( 'bg_repeat','background_repeat', 'no-repeat' );
+			$this->get_settings_component( 'bg_attachment','background_attachment', 'fixed' );
+			
+			// Selection Settings
 			$this->s['selection_color'] =
 				$this->get_setting()
 					 ->set_ID( 'selection_color' )
@@ -178,7 +100,7 @@
 					 ->set_ID( 'selection_color_background' )
 					 ->set_title( __( 'Selection Background Color', 'sv100' ) )
 					 ->set_description( __( 'Background color of selected text', 'sv100' ) )
-					 ->set_default_value( '#779a76' )
+					 ->set_default_value( '#358ae9' )
 					 ->load_type( 'color' );
 			
 			$this->s['padding'] =
@@ -196,6 +118,7 @@
 			add_theme_support( 'post-thumbnails' );
 			add_theme_support( 'title-tag' );
 			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+			add_theme_support( 'custom-logo' );
 	
 			add_post_type_support( 'page', 'excerpt' );
 		}
