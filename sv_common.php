@@ -39,6 +39,14 @@
 								->set_inline(true)
 								->set_is_enqueued();
 			
+			$this->scripts_queue['gutenberg'] =
+				static::$scripts->create( $this )
+								->set_ID( 'gutenberg' )
+								->set_path( 'lib/backend/css/gutenberg_config.php' )
+								->set_is_gutenberg()
+								->set_inline( true )
+								->set_is_enqueued();
+			
 	
 			return $this;
 		}
