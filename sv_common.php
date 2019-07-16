@@ -32,20 +32,16 @@
 		}
 		
 		protected function register_scripts(): sv_common {
-			$this->scripts_queue['frontend'] =
-				static::$scripts->create( $this )
-								->set_ID( 'frontend' )
-								->set_path( 'lib/frontend/css/config.php' )
-								->set_inline(true)
-								->set_is_enqueued();
+			$this->get_script('frontend')
+				->set_path( 'lib/frontend/css/config.php' )
+				->set_inline(true)
+				->set_is_enqueued();
 			
-			$this->scripts_queue['gutenberg'] =
-				static::$scripts->create( $this )
-								->set_ID( 'gutenberg' )
-								->set_path( 'lib/backend/css/gutenberg_config.php' )
-								->set_is_gutenberg()
-								->set_inline( true )
-								->set_is_enqueued();
+			$this->get_script('gutenberg')
+				->set_path( 'lib/backend/css/gutenberg_config.php' )
+				->set_is_gutenberg()
+				->set_inline( true )
+				->set_is_enqueued();
 			
 	
 			return $this;
@@ -95,25 +91,19 @@
 			$this->get_settings_component( 'bg_attachment','background_attachment', 'fixed' );
 			
 			// Selection Settings
-			$this->s['selection_color'] =
-				$this->get_setting()
-					 ->set_ID( 'selection_color' )
-					 ->set_title( __( 'Selection Color', 'sv100' ) )
-					 ->set_description( __( 'Color of selected text', 'sv100' ) )
-					 ->set_default_value( '#FFFFFF' )
-					 ->load_type( 'color' );
-	
-			$this->s['selection_color_background'] =
-				$this->get_setting()
-					 ->set_ID( 'selection_color_background' )
+			$this->get_setting('selection_color')
+				 ->set_title( __( 'Selection Color', 'sv100' ) )
+				 ->set_description( __( 'Color of selected text', 'sv100' ) )
+				 ->set_default_value( '#FFFFFF' )
+				 ->load_type( 'color' );
+			
+				$this->get_setting('selection_color_background')
 					 ->set_title( __( 'Selection Background Color', 'sv100' ) )
 					 ->set_description( __( 'Background color of selected text', 'sv100' ) )
 					 ->set_default_value( '#358ae9' )
 					 ->load_type( 'color' );
-			
-			$this->s['padding'] =
-				$this->get_setting()
-					 ->set_ID( 'padding' )
+				
+				$this->get_setting('padding')
 					 ->set_title( __( 'Distance to border', 'sv100' ) )
 					 ->set_description( __( 'Defines the distance between your content and the window border in pixel.', 'sv100' ) )
 					 ->set_default_value( 20 )
