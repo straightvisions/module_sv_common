@@ -57,7 +57,7 @@ html, body {
 
 body {
 	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
-	font-weight: <?php echo ( $font ? '"' . $font['weight'] . '", ' : '400' ); ?>;
+	font-weight: <?php echo ( $font ? $font['weight'] : '400' ); ?>;
 	color: <?php echo $text_color; ?>;
 	line-height: <?php echo $line_height; ?>px;
 	background-color: <?php echo $bg_color; ?>;
@@ -72,6 +72,12 @@ body {
 		background-repeat:<?php echo $bg_repeat; ?>;
 		background-attachment:<?php echo $bg_attachment; ?>;
 	<?php } ?>
+}
+
+body a,
+body a:visited {
+	text-decoration: underline;
+	color: <?php echo $text_color; ?>;
 }
 
 input, textarea {
