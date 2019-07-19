@@ -33,7 +33,7 @@
 			$this->get_settings_component( 'font_family','font_family' );
 			$this->get_settings_component( 'font_size','font_size', 16 );
 			$this->get_settings_component( 'line_height','line_height', 23 );
-			$this->get_settings_component( 'text_color','text_color', '#1e1f22' );
+			$this->get_settings_component( 'text_color','text_color', '#1e1e1e' );
 			
 			// Background Settings
 			$this->get_settings_component( 'bg_color','background_color', '#ffffff' );
@@ -49,13 +49,13 @@
 			$this->get_setting( 'selection_color' )
 				 ->set_title( __( 'Selection color', 'sv100' ) )
 				 ->set_description( __( 'Color of selected text', 'sv100' ) )
-				 ->set_default_value( '#FFFFFF' )
+				 ->set_default_value( '#ffffff' )
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'selection_color_background' )
 				 ->set_title( __( 'Selection background color', 'sv100' ) )
 				 ->set_description( __( 'Background color of selected text', 'sv100' ) )
-				 ->set_default_value( '#358ae9' )
+				 ->set_default_value( '#328ce6' )
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'padding' )

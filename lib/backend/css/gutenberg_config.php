@@ -3,7 +3,7 @@
 	$editor_padding 			= $script->get_parent()->get_setting( 'padding' )->run_type()->get_data();
 	
 	// Text Settings
-	$title_bg_color				= '#f7f7f7';
+	$title_bg_color				= '#f5f5f5';
 	$font_family				= $script->get_parent()->get_setting( 'font_family' )->run_type()->get_data();
 	
 	if ( $font_family ) {
