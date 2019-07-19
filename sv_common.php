@@ -14,11 +14,11 @@
 	class sv_common extends init {
 		public function init() {
 			$this->set_module_title( 'SV Common' )
-				 ->set_module_desc( __( 'This module manages general styles, scripts & dependencies.', 'sv100' ) )
+				 ->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
 				 ->load_settings()
 				 ->register_scripts()
 				 ->set_section_title( __( 'Common', 'sv100' ) )
-				 ->set_section_desc( __( 'Base settings for the whole frontend.', 'sv100' ) )
+				 ->set_section_desc( __( 'Common settings for your website', 'sv100' ) )
 				 ->set_section_type( 'settings' )
 				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
 				 ->get_root()
@@ -47,20 +47,20 @@
 			
 			// Selection Settings
 			$this->get_setting( 'selection_color' )
-				 ->set_title( __( 'Selection Color', 'sv100' ) )
+				 ->set_title( __( 'Selection color', 'sv100' ) )
 				 ->set_description( __( 'Color of selected text', 'sv100' ) )
 				 ->set_default_value( '#FFFFFF' )
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'selection_color_background' )
-				 ->set_title( __( 'Selection Background Color', 'sv100' ) )
+				 ->set_title( __( 'Selection background color', 'sv100' ) )
 				 ->set_description( __( 'Background color of selected text', 'sv100' ) )
 				 ->set_default_value( '#358ae9' )
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'padding' )
 				 ->set_title( __( 'Distance to border', 'sv100' ) )
-				 ->set_description( __( 'Defines the distance between your content and the window border in pixel.', 'sv100' ) )
+				 ->set_description( __( 'The distance between your content and the window border on mobile devices, in pixels.', 'sv100' ) )
 				 ->set_default_value( 20 )
 				 ->load_type( 'number' );
 			
