@@ -9,8 +9,10 @@
 	 }
 
 	$font_size					= $script->get_parent()->get_setting( 'font_size' )->run_type()->get_data();
+	$font_size_mobile			= $script->get_parent()->get_setting( 'font_size_mobile' )->run_type()->get_data();
 	$text_color					= $script->get_parent()->get_setting( 'text_color' )->run_type()->get_data();
 	$line_height				= $script->get_parent()->get_setting( 'line_height' )->run_type()->get_data();
+	$line_height_mobile			= $script->get_parent()->get_setting( 'line_height_mobile' )->run_type()->get_data();
 	
 	// Background Settings
 	$bg_color					= $script->get_parent()->get_setting( 'bg_color' )->run_type()->get_data();
@@ -52,14 +54,24 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	font-size: <?php echo $font_size; ?>px;
+	font-size: <?php echo $font_size_mobile; ?>px;
+	line-height: <?php echo $line_height_mobile; ?>px;
+}
+
+@media ( min-width: 850px ) {
+		html, body {
+		margin: 0;
+		padding: 0;
+		font-size: <?php echo $font_size; ?>px;
+		line-height: <?php echo $line_height; ?>px;
+	}
 }
 
 body {
+	overflow-x: hidden;
 	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
 	font-weight: <?php echo ( $font ? $font['weight'] : '400' ); ?>;
 	color: <?php echo $text_color; ?>;
-	line-height: <?php echo $line_height; ?>px;
 	background-color: <?php echo $bg_color; ?>;
 
 	<?php

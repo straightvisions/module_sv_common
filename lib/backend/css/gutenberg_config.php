@@ -13,8 +13,10 @@
 	}
 	
 	$font_size					= $script->get_parent()->get_setting( 'font_size' )->run_type()->get_data();
+	$font_size_mobile			= $script->get_parent()->get_setting( 'font_size_mobile' )->run_type()->get_data();
 	$text_color					= $script->get_parent()->get_setting( 'text_color' )->run_type()->get_data();
 	$line_height				= $script->get_parent()->get_setting( 'line_height' )->run_type()->get_data();
+	$line_height_mobile			= $script->get_parent()->get_setting( 'line_height_mobile' )->run_type()->get_data();
 	
 	// Background Settings
 	$bg_color					= $script->get_parent()->get_setting( 'bg_color' )->run_type()->get_data();
@@ -84,6 +86,13 @@ if ( $bg_image ) {
 	background-repeat:<?php echo $bg_repeat; ?>;
 	background-attachment:<?php echo $bg_attachment; ?>;
 <?php } ?>
+}
+
+@media ( min-width: 850px; ) {
+	.edit-post-visual-editor.editor-styles-wrapper {
+		font-size: <?php echo $font_size; ?>px;
+		line-height: <?php echo $line_height; ?>px;
+	}
 }
 
 /* Selection */

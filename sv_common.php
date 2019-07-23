@@ -35,6 +35,10 @@
 			$this->get_settings_component( 'line_height','line_height', 23 );
 			$this->get_settings_component( 'text_color','text_color', '#1e1e1e' );
 			
+			// Text Settings (Mobile)
+			$this->get_settings_component( 'font_size_mobile','font_size', 14 );
+			$this->get_settings_component( 'line_height_mobile','line_height', 21 );
+			
 			// Background Settings
 			$this->get_settings_component( 'bg_color','background_color', '#ffffff' );
 			$this->get_settings_component( 'bg_image','background_image' );
