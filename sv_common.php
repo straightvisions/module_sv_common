@@ -72,6 +72,11 @@
 		}
 		
 		protected function register_scripts(): sv_common {
+			$this->get_script( 'required' )
+				 ->set_path( 'lib/frontend/css/required.css' )
+				 ->set_inline( true )
+				 ->set_is_enqueued();
+			
 			$this->get_script( 'inline_config' )
 				 ->set_path( 'lib/frontend/css/config.php' )
 				 ->set_inline( true )

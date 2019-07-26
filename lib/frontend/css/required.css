@@ -1,0 +1,10 @@
+/**
+ ** Required WP Theme Classes.
+ ** The styles for the elements that use these classes are defined in SV Content
+ ** Path: sv100/lib/modules/sv_content/lib/frontend/css/content/gutenberg.css
+ */
+.wp-caption {}
+.wp-caption-text{}
+.sticky{}
+.gallery-caption{}
+.bypostauthor{}
