@@ -39,16 +39,6 @@
 			$this->get_settings_component( 'font_size_mobile','font_size', 14 );
 			$this->get_settings_component( 'line_height_mobile','line_height', 21 );
 			
-			// Background Settings
-			$this->get_settings_component( 'bg_color','background_color', '#ffffff' );
-			$this->get_settings_component( 'bg_image','background_image' );
-			$this->get_settings_component( 'bg_media_size','background_media_size', 'large' );
-			$this->get_settings_component( 'bg_position','background_position', 'center top' );
-			$this->get_settings_component( 'bg_size','background_size', 0 );
-			$this->get_settings_component( 'bg_fit','background_fit', 'cover' );
-			$this->get_settings_component( 'bg_repeat','background_repeat', 'no-repeat' );
-			$this->get_settings_component( 'bg_attachment','background_attachment', 'fixed' );
-			
 			// Selection Settings
 			$this->get_setting( 'selection_color' )
 				 ->set_title( __( 'Selection color', 'sv100' ) )
@@ -97,6 +87,7 @@
 			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 			add_theme_support( 'automatic-feed-links' );
 			add_theme_support( 'custom-logo' );
+			add_theme_support( 'custom-background' );
 	
 			add_post_type_support( 'page', 'excerpt' );
 		}
