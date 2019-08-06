@@ -91,5 +91,9 @@
 			add_theme_support( 'custom-header' );
 	
 			add_post_type_support( 'page', 'excerpt' );
+			
+			if ( ! isset( $content_width ) ) {
+				$content_width = 620;
+			}
 		}
 	}
