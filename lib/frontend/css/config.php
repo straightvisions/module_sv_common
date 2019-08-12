@@ -14,6 +14,25 @@
 	$line_height				= $script->get_parent()->get_setting( 'line_height' )->run_type()->get_data();
 	$line_height_mobile			= $script->get_parent()->get_setting( 'line_height_mobile' )->run_type()->get_data();
 	
+	
+	// Link Settings
+	$font_family_link			= $script->get_parent()->get_setting( 'font_family_link' )->run_type()->get_data();
+	
+	if ( $font_family_link ) {
+		$font_link				= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_link );
+	} else {
+		$font_link              = false;
+	}
+	
+	$font_size_link				= $script->get_parent()->get_setting( 'font_size_link' )->run_type()->get_data();
+	$text_color_link			= $script->get_parent()->get_setting( 'text_color_link' )->run_type()->get_data();
+	$text_deco_link			    = $script->get_parent()->get_setting( 'text_deco_link' )->run_type()->get_data();
+	$line_height_link			= $script->get_parent()->get_setting( 'line_height_link' )->run_type()->get_data();
+	
+	// Link Settings (Hover/Focus)
+	$text_color_link_hover		= $script->get_parent()->get_setting( 'text_color_link_hover' )->run_type()->get_data();
+	$text_deco_link_hover		= $script->get_parent()->get_setting( 'text_deco_link_hover' )->run_type()->get_data();
+	
 	// Selection Settings
 	$selection_color			= $script->get_parent()->get_setting( 'selection_color' )->run_type()->get_data();
 	$selection_color_bg			= $script->get_parent()->get_setting( 'selection_color_background' )->run_type()->get_data();
@@ -65,8 +84,18 @@ body {
 
 body a,
 body a:visited {
-	text-decoration: underline;
-	color: <?php echo $text_color; ?>;
+    font-family: <?php echo ( $font_link ? '"' . $font_link['family'] . '", ' : '' ); ?>sans-serif;
+    font-weight: <?php echo ( $font_link ? $font_link['weight'] : '400' ); ?>;
+    font-size: <?php echo $font_size_link; ?>px;
+    line-height: <?php echo $line_height_link; ?>px;
+	text-decoration: <?php echo $text_deco_link; ?>;
+	color: <?php echo $text_color_link; ?>;
+}
+
+body a:hover,
+body a:focus {
+    text-decoration: <?php echo $text_deco_link_hover; ?>;
+    color: <?php echo $text_color_link_hover; ?>;
 }
 
 input, textarea {

@@ -39,6 +39,17 @@
 			$this->get_settings_component( 'font_size_mobile','font_size', 14 );
 			$this->get_settings_component( 'line_height_mobile','line_height', 21 );
 			
+			// Link Settings
+			$this->get_settings_component( 'font_family_link','font_family' );
+			$this->get_settings_component( 'font_size_link','font_size', 16 );
+			$this->get_settings_component( 'line_height_link','line_height', 23 );
+			$this->get_settings_component( 'text_color_link','text_color', '#328ce6' );
+			$this->get_settings_component( 'text_deco_link','text_decoration', 'underline' );
+			
+			// Link Settings (Hover/Focus)
+			$this->get_settings_component( 'text_color_link_hover','text_color', '#328ce6' );
+			$this->get_settings_component( 'text_deco_link_hover','text_decoration', 'none' );
+			
 			// Selection Settings
 			$this->get_setting( 'selection_color' )
 				 ->set_title( __( 'Selection color', 'sv100' ) )
