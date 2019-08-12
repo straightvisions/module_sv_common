@@ -2,7 +2,15 @@
 	if ( current_user_can( 'activate_plugins' ) ) {
 	?>
 	<div class="sv_section_description"><?php echo $module->get_section_desc(); ?></div>
-		
+
+    <h3 class="divider"><?php _e( 'Max width', 'sv100' ); ?></h3>
+    <div class="sv_setting_flex">
+        <?php
+            echo $module->get_setting( 'max_width' )->run_type()->form();
+			echo $module->get_setting( 'max_width_text' )->run_type()->form();
+        ?>
+    </div>
+    
 	<h3 class="divider"><?php _e( 'Text Settings', 'sv100' ); ?></h3>
 	<div class="sv_setting_flex">
     <?php

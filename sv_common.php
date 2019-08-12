@@ -29,6 +29,19 @@
 		}
 		
 		protected function load_settings(): sv_common {
+			// Content Settings
+			$this->get_setting( 'max_width' )
+				 ->set_title( __( 'Max width', 'sv100' ) )
+				 ->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
+				 ->set_default_value( 1300 )
+				 ->load_type( 'number' );
+			
+			$this->get_setting( 'max_width_text' )
+				 ->set_title( __( 'Max width - Text', 'sv100' ) )
+				 ->set_description( __( 'Sets the max width for text inside the content, in pixel.', 'sv100' ) )
+				 ->set_default_value( 620 )
+				 ->load_type( 'number' );
+			
 			// Text Settings
 			$this->get_settings_component( 'font_family','font_family' );
 			$this->get_settings_component( 'font_size','font_size', 16 );

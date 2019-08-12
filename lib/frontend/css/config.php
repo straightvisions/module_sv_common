@@ -1,4 +1,8 @@
 <?php
+    // Content Settings
+    $max_width                  = $script->get_parent()->get_setting( 'max_width' )->run_type()->get_data();
+	$max_width_text             = $script->get_parent()->get_setting( 'max_width_text' )->run_type()->get_data();
+ 
 	// Text Settings
 	$font_family				= $script->get_parent()->get_setting( 'font_family' )->run_type()->get_data();
 	
@@ -41,10 +45,10 @@
 /* Global Vars */
 :root {
 	--sv100_sv_common-padding: <?php echo $script->get_parent()->get_setting( 'padding' )->run_type()->get_data() . 'px' ?>;
-	--sv100_sv_common-max-width-lg: 1300px;
+	--sv100_sv_common-max-width-lg: <?php echo $max_width; ?>px;
 	--sv100_sv_common-max-width-dt: 1000px;
 	--sv100_sv_common-max-width-mb: 800px;
-	--sv100_sv_common-max-width-txt: 620px;
+	--sv100_sv_common-max-width-txt: <?php echo $max_width_text; ?>px;
 }
 
 /* General */
