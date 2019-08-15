@@ -105,3 +105,13 @@ body a:focus {
 input, textarea {
 	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
 }
+
+#wp-toolbar {
+    display: flex;
+}
+
+@media ( min-width: 782px ) {
+    #wp-toolbar {
+        display: inherit;
+    }
+}
