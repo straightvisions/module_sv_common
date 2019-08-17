@@ -115,3 +115,8 @@ input, textarea {
         display: inherit;
     }
 }
+
+/* FIX IMAGE OVERLAPPING PICTURE ELEMENT */
+.picture img{
+	max-width:100%;
+}
