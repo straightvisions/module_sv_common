@@ -13,7 +13,7 @@
 	
 	class sv_common extends init {
 		public function init() {
-			$this->set_module_title( 'SV Common' )
+			$this->set_module_title( __( 'SV Common', 'sv100' ) )
 				 ->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
 				 ->load_settings()
 				 ->register_scripts()
