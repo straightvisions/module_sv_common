@@ -90,7 +90,6 @@ body a,
 body a:visited {
     font-family: <?php echo ( $font_link ? '"' . $font_link['family'] . '", ' : '' ); ?>sans-serif;
     font-weight: <?php echo ( $font_link ? $font_link['weight'] : '400' ); ?>;
-    font-size: <?php echo $font_size_link; ?>px;
     line-height: <?php echo $line_height_link; ?>px;
 	text-decoration: <?php echo $text_deco_link; ?>;
 	color: <?php echo $text_color_link; ?>;
