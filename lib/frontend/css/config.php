@@ -56,6 +56,9 @@
 *::before,
 *::after {
 	box-sizing: border-box;
+	-webkit-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
 }
 
 *::selection {
