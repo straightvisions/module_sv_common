@@ -133,11 +133,12 @@
 	
 ?>
 /* Editor Width */
+/* // deactivated by MB: incompatible with full-width blocks
 .block-editor-block-list__layout .wp-block,
 .wp-block.editor-post-title__block {
 	max-width: <?php echo $editor_width; ?>px;
 }
-
+*/
 /* Editor Padding */
 .editor-block-list__layout.block-editor-block-list__layout {
 	padding-left: <?php echo $editor_padding; ?>px;
@@ -179,10 +180,11 @@
 .edit-post-visual-editor.editor-styles-wrapper {
 	padding-top: 0;
 	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
-	font-weight: <?php echo ( $font ? '"' . $font['weight'] . '", ' : '400' ); ?>;
+	font-weight: <?php echo ( $font ? '"' . $font['weight'] . '" ' : '400' ); ?>;
 	font-size: <?php echo $font_size; ?>px;
 	color: <?php echo $text_color; ?>;
 	line-height: <?php echo $line_height; ?>px;
+	background-color:#<?php echo get_background_color(); ?>;
 }
 
 @media ( min-width: 850px; ) {
