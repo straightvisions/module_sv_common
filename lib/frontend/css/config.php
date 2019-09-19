@@ -91,7 +91,7 @@ body {
 
 body a,
 body a:visited {
-    font-family: <?php echo ( $font_link ? '"' . $font_link['family'] . '", ' : '' ); ?>sans-serif;
+    <?php echo ( $font_link ? 'font-family: "' . $font_link['family'] . '", sans-serif;' : '' ); ?>
     font-weight: <?php echo ( $font_link ? $font_link['weight'] : '400' ); ?>;
     line-height: <?php echo $line_height_link; ?>px;
 	text-decoration: <?php echo $text_deco_link; ?>;
@@ -105,7 +105,7 @@ body a:focus {
 }
 
 input, textarea {
-	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
+	<?php echo ( $font ? 'font-family: "' . $font['family'] . '", sans-serif;' : '' ); ?>
 }
 
 #wp-toolbar {
