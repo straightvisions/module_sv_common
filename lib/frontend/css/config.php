@@ -119,6 +119,6 @@ input, textarea {
 }
 
 /* FIX IMAGE OVERLAPPING PICTURE ELEMENT */
-.picture img{
+picture img{
 	max-width:100%;
 }
