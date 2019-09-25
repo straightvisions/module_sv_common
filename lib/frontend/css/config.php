@@ -31,8 +31,7 @@
 	$font_size_link				= $script->get_parent()->get_setting( 'font_size_link' )->run_type()->get_data();
 	$text_color_link			= $script->get_parent()->get_setting( 'text_color_link' )->run_type()->get_data();
 	$text_deco_link			    = $script->get_parent()->get_setting( 'text_deco_link' )->run_type()->get_data();
-	$line_height_link			= $script->get_parent()->get_setting( 'line_height_link' )->run_type()->get_data();
-	
+
 	// Link Settings (Hover/Focus)
 	$text_color_link_hover		= $script->get_parent()->get_setting( 'text_color_link_hover' )->run_type()->get_data();
 	$text_deco_link_hover		= $script->get_parent()->get_setting( 'text_deco_link_hover' )->run_type()->get_data();
@@ -70,7 +69,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	font-size: <?php echo $font_size_mobile; ?>px;
-	line-height: <?php echo $line_height_mobile; ?>px;
+	line-height: <?php echo $line_height_mobile; ?>;
 }
 
 @media ( min-width: 850px ) {
@@ -78,7 +77,7 @@ html, body {
 		margin: 0;
 		padding: 0;
 		font-size: <?php echo $font_size; ?>px;
-		line-height: <?php echo $line_height; ?>px;
+		line-height: <?php echo $line_height; ?>;
 	}
 }
 
@@ -93,7 +92,6 @@ body a,
 body a:visited {
     <?php echo ( $font_link ? 'font-family: "' . $font_link['family'] . '", sans-serif;' : '' ); ?>
     font-weight: <?php echo ( $font_link ? $font_link['weight'] : '400' ); ?>;
-    line-height: <?php echo $line_height_link; ?>px;
 	text-decoration: <?php echo $text_deco_link; ?>;
 	color: <?php echo $text_color_link; ?>;
 }
