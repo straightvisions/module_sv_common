@@ -172,7 +172,7 @@
 @media ( min-width: 850px ) {
 	.editor-post-title .editor-post-title__input {
 		font-size: <?php echo $font_size_title; ?>px;
-		line-height: <?php echo $line_height_title; ?>px;
+		line-height: <?php echo $line_height_title; ?>;
 	}
 }
 
@@ -190,7 +190,7 @@
 @media ( min-width: 850px; ) {
 	.edit-post-visual-editor.editor-styles-wrapper {
 		font-size: <?php echo $font_size; ?>px;
-		line-height: <?php echo $line_height; ?>px;
+		line-height: <?php echo $line_height; ?>;
 	}
 }
 
