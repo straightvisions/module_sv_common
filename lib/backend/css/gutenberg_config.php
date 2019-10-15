@@ -185,6 +185,13 @@
 	color: <?php echo $text_color; ?>;
 	line-height: <?php echo $line_height; ?>;
 	background-color:#<?php echo get_background_color(); ?>;
+<?php if(get_background_image()){ ?>
+	background-image:url(<?php echo get_background_image(); ?>);
+	background-size: <?php echo get_theme_mod( 'background_size', get_theme_support( 'custom-background', 'default-size' ) ); ?>;
+	background-position: <?php echo get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) ); ?> <?php echo get_theme_mod( 'background_position_y', get_theme_support( 'custom-background', 'default-position-y' ) ); ?>;
+	background-repeat: <?php echo get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) ); ?>;
+	background-attachment: <?php echo get_theme_mod( 'background_attachment', get_theme_support( 'custom-background', 'default-attachment' ) ); ?>;
+<?php } ?>
 }
 
 @media ( min-width: 850px; ) {
