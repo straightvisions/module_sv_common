@@ -103,8 +103,23 @@
 			
 			return $this;
 		}
-		
 		public function after_setup_theme() {
+			global $content_width;
+			$content_width = intval($this->get_setting( 'max_width' )->run_type()->get_data());
+
+			add_image_size(
+				'sv100_large',
+				$this->get_setting( 'max_width' )->run_type()->get_data()
+			);
+			add_image_size(
+				'sv100_medium',
+				$this->get_setting( 'max_width_text' )->run_type()->get_data()
+			);
+
+			add_image_size(
+				'sv100_thumbnail', 400
+			);
+
 			add_theme_support( 'post-thumbnails' );
 			add_theme_support( 'title-tag' );
 			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
@@ -112,11 +127,36 @@
 			add_theme_support( 'custom-logo' );
 			add_theme_support( 'custom-background' );
 			add_theme_support( 'custom-header' );
+			add_theme_support( 'align-wide' );
 	
 			add_post_type_support( 'page', 'excerpt' );
-			
-			if ( ! isset( $content_width ) ) {
-				$content_width = 620;
-			}
+
+			add_theme_support( 'editor-font-sizes', array(
+				array(
+					'name' => __( 'Small', 'sv100' ),
+					'size' => 14,
+					'slug' => 'small'
+				),
+				array(
+					'name' => __( 'Normal', 'sv100' ),
+					'size' => 16,
+					'slug' => 'normal'
+				),
+				array(
+					'name' => __( 'Medium', 'sv100' ),
+					'size' => 24,
+					'slug' => 'normal'
+				),
+				array(
+					'name' => __( 'Large', 'sv100' ),
+					'size' => 32,
+					'slug' => 'large'
+				),
+				array(
+					'name' => __( 'Huge', 'sv100' ),
+					'size' => 64,
+					'slug' => 'huge'
+				)
+			) );
 		}
 	}
