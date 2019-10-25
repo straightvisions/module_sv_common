@@ -27,8 +27,8 @@
 	} else {
 		$font_link              = false;
 	}
-	
-	$font_size_link				= $script->get_parent()->get_setting( 'font_size_link' )->run_type()->get_data();
+
+	$font_size_mobile				= $script->get_parent()->get_setting( 'font_size_mobile' )->run_type()->get_data();
 	$text_color_link			= $script->get_parent()->get_setting( 'text_color_link' )->run_type()->get_data();
 	$text_deco_link			    = $script->get_parent()->get_setting( 'text_deco_link' )->run_type()->get_data();
 

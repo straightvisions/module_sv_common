@@ -54,7 +54,6 @@
 			
 			// Link Settings
 			$this->get_settings_component( 'font_family_link','font_family' );
-			$this->get_settings_component( 'font_size_link','font_size', 16 );
 			$this->get_settings_component( 'text_color_link','text_color', '#328ce6' );
 			$this->get_settings_component( 'text_deco_link','text_decoration', 'underline' );
 			

@@ -21,15 +21,17 @@
     ?>
 	</div>
 
+	<h3 class="divider"><?php _e( 'Text Settings - Mobile', 'sv100' ); ?></h3>
+	<div class="sv_setting_flex">
+		<?php
+		echo $module->get_settings_component( 'font_size_mobile' )->run_type()->form();
+		?>
+	</div>
+
     <h3 class="divider"><?php _e( 'Link Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
         <?php
             echo $module->get_settings_component( 'font_family_link' )->run_type()->form();
-            echo $module->get_settings_component( 'font_size_link' )->run_type()->form();
-        ?>
-    </div>
-    <div class="sv_setting_flex">
-        <?php
             echo $module->get_settings_component( 'text_color_link' )->run_type()->form();
             echo $module->get_settings_component( 'text_deco_link' )->run_type()->form();
         ?>
