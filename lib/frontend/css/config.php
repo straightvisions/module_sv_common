@@ -107,4 +107,5 @@ input, textarea {
 /* FIX IMAGE OVERLAPPING PICTURE ELEMENT */
 picture img{
 	max-width:100%;
+	height:auto;
 }
