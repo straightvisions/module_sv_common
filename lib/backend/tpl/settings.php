@@ -25,6 +25,7 @@
 	<div class="sv_setting_flex">
 		<?php
 		echo $module->get_settings_component( 'font_size_mobile' )->run_type()->form();
+		echo $module->get_settings_component( 'line_height_mobile' )->run_type()->form();
 		?>
 	</div>
 
