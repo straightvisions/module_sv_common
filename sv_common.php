@@ -29,6 +29,13 @@
 		}
 		
 		protected function load_settings(): sv_common {
+			// Mobile
+			$this->get_setting( 'mobile_zoom' )
+				 ->set_title( __( 'Disable mobile zoom', 'sv100' ) )
+				 ->set_description( __( 'Disables the ability to zoom in the page, on mobile devices.', 'sv100' ) )
+				 ->set_default_value( 0 )
+				 ->load_type( 'checkbox' );
+			
 			// Content Settings
 			$this->get_setting( 'max_width' )
 				 ->set_title( __( 'Max width', 'sv100' ) )
