@@ -94,6 +94,10 @@ input, textarea {
 	<?php echo ( $font ? 'font-family: "' . $font['family'] . '", sans-serif;' : '' ); ?>
 }
 
+iframe{
+	display:block;
+}
+
 #wp-toolbar {
     display: flex;
 }
