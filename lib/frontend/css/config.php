@@ -70,7 +70,6 @@ html, body {
 }
 
 body {
-	overflow-x: hidden;
 	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
 	font-weight: <?php echo ( $font ? $font['weight'] : '400' ); ?>;
 	color: rgba(<?php echo $text_color; ?>);
