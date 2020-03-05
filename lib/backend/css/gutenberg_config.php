@@ -1,9 +1,9 @@
 <?php
 	$editor_width 				= 1300;
-	$editor_padding 			= $script->get_parent()->get_setting( 'padding' )->run_type()->get_data();
+	$editor_padding 			= $script->get_parent()->get_setting( 'padding' )->get_data();
 	
 	// Text Settings
-	$font_family				= $script->get_parent()->get_setting( 'font_family' )->run_type()->get_data();
+	$font_family				= $script->get_parent()->get_setting( 'font_family' )->get_data();
 	
 	if ( $font_family ) {
 		$font					= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family );
@@ -11,19 +11,19 @@
 		$font                     = false;
 	}
 	
-	$font_size					= $script->get_parent()->get_setting( 'font_size' )->run_type()->get_data();
-	$font_size_mobile			= $script->get_parent()->get_setting( 'font_size_mobile' )->run_type()->get_data();
-	$text_color					= $script->get_parent()->get_setting( 'text_color' )->run_type()->get_data();
-	$line_height				= $script->get_parent()->get_setting( 'line_height' )->run_type()->get_data();
-	$line_height_mobile			= $script->get_parent()->get_setting( 'line_height_mobile' )->run_type()->get_data();
+	$font_size					= $script->get_parent()->get_setting( 'font_size' )->get_data();
+	$font_size_mobile			= $script->get_parent()->get_setting( 'font_size_mobile' )->get_data();
+	$text_color					= $script->get_parent()->get_setting( 'text_color' )->get_data();
+	$line_height				= $script->get_parent()->get_setting( 'line_height' )->get_data();
+	$line_height_mobile			= $script->get_parent()->get_setting( 'line_height_mobile' )->get_data();
 	
 	// Selection Settings
-	$selection_color			= $script->get_parent()->get_setting( 'selection_color' )->run_type()->get_data();
-	$selection_color_bg			= $script->get_parent()->get_setting( 'selection_color_background' )->run_type()->get_data();
+	$selection_color			= $script->get_parent()->get_setting( 'selection_color' )->get_data();
+	$selection_color_bg			= $script->get_parent()->get_setting( 'selection_color_background' )->get_data();
 	
 	// ### SV Content - Content Header Settings ###
 	// Content Header - Title
-	$font_family_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_title' )->run_type()->get_data();
+	$font_family_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_title' )->get_data();
 	
 	if ( $font_family_title ) {
 		$font_title				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_title );
@@ -31,18 +31,18 @@
 		$font_title             = false;
 	}
 	
-	$font_size_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_title' )->run_type()->get_data();
-	$font_size_title_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_title_mobile' )->run_type()->get_data();
-	$text_color_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_title' )->run_type()->get_data();
-	$line_height_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_title' )->run_type()->get_data();
-	$line_height_title_mobile	= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_title_mobile' )->run_type()->get_data();
+	$font_size_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_title' )->get_data();
+	$font_size_title_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_title_mobile' )->get_data();
+	$text_color_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_title' )->get_data();
+	$line_height_title			= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_title' )->get_data();
+	$line_height_title_mobile	= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_title_mobile' )->get_data();
 	
 	// Content Header - Color Settings
-	$bg_color_title				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'bg_color' )->run_type()->get_data();
+	$bg_color_title				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'bg_color' )->get_data();
 	
 	// ### SV Content - Content Settings ###
 	// H1
-	$font_family_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h1' )->run_type()->get_data();
+	$font_family_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h1' )->get_data();
 	
 	if ( $font_family_h1 ) {
 		$font_h1				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_h1 );
@@ -50,14 +50,14 @@
 		$font_h1                = false;
 	}
 	
-	$font_size_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h1' )->run_type()->get_data();
-	$font_size_h1_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h1_mobile' )->run_type()->get_data();
-	$text_color_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h1' )->run_type()->get_data();
-	$line_height_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h1' )->run_type()->get_data();
-	$line_height_h1_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h1_mobile' )->run_type()->get_data();
+	$font_size_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h1' )->get_data();
+	$font_size_h1_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h1_mobile' )->get_data();
+	$text_color_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h1' )->get_data();
+	$line_height_h1				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h1' )->get_data();
+	$line_height_h1_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h1_mobile' )->get_data();
 	
 	// H2
-	$font_family_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h2' )->run_type()->get_data();
+	$font_family_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h2' )->get_data();
 	
 	if ( $font_family_h2 ) {
 		$font_h2				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_h2 );
@@ -65,14 +65,14 @@
 		$font_h2                = false;
 	}
 	
-	$font_size_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h2' )->run_type()->get_data();
-	$font_size_h2_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h2_mobile' )->run_type()->get_data();
-	$text_color_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h2' )->run_type()->get_data();
-	$line_height_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h2' )->run_type()->get_data();
-	$line_height_h2_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h2_mobile' )->run_type()->get_data();
+	$font_size_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h2' )->get_data();
+	$font_size_h2_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h2_mobile' )->get_data();
+	$text_color_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h2' )->get_data();
+	$line_height_h2				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h2' )->get_data();
+	$line_height_h2_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h2_mobile' )->get_data();
 	
 	// H3
-	$font_family_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h3' )->run_type()->get_data();
+	$font_family_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h3' )->get_data();
 	
 	if ( $font_family_h3 ) {
 		$font_h3				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_h3 );
@@ -80,14 +80,14 @@
 		$font_h3              	= false;
 	}
 	
-	$font_size_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h3' )->run_type()->get_data();
-	$font_size_h3_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h3_mobile' )->run_type()->get_data();
-	$text_color_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h3' )->run_type()->get_data();
-	$line_height_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h3' )->run_type()->get_data();
-	$line_height_h3_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h3_mobile' )->run_type()->get_data();
+	$font_size_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h3' )->get_data();
+	$font_size_h3_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h3_mobile' )->get_data();
+	$text_color_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h3' )->get_data();
+	$line_height_h3				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h3' )->get_data();
+	$line_height_h3_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h3_mobile' )->get_data();
 	
 	// H4
-	$font_family_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h4' )->run_type()->get_data();
+	$font_family_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h4' )->get_data();
 	
 	if ( $font_family_h4 ) {
 		$font_h4				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_h4 );
@@ -95,14 +95,14 @@
 		$font_h4                = false;
 	}
 	
-	$font_size_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h4' )->run_type()->get_data();
-	$font_size_h4_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h4_mobile' )->run_type()->get_data();
-	$text_color_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h4' )->run_type()->get_data();
-	$line_height_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h4' )->run_type()->get_data();
-	$line_height_h4_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h4_mobile' )->run_type()->get_data();
+	$font_size_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h4' )->get_data();
+	$font_size_h4_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h4_mobile' )->get_data();
+	$text_color_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h4' )->get_data();
+	$line_height_h4				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h4' )->get_data();
+	$line_height_h4_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h4_mobile' )->get_data();
 	
 	// H5
-	$font_family_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h5' )->run_type()->get_data();
+	$font_family_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h5' )->get_data();
 	
 	if ( $font_family_h5 ) {
 		$font_h5				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_h5 );
@@ -110,14 +110,14 @@
 		$font_h5                = false;
 	}
 	
-	$font_size_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h5' )->run_type()->get_data();
-	$font_size_h5_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h5_mobile' )->run_type()->get_data();
-	$text_color_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h5' )->run_type()->get_data();
-	$line_height_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h5' )->run_type()->get_data();
-	$line_height_h5_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h5_mobile' )->run_type()->get_data();
+	$font_size_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h5' )->get_data();
+	$font_size_h5_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h5_mobile' )->get_data();
+	$text_color_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h5' )->get_data();
+	$line_height_h5				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h5' )->get_data();
+	$line_height_h5_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h5_mobile' )->get_data();
 	
 	// H6
-	$font_family_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h6' )->run_type()->get_data();
+	$font_family_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_family_h6' )->get_data();
 	
 	if ( $font_family_h6 ) {
 		$font_h6				= $script->get_parent()->get_module( 'sv_content' )->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_h6 );
@@ -125,11 +125,11 @@
 		$font_h6                = false;
 	}
 	
-	$font_size_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h6' )->run_type()->get_data();
-	$font_size_h6_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h6_mobile' )->run_type()->get_data();
-	$text_color_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h6' )->run_type()->get_data();
-	$line_height_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h6' )->run_type()->get_data();
-	$line_height_h6_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h6_mobile' )->run_type()->get_data();
+	$font_size_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h6' )->get_data();
+	$font_size_h6_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'font_size_h6_mobile' )->get_data();
+	$text_color_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'text_color_h6' )->get_data();
+	$line_height_h6				= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h6' )->get_data();
+	$line_height_h6_mobile		= $script->get_parent()->get_module( 'sv_content' )->get_setting( 'line_height_h6_mobile' )->get_data();
 	
 ?>
 /* Editor Width */

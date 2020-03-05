@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.144
+	 * @version         4.145
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -111,15 +111,15 @@
 		}
 		public function after_setup_theme() {
 			global $content_width;
-			$content_width = intval($this->get_setting( 'max_width' )->run_type()->get_data());
+			$content_width = intval($this->get_setting( 'max_width' )->get_data());
 
 			add_image_size(
 				'sv100_large',
-				$this->get_setting( 'max_width' )->run_type()->get_data()
+				$this->get_setting( 'max_width' )->get_data()
 			);
 			add_image_size(
 				'sv100_medium',
-				$this->get_setting( 'max_width_text' )->run_type()->get_data()
+				$this->get_setting( 'max_width_text' )->get_data()
 			);
 
 			add_image_size(

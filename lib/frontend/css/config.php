@@ -2,7 +2,7 @@
 	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
 	// This reduces the lines of code for the needed setting values.
 	foreach ( $script->get_parent()->get_settings() as $setting ) {
-		${ $setting->get_ID() } = $setting->run_type()->get_data();
+		${ $setting->get_ID() } = $setting->get_data();
 		
 		// If setting is color, it gets the value in the RGB-Format
 		if ( $setting->get_type() === 'setting_color' ) {
@@ -11,7 +11,7 @@
 	}
  
 	// Text Settings
-	$font_family				= $script->get_parent()->get_setting( 'font_family' )->run_type()->get_data();
+	$font_family				= $script->get_parent()->get_setting( 'font_family' )->get_data();
 	
 	if ( $font_family ) {
 		$font					= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family );
@@ -20,7 +20,7 @@
 	}
 	
 	// Link Settings
-	$font_family_link			= $script->get_parent()->get_setting( 'font_family_link' )->run_type()->get_data();
+	$font_family_link			= $script->get_parent()->get_setting( 'font_family_link' )->get_data();
 	
 	if ( $font_family_link ) {
 		$font_link				= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_link );
