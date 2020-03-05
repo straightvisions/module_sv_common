@@ -2,7 +2,7 @@
 	namespace sv100;
 	
 	/**
-	 * @version         4.145
+	 * @version         4.150
 	 * @author			straightvisions GmbH
 	 * @package			sv100
 	 * @copyright		2019 straightvisions GmbH
@@ -29,6 +29,40 @@
 		}
 		
 		protected function load_settings(): sv_common {
+			// Breakpoints
+			$this->get_setting( 'breakpoint_mobile_landscape' )
+				->set_title( __( 'Mobile (Landscape)', 'sv100' ) )
+				->set_description( __( 'Small devices like landscape phones and up.', 'sv100' ) )
+				->set_default_value( 576 )
+				->load_type( 'number' );
+
+			$this->get_setting( 'breakpoint_tablet' )
+				->set_title( __( 'Tablet', 'sv100' ) )
+				->set_description( __( 'Medium devices like tablets and up.', 'sv100' ) )
+				->set_default_value( 768 )
+				->load_type( 'number' );
+
+			$this->get_setting( 'breakpoint_tablet_landscape' )
+				->set_title( __( 'Tablet (Landscape)', 'sv100' ) )
+				->set_description( __( 'Large devices like landscape tablets and up.', 'sv100' ) )
+				->set_default_value( 992 )
+				->load_type( 'number' );
+
+			$this->get_setting( 'breakpoint_desktop' )
+				->set_title( __( 'Desktop', 'sv100' ) )
+				->set_description( __( 'Extra large devices like desktops and up.', 'sv100' ) )
+				->set_default_value( 1200 )
+				->load_type( 'number' );
+
+			// Responsive Setting (Test)
+			$this->get_setting( 'test' )
+				->set_title( __( 'Test', 'sv100' ) )
+				->set_description( __( 'Test responsive setting.', 'sv100' ) )
+				->set_default_value( 'Test' )
+				->set_responsive( true )
+				->load_type( 'text' )
+				->create_responsive_settings();
+
 			// Mobile
 			$this->get_setting( 'mobile_zoom' )
 				 ->set_title( __( 'Mobile Zoom', 'sv100' ) )
@@ -109,6 +143,7 @@
 			
 			return $this;
 		}
+
 		public function after_setup_theme() {
 			global $content_width;
 			$content_width = intval($this->get_setting( 'max_width' )->get_data());
@@ -164,5 +199,22 @@
 					'slug' => 'huge'
 				)
 			) );
+		}
+
+		// Getter Methods
+		public function is_mobile_landscape() {
+			return ! empty( $this->get_setting('breakpoint_mobile_landscape')->get_data() ) ? true : false;
+		}
+
+		public function is_tablet() {
+			return ! empty( $this->get_setting('breakpoint_tablet')->get_data() ) ? true : false;
+		}
+
+		public function is_tablet_landscape() {
+			return ! empty( $this->get_setting('breakpoint_tablet_landscape')->get_data() ) ? true : false;
+		}
+
+		public function is_desktop() {
+			return ! empty( $this->get_setting('breakpoint_desktop')->get_data() ) ? true : false;
 		}
 	}
