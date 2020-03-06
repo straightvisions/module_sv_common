@@ -1,3 +1,4 @@
+<?php $suffix = (isset($suffix) ) ? $suffix : ''; ?>
 <div class="sv_setting_subpage">
 	<h2><?php _e('Common', 'sv100'); ?></h2>
 

@@ -30,38 +30,29 @@
 		
 		protected function load_settings(): sv_common {
 			// Breakpoints
+			$this->get_setting( 'breakpoint_mobile' )
+				->set_title( __( 'Mobile', 'sv100' ) )
+				->set_description( __( 'Extra small devices like portrait phones and less.', 'sv100' ) )
+				->set_default_value( 576 )
+				->load_type( 'number' );
+
 			$this->get_setting( 'breakpoint_mobile_landscape' )
 				->set_title( __( 'Mobile (Landscape)', 'sv100' ) )
-				->set_description( __( 'Small devices like landscape phones and up.', 'sv100' ) )
-				->set_default_value( 576 )
+				->set_description( __( 'Small devices like landscape phones and less.', 'sv100' ) )
+				->set_default_value( 768 )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_tablet' )
 				->set_title( __( 'Tablet', 'sv100' ) )
-				->set_description( __( 'Medium devices like tablets and up.', 'sv100' ) )
-				->set_default_value( 768 )
+				->set_description( __( 'Medium devices like tablets and less.', 'sv100' ) )
+				->set_default_value( 992 )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_tablet_landscape' )
 				->set_title( __( 'Tablet (Landscape)', 'sv100' ) )
 				->set_description( __( 'Large devices like landscape tablets and up.', 'sv100' ) )
-				->set_default_value( 992 )
-				->load_type( 'number' );
-
-			$this->get_setting( 'breakpoint_desktop' )
-				->set_title( __( 'Desktop', 'sv100' ) )
-				->set_description( __( 'Extra large devices like desktops and up.', 'sv100' ) )
 				->set_default_value( 1200 )
 				->load_type( 'number' );
-
-			// Responsive Setting (Test)
-			$this->get_setting( 'test' )
-				->set_title( __( 'Test', 'sv100' ) )
-				->set_description( __( 'Test responsive setting.', 'sv100' ) )
-				->set_default_value( 'Test' )
-				->set_responsive( true )
-				->load_type( 'text' )
-				->create_responsive_settings();
 
 			// Mobile
 			$this->get_setting( 'mobile_zoom' )
