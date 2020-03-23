@@ -20,35 +20,35 @@
     <h3 class="divider"><?php _e( 'Text Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
-		echo $module->get_settings_component( 'font_family' )->form();
-		echo $module->get_settings_component( 'font_size' )->form();
-		echo $module->get_settings_component( 'text_color' )->form();
-		echo $module->get_settings_component( 'line_height' )->form();
+		echo $module->get_setting( 'font_family' )->form();
+		echo $module->get_setting( 'font_size' )->form();
+		echo $module->get_setting( 'text_color' )->form();
+		echo $module->get_setting( 'line_height' )->form();
 		?>
     </div>
 
     <h3 class="divider"><?php _e( 'Text Settings - Mobile', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
-		echo $module->get_settings_component( 'font_size_mobile' )->form();
-		echo $module->get_settings_component( 'line_height_mobile' )->form();
+		echo $module->get_setting( 'font_size_mobile' )->form();
+		echo $module->get_setting( 'line_height_mobile' )->form();
 		?>
     </div>
 
     <h3 class="divider"><?php _e( 'Link Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
-		echo $module->get_settings_component( 'font_family_link' )->form();
-		echo $module->get_settings_component( 'text_color_link' )->form();
-		echo $module->get_settings_component( 'text_deco_link' )->form();
+		echo $module->get_setting( 'font_family_link' )->form();
+		echo $module->get_setting( 'text_color_link' )->form();
+		echo $module->get_setting( 'text_deco_link' )->form();
 		?>
     </div>
 
     <h3 class="divider"><?php _e( 'Link Settings (Hover/Focus)', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
-		echo $module->get_settings_component( 'text_color_link_hover' )->form();
-		echo $module->get_settings_component( 'text_deco_link_hover' )->form();
+		echo $module->get_setting( 'text_color_link_hover' )->form();
+		echo $module->get_setting( 'text_deco_link_hover' )->form();
 		?>
     </div>
 
