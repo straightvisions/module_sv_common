@@ -23,34 +23,53 @@
 				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
 				 ->get_root()
 				 ->add_section( $this );
+
+			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
 	
 			// Action Hooks
 			add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
+		}
+
+		public function set_breakpoints(array $breakpoints){
+			return array( // number = min width
+				'mobile'						=> $this->get_setting( 'breakpoint_mobile' )->get_data(),		// mobile first!
+				'mobile_landscape'				=> $this->get_setting( 'breakpoint_mobile_landscape' )->get_data(),
+				'tablet'						=> $this->get_setting( 'breakpoint_tablet' )->get_data(),
+				'tablet_landscape'				=> $this->get_setting( 'breakpoint_tablet_landscape' )->get_data(),
+				'desktop'						=> $this->get_setting( 'breakpoint_desktop' )->get_data(),
+			);
 		}
 		
 		protected function load_settings(): sv_common {
 			// Breakpoints
 			$this->get_setting( 'breakpoint_mobile' )
 				->set_title( __( 'Mobile', 'sv100' ) )
-				->set_description( __( 'Extra small devices like portrait phones and less.', 'sv100' ) )
-				->set_default_value( 576 )
+				->set_description( __( 'Minimum Size', 'sv100' ) )
+				->set_default_value( 0 )
+				->set_disabled(true)
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_mobile_landscape' )
 				->set_title( __( 'Mobile (Landscape)', 'sv100' ) )
 				->set_description( __( 'Small devices like landscape phones and less.', 'sv100' ) )
-				->set_default_value( 768 )
+				->set_default_value( 576 )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_tablet' )
 				->set_title( __( 'Tablet', 'sv100' ) )
 				->set_description( __( 'Medium devices like tablets and less.', 'sv100' ) )
-				->set_default_value( 992 )
+				->set_default_value( 768 )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_tablet_landscape' )
 				->set_title( __( 'Tablet (Landscape)', 'sv100' ) )
 				->set_description( __( 'Large devices like landscape tablets and up.', 'sv100' ) )
+				->set_default_value( 992 )
+				->load_type( 'number' );
+
+			$this->get_setting( 'breakpoint_desktop' )
+				->set_title( __( 'Desktop', 'sv100' ) )
+				->set_description( __( 'Desktop Devices', 'sv100' ) )
 				->set_default_value( 1200 )
 				->load_type( 'number' );
 
@@ -248,22 +267,5 @@
 					'slug' => 'huge'
 				)
 			) );
-		}
-
-		// Getter Methods
-		public function is_mobile_landscape() {
-			return ! empty( $this->get_setting('breakpoint_mobile_landscape')->get_data() ) ? true : false;
-		}
-
-		public function is_tablet() {
-			return ! empty( $this->get_setting('breakpoint_tablet')->get_data() ) ? true : false;
-		}
-
-		public function is_tablet_landscape() {
-			return ! empty( $this->get_setting('breakpoint_tablet_landscape')->get_data() ) ? true : false;
-		}
-
-		public function is_desktop() {
-			return ! empty( $this->get_setting('breakpoint_desktop')->get_data() ) ? true : false;
 		}
 	}
