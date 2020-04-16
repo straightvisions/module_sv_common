@@ -165,7 +165,6 @@
 	font-size: <?php echo $font_size_title_mobile; ?>px;
 	color: <?php echo $text_color_title; ?>;
 	line-height: <?php echo $line_height_title_mobile; ?>;
-	text-transform: uppercase;
 	text-align: center;
 }
 
@@ -284,6 +283,6 @@
 
 /* Selection */
 *::selection {
-	background-color: <?php echo $selection_color_bg; ?>;
-	color: <?php echo $selection_color; ?>;
+	background-color: rgba(<?php echo $selection_color_bg; ?>);
+	color: rgba(<?php echo $selection_color; ?>);
 }
