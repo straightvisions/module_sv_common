@@ -203,12 +203,6 @@
 				 ->set_inline( true )
 				 ->set_is_enqueued();
 			
-			$this->get_script( 'gutenberg' )
-				 ->set_path( 'lib/backend/css/gutenberg_config.php' )
-				 ->set_is_gutenberg()
-				 ->set_inline( true )
-				 ->set_is_enqueued();
-			
 			return $this;
 		}
 
