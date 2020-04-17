@@ -14,15 +14,16 @@
 	class sv_common extends init {
 		public function init() {
 			$this->set_module_title( __( 'SV Common', 'sv100' ) )
-				 ->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
-				 ->load_settings()
-				 ->register_scripts()
-				 ->set_section_title( __( 'Common', 'sv100' ) )
-				 ->set_section_desc( __( 'Common settings for your website', 'sv100' ) )
-				 ->set_section_type( 'settings' )
-				 ->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
-				 ->get_root()
-				 ->add_section( $this );
+				->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
+				->load_settings()
+				->register_scripts()
+				->set_section_title( __( 'Common', 'sv100' ) )
+				->set_section_desc( __( 'Common settings for your website', 'sv100' ) )
+				->set_section_type( 'settings' )
+				->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
+				->set_section_order(10)
+				->get_root()
+				->add_section( $this );
 
 			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
 	
