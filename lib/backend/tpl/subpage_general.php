@@ -20,25 +20,17 @@
     <h3 class="divider"><?php _e( 'Text Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
-		echo $module->get_setting( 'font_family' )->form();
+		echo $module->get_setting( 'font' )->form();
 		echo $module->get_setting( 'font_size' )->form();
 		echo $module->get_setting( 'text_color' )->form();
 		echo $module->get_setting( 'line_height' )->form();
 		?>
     </div>
 
-    <h3 class="divider"><?php _e( 'Text Settings - Mobile', 'sv100' ); ?></h3>
-    <div class="sv_setting_flex">
-		<?php
-		echo $module->get_setting( 'font_size_mobile' )->form();
-		echo $module->get_setting( 'line_height_mobile' )->form();
-		?>
-    </div>
-
     <h3 class="divider"><?php _e( 'Link Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
-		echo $module->get_setting( 'font_family_link' )->form();
+		echo $module->get_setting( 'font_link' )->form();
 		echo $module->get_setting( 'text_color_link' )->form();
 		echo $module->get_setting( 'text_deco_link' )->form();
 		?>
@@ -57,13 +49,6 @@
 		<?php
 		echo $module->get_setting( 'selection_color' )->form();
 		echo $module->get_setting( 'selection_color_background' )->form();
-		?>
-    </div>
-
-    <h3 class="divider"><?php _e( 'Spacing', 'sv100' ); ?></h3>
-    <div class="sv_setting_flex">
-		<?php
-		echo $module->get_setting( 'padding' )->form();
 		?>
     </div>
 </div>

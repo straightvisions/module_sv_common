@@ -80,7 +80,7 @@
 				 ->set_description( __( 'Allows user to zoom in the page on mobile devices.', 'sv100' ) )
 				 ->set_default_value( 1 )
 				 ->load_type( 'checkbox' );
-			
+
 			// Content Settings
 			$this->get_setting( 'max_width' )
 				 ->set_title( __( 'Max width', 'sv100' ) )
@@ -95,57 +95,51 @@
 				 ->load_type( 'number' );
 			
 			// Text Settings
-			$this->get_setting( 'font_family' )
+			$this->get_setting( 'font' )
 				 ->set_title( __( 'Font Family', 'sv100' ) )
 				 ->set_description( __( 'Choose a font for your text.', 'sv100' ) )
 				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
+				->set_is_responsive(true)
 				 ->load_type( 'select' );
 
 			$this->get_setting( 'font_size' )
 				 ->set_title( __( 'Font Size', 'sv100' ) )
 				 ->set_description( __( 'Font Size in pixel.', 'sv100' ) )
 				 ->set_default_value( 16 )
+				->set_is_responsive(true)
 				 ->load_type( 'number' );
 
 			$this->get_setting( 'line_height' )
 				 ->set_title( __( 'Line Height', 'sv100' ) )
 				 ->set_description( __( 'Set line height as multiplier or with a unit.', 'sv100' ) )
 				 ->set_default_value( '1.5' )
+				->set_is_responsive(true)
 				 ->load_type( 'text' );
 
 			$this->get_setting( 'text_color' )
 				 ->set_title( __( 'Text Color', 'sv100' ) )
-				 ->set_default_value( '#1e1e1e' )
+				 ->set_default_value( '30,30,30,1' )
+				->set_is_responsive(true)
 				 ->load_type( 'color' );
 			
-			// Text Settings (Mobile)
-			$this->get_setting( 'font_size_mobile' )
-				 ->set_title( __( 'Font Size', 'sv100' ) )
-				 ->set_description( __( 'Font Size in pixel.', 'sv100' ) )
-				 ->set_default_value( 14 )
-				 ->load_type( 'number' );
-
-			$this->get_setting( 'line_height_mobile' )
-				 ->set_title( __( 'Line Height', 'sv100' ) )
-				 ->set_description( __( 'Set line height as multiplier or with a unit.', 'sv100' ) )
-				 ->set_default_value( '1.5' )
-				 ->load_type( 'text' );
-			
 			// Link Settings
-			$this->get_setting( 'font_family_link' )
+			$this->get_setting( 'font_link' )
 				 ->set_title( __( 'Font Family', 'sv100' ) )
 				 ->set_description( __( 'Choose a font for your text.', 'sv100' ) )
 				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
+				->set_is_responsive(true)
 				 ->load_type( 'select' );
 
 			$this->get_setting( 'text_color_link' )
 				 ->set_title( __( 'Text Color', 'sv100' ) )
-				 ->set_default_value( '#328ce6' )
+				 ->set_default_value( '50,140,230,1' )
+				->set_is_responsive(true)
 				 ->load_type( 'color' );
 
 			$this->get_setting( 'text_deco_link' )
 				 ->set_title( __( 'Text Decoration', 'sv100' ) )
 				 ->set_default_value( 'underline' )
+				->set_is_responsive(true)
 				 ->set_options( array(
 					'none'			=> __( 'None', 'sv100' ),
 					'underline'		=> __( 'Underline', 'sv100' ),
@@ -157,7 +151,8 @@
 			// Link Settings (Hover/Focus)
 			$this->get_setting( 'text_color_link_hover' )
 				 ->set_title( __( 'Text Color', 'sv100' ) )
-				 ->set_default_value( '#328ce6' )
+				 ->set_default_value( '50,140,230,1' )
+				->set_is_responsive(true)
 				 ->load_type( 'color' );
 
 			$this->get_setting( 'text_deco_link_hover' )
@@ -169,26 +164,21 @@
 					'line-through'	=> __( 'Line Through', 'sv100' ),
 					'overline'		=> __( 'Overline', 'sv100' ),
 				 ) )
+				->set_is_responsive(true)
 				 ->load_type( 'select' );
 			
 			// Selection Settings
 			$this->get_setting( 'selection_color' )
 				 ->set_title( __( 'Selection color', 'sv100' ) )
 				 ->set_description( __( 'Color of selected text', 'sv100' ) )
-				 ->set_default_value( '#ffffff' )
+				 ->set_default_value( '255,255,255,1' )
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'selection_color_background' )
 				 ->set_title( __( 'Selection background color', 'sv100' ) )
 				 ->set_description( __( 'Background color of selected text', 'sv100' ) )
-				 ->set_default_value( '#328ce6' )
+				 ->set_default_value( '50,140,230,0.5' )
 				 ->load_type( 'color' );
-			
-			$this->get_setting( 'padding' )
-				 ->set_title( __( 'Distance to border', 'sv100' ) )
-				 ->set_description( __( 'The distance between your content and the window border on mobile devices, in pixels.', 'sv100' ) )
-				 ->set_default_value( 20 )
-				 ->load_type( 'number' );
 			
 			return $this;
 		}
@@ -198,12 +188,13 @@
 				 ->set_path( 'lib/frontend/css/required.css' )
 				 ->set_inline( true )
 				 ->set_is_enqueued();
-			
-			$this->get_script( 'inline_config' )
+
+			$this->get_script( 'config' )
 				 ->set_path( 'lib/frontend/css/config.php' )
 				 ->set_inline( true )
+				->set_is_gutenberg()
 				 ->set_is_enqueued();
-			
+
 			return $this;
 		}
 
@@ -249,7 +240,7 @@
 				array(
 					'name' => __( 'Medium', 'sv100' ),
 					'size' => 24,
-					'slug' => 'normal'
+					'slug' => 'medium'
 				),
 				array(
 					'name' => __( 'Large', 'sv100' ),

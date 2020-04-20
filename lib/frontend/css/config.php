@@ -1,51 +1,112 @@
 <?php
+	// ##### SETTINGS #####
+
 	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
 	// This reduces the lines of code for the needed setting values.
 	foreach ( $script->get_parent()->get_settings() as $setting ) {
-		${ $setting->get_ID() } = $setting->get_data();
-		
-		// If setting is color, it gets the value in the RGB-Format
-		if ( $setting->get_type() === 'setting_color' ) {
-			${ $setting->get_ID() } = $setting->get_rgb( ${ $setting->get_ID() } );
+		if ( $setting->get_type() !== false ) {
+			${ $setting->get_ID() } = $setting->get_data();
 		}
 	}
- 
-	// Text Settings
-	$font_family				= $script->get_parent()->get_setting( 'font_family' )->get_data();
-	
-	if ( $font_family ) {
-		$font					= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family );
-	} else {
-		$font					= false;
+
+	$properties					= array();
+
+	// Font
+	// @todo: double code
+	$value						= $font;
+	$font_family				= false;
+	$font_weight				= false;
+	foreach($value as $breakpoint => $val) {
+		if($val) {
+			$f							= $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
+			$font_family[$breakpoint]	= $f['family'];
+			$font_weight[$breakpoint]	= $f['weight'];
+		}else{
+			$font_family[$breakpoint]	= false;
+			$font_weight[$breakpoint]	= false;
+		}
 	}
-	
-	// Link Settings
-	$font_family_link			= $script->get_parent()->get_setting( 'font_family_link' )->get_data();
-	
-	if ( $font_family_link ) {
-		$font_link				= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family_link );
-	} else {
-		$font_link              = false;
+	if($font_family && (count(array_unique($font_family)) > 1 || array_unique($font_family)['mobile'] !== false)){
+		$properties['font-family']	= $setting->prepare_css_property_responsive($font_family,'',', sans-serif');
+		$properties['font-weight']	= $setting->prepare_css_property_responsive($font_weight,'','');
+	}else{
+		$properties['font-family']	= 'sans-serif';
 	}
+
+	if($font_size) {
+		$properties['font-size']	= $setting->prepare_css_property_responsive($font_size,'','px');
+	}
+
+	if($line_height) {
+		$properties['line-height']	= $setting->prepare_css_property_responsive($line_height);
+	}
+
+	if($text_color){
+		$properties['color']		= $setting->prepare_css_property_responsive($text_color,'rgba(',')');
+	}
+
+	echo $setting->build_css(
+		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body',
+		$properties
+	);
+
+	$properties					= array();
+
+	// Font
+	// @todo: double code
+	$value						= $font_link;
+	$font_family				= false;
+	$font_weight				= false;
+	foreach($value as $breakpoint => $val) {
+		if($val) {
+			$f							= $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
+			$font_family[$breakpoint]	= $f['family'];
+			$font_weight[$breakpoint]	= $f['weight'];
+		}else{
+			$font_family[$breakpoint]	= false;
+			$font_weight[$breakpoint]	= false;
+		}
+	}
+	if($font_family){
+		$properties['font-family']		= $setting->prepare_css_property_responsive($font_family,'',', sans-serif;');
+		$properties['font-weight']		= $setting->prepare_css_property_responsive($font_weight,'','');
+	}
+
+	if($text_color_link){
+		$properties['color']			= $setting->prepare_css_property_responsive($text_color_link,'rgba(',')');
+	}
+
+	if($text_deco_link){
+		$properties['text-decoration']	= $setting->prepare_css_property_responsive($text_deco_link,'','');
+	}
+
+	echo $setting->build_css(
+		is_admin() ? '.editor-styles-wrapper a, .editor-styles-wrapper a:visited' : 'a, a:visited',
+		$properties
+	);
+
+
+	$properties					= array();
+
+	if($text_color_link_hover){
+		$properties['color']			= $setting->prepare_css_property_responsive($text_color_link_hover,'rgba(',')');
+	}
+
+	if($text_deco_link_hover){
+		$properties['text-decoration']	= $setting->prepare_css_property_responsive($text_deco_link_hover,'','');
+	}
+
+	echo $setting->build_css(
+		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a, a:visited',
+		$properties
+	);
+
 ?>
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-padding: <?php echo $padding; ?>px;
 	--sv100_sv_common-max-width-lg: <?php echo $max_width; ?>px;
-	--sv100_sv_common-max-width-dt: 1000px;
-	--sv100_sv_common-max-width-mb: 800px;
 	--sv100_sv_common-max-width-txt: <?php echo $max_width_text; ?>px;
-}
-
-/* General */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-	-webkit-hyphens: auto;
-	-ms-hyphens: auto;
-	hyphens: auto;
 }
 
 *::selection {
@@ -53,44 +114,16 @@
 	color: rgba(<?php echo $selection_color; ?>);
 }
 
-html, body {
+body {
 	margin: 0;
 	padding: 0;
-	font-size: <?php echo $font_size_mobile; ?>px;
-	line-height: <?php echo $line_height_mobile; ?>;
 }
 
-@media ( min-width: 850px ) {
-		html, body {
-		margin: 0;
-		padding: 0;
-		font-size: <?php echo $font_size; ?>px;
-		line-height: <?php echo $line_height; ?>;
-	}
-}
-
-body {
-	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
-	font-weight: <?php echo ( $font ? $font['weight'] : '400' ); ?>;
-	color: rgba(<?php echo $text_color; ?>);
-}
-
-body a,
-body a:visited {
-    <?php echo ( $font_link ? 'font-family: "' . $font_link['family'] . '", sans-serif;' : '' ); ?>
-    font-weight: <?php echo ( $font_link ? $font_link['weight'] : '400' ); ?>;
-	text-decoration: <?php echo $text_deco_link; ?>;
-	color: rgba(<?php echo $text_color_link; ?>);
-}
-
-body a:hover,
-body a:focus {
-    text-decoration: <?php echo $text_deco_link_hover; ?>;
-    color: rgba(<?php echo $text_color_link_hover; ?>);
-}
-
-input, textarea {
-	<?php echo ( $font ? 'font-family: "' . $font['family'] . '", sans-serif;' : '' ); ?>
+*{
+box-sizing: border-box;
+-webkit-hyphens: auto;
+-ms-hyphens: auto;
+hyphens: auto;
 }
 
 iframe{
