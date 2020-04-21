@@ -29,6 +29,11 @@
 	
 			// Action Hooks
 			add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
+
+			// add customizer CSS to Block Editor
+			add_action( 'enqueue_block_editor_assets', function() {
+				wp_add_inline_style('sv_core_gutenberg_style', wp_get_custom_css());
+			});
 		}
 
 		public function set_breakpoints(array $breakpoints){
