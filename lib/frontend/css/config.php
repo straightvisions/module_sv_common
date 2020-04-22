@@ -45,6 +45,10 @@
 		$properties['color']		= $setting->prepare_css_property_responsive($text_color,'rgba(',')');
 	}
 
+	if($bg_color){
+		$properties['background-color']		= $setting->prepare_css_property_responsive($bg_color,'rgba(',')');
+	}
+
 	echo $setting->build_css(
 		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body',
 		$properties

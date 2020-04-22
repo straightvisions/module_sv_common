@@ -87,6 +87,12 @@
 				 ->load_type( 'checkbox' );
 
 			// Content Settings
+			$this->get_setting( 'bg_color' )
+				->set_title( __( 'Background Color', 'sv100' ) )
+				->set_default_value( '255,255,255,1' )
+				->set_is_responsive(true)
+				->load_type( 'color' );
+
 			$this->get_setting( 'max_width' )
 				 ->set_title( __( 'Max width', 'sv100' ) )
 				 ->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
