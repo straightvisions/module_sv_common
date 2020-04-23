@@ -1,0 +1,6 @@
+.alignwide{
+	max-width:var( --sv100_sv_common-max-width-lg ) !important;
+}
+.alignfull{
+	max-width:100% !important;
+}
