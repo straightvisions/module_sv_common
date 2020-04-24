@@ -1,6 +1,8 @@
-.alignwide{
+.alignwide, .alignwide *:not(img),
+[data-align="wide"], [data-align="wide"] *:not(img){
 	max-width:var( --sv100_sv_common-max-width-lg ) !important;
 }
-.alignfull{
+.alignfull, .alignfull *:not(img),
+[data-align="full"], [data-align="full"] *:not(img){
 	max-width:100% !important;
 }
