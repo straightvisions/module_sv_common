@@ -51,4 +51,13 @@
 		echo $module->get_setting( 'selection_color_background' )->form();
 		?>
     </div>
+
+	<h3 class="divider"><?php _e( 'Editor Font Sizes', 'sv100' ); ?></h3>
+	<div class="sv_setting_flex">
+		<?php
+			foreach($module->get_editor_font_sizes() as $font_size) {
+				echo $module->get_setting('editor_font_size_' . $font_size['slug'])->form();
+			}
+		?>
+	</div>
 </div>

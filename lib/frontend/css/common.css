@@ -1,3 +1,7 @@
+figure{
+	margin:0;
+}
+
 .alignwide, .alignwide *:not(img),
 [data-align="wide"], [data-align="wide"] *:not(img){
 	max-width:var( --sv100_sv_common-max-width-lg ) !important;

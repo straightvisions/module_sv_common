@@ -12,11 +12,43 @@
 	 */
 	
 	class sv_common extends init {
+		private $editor_font_sizes		= false;
+
 		public function init() {
+			$this->editor_font_sizes	= array(
+				array(
+					'name' => __( 'Small', 'sv100' ),
+					'size' => 12,
+					'slug' => 'small'
+				),
+				array(
+					'name' => __( 'Normal', 'sv100' ),
+					'size' => 16,
+					'slug' => 'normal'
+				),
+				array(
+					'name' => __( 'Medium', 'sv100' ),
+					'size' => 24,
+					'slug' => 'medium'
+				),
+				array(
+					'name' => __( 'Large', 'sv100' ),
+					'size' => 32,
+					'slug' => 'large'
+				),
+				array(
+					'name' => __( 'Huge', 'sv100' ),
+					'size' => 64,
+					'slug' => 'huge'
+				)
+			);
+
 			$this->set_module_title( __( 'SV Common', 'sv100' ) )
 				->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
 				->load_settings()
+				->load_settings_editor_font_sizes()
 				->register_scripts()
+				->add_theme_support()
 				->set_section_title( __( 'Common', 'sv100' ) )
 				->set_section_desc( __( 'Common settings for your website', 'sv100' ) )
 				->set_section_type( 'settings' )
@@ -26,9 +58,6 @@
 				->add_section( $this );
 
 			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
-	
-			// Action Hooks
-			add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 
 			// add customizer CSS to Block Editor
 			add_action( 'enqueue_block_editor_assets', function() {
@@ -193,6 +222,32 @@
 			
 			return $this;
 		}
+		public function get_editor_font_sizes(): array{
+			return apply_filters($this->get_prefix('editor_font_sizes'), $this->editor_font_sizes);
+		}
+		protected function load_settings_editor_font_sizes(): sv_common{
+			$font_sizes					= $this->get_editor_font_sizes();
+			$font_sizes_filtered		= array();
+
+			foreach($font_sizes as $font_size) {
+				$this->get_setting('editor_font_size_' . $font_size['slug'])
+					->set_title(__('Font Size ', 'sv100').$font_size['name'])
+					->set_description(__('Font Size in pixel.', 'sv100'))
+					->set_default_value($font_size['size'])
+					->load_type('number');
+
+
+				$font_sizes_filtered[]		= array(
+					'name'		=> $font_size['name'],
+					'slug'		=> $font_size['slug'],
+					'size'		=> $this->get_setting('editor_font_size_' . $font_size['slug'])->get_data()
+				);
+			}
+
+			add_filter($this->get_prefix('editor_font_sizes'), function() use($font_sizes_filtered){ return $font_sizes_filtered; });
+
+			return $this;
+		}
 		
 		protected function register_scripts(): sv_common {
 			$this->get_script( 'common' )
@@ -210,7 +265,7 @@
 			return $this;
 		}
 
-		public function after_setup_theme() {
+		public function add_theme_support(): sv_common {
 			global $content_width;
 			$content_width = intval($this->get_setting( 'max_width' )->get_data());
 
@@ -238,32 +293,8 @@
 	
 			add_post_type_support( 'page', 'excerpt' );
 
-			add_theme_support( 'editor-font-sizes', array(
-				array(
-					'name' => __( 'Small', 'sv100' ),
-					'size' => 14,
-					'slug' => 'small'
-				),
-				array(
-					'name' => __( 'Normal', 'sv100' ),
-					'size' => 16,
-					'slug' => 'normal'
-				),
-				array(
-					'name' => __( 'Medium', 'sv100' ),
-					'size' => 24,
-					'slug' => 'medium'
-				),
-				array(
-					'name' => __( 'Large', 'sv100' ),
-					'size' => 32,
-					'slug' => 'large'
-				),
-				array(
-					'name' => __( 'Huge', 'sv100' ),
-					'size' => 64,
-					'slug' => 'huge'
-				)
-			) );
+			add_theme_support( 'editor-font-sizes', $this->get_editor_font_sizes());
+
+			return $this;
 		}
 	}

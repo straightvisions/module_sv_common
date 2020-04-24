@@ -105,6 +105,29 @@
 		$properties
 	);
 
+	// Global Font Size Vars
+	// CSS Vars
+	$properties					= array();
+
+	foreach($setting->get_parent()->get_editor_font_sizes() as $font_size){
+		$properties['--sv100_sv_common_font_size_'.$font_size['slug']]		= $setting->prepare_css_property($font_size['size'],'','px');
+	}
+
+	echo $setting->build_css(
+		':root',
+		$properties
+	);
+
+	// CSS Classes
+	$properties					= array();
+
+	foreach($setting->get_parent()->get_editor_font_sizes() as $font_size){
+		$properties['font-size']		= $setting->prepare_css_property($font_size['size'],'','px !important');
+		echo $setting->build_css(
+			'.has-'.$font_size['slug'].'-font-size',
+			$properties
+		);
+	}
 ?>
 
 /* Global Vars */
