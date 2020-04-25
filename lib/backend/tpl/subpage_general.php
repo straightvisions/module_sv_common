@@ -5,7 +5,8 @@
     <div class="sv_setting_flex">
 		<?php
 			echo $module->get_setting( 'bg_color' )->form();
-			echo $module->get_setting( 'max_width' )->form();
+			echo $module->get_setting( 'max_width_alignfull' )->form();
+			echo $module->get_setting( 'max_width_alignwide' )->form();
 			echo $module->get_setting( 'max_width_text' )->form();
 		?>
     </div>

@@ -132,8 +132,9 @@
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-max-width-lg: <?php echo $max_width; ?>px;
-	--sv100_sv_common-max-width-txt: <?php echo $max_width_text; ?>px;
+	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull.'px' : '100vw'; ?>;
+	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>px;
+	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>px;
 }
 
 *::selection {

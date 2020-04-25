@@ -122,14 +122,20 @@
 				->set_is_responsive(true)
 				->load_type( 'color' );
 
-			$this->get_setting( 'max_width' )
-				 ->set_title( __( 'Max width', 'sv100' ) )
+			$this->get_setting( 'max_width_alignfull' )
+				->set_title( __( 'Full Max width', 'sv100' ) )
+				->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
+				->set_default_value( '100vw' )
+				->load_type( 'number' );
+
+			$this->get_setting( 'max_width_alignwide' )
+				 ->set_title( __( 'Wide Max width', 'sv100' ) )
 				 ->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
 				 ->set_default_value( 1300 )
 				 ->load_type( 'number' );
 			
 			$this->get_setting( 'max_width_text' )
-				 ->set_title( __( 'Max width - Text', 'sv100' ) )
+				 ->set_title( __( 'Text Max width', 'sv100' ) )
 				 ->set_description( __( 'Sets the max width for text inside the content, in pixel.', 'sv100' ) )
 				 ->set_default_value( 620 )
 				 ->load_type( 'number' );
@@ -222,6 +228,15 @@
 			
 			return $this;
 		}
+		public function get_max_width_options(): array{
+			return array(
+				'100vw'																		=> '100% Screen Width',
+				'100%'																		=> '100% Box Width',
+				$this->get_setting( 'max_width_alignfull' )->get_data().'px'		=> 	$this->get_setting( 'max_width_alignfull' )->get_title(),
+				$this->get_setting( 'max_width_alignwide' )->get_data().'px'		=> 	$this->get_setting( 'max_width_alignwide' )->get_title(),
+				$this->get_setting( 'max_width_text' )->get_data().'px'				=> 	$this->get_setting( 'max_width_text' )->get_title()
+			);
+		}
 		public function get_editor_font_sizes(): array{
 			return apply_filters($this->get_prefix('editor_font_sizes'), $this->editor_font_sizes);
 		}
@@ -267,11 +282,11 @@
 
 		public function add_theme_support(): sv_common {
 			global $content_width;
-			$content_width = intval($this->get_setting( 'max_width' )->get_data());
+			$content_width = intval($this->get_setting( 'max_width_alignwide' )->get_data());
 
 			add_image_size(
 				'sv100_large',
-				$this->get_setting( 'max_width' )->get_data()
+				$this->get_setting( 'max_width_alignwide' )->get_data()
 			);
 			add_image_size(
 				'sv100_medium',
