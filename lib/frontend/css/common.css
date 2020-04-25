@@ -5,11 +5,11 @@ figure{
 	margin:0;
 }
 
-.alignwide, .alignwide *:not(img),
-[data-align="wide"], [data-align="wide"] *:not(img){
+.alignwide, .alignwide > *:not(img),
+[data-align="wide"], [data-align="wide"] > *:not(img){
 	max-width:var( --sv100_sv_common-max-width-alignwide ) !important;
 }
-.alignfull, .alignfull *:not(img),
-[data-align="full"], [data-align="full"] *:not(img){
+.alignfull, .alignfull > *:not(img),
+[data-align="full"], [data-align="full"] > *:not(img){
 	max-width:var( --sv100_sv_common-max-width-alignfull ) !important;
 }
