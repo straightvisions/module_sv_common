@@ -16,14 +16,17 @@
 	$value						= $font;
 	$font_family				= false;
 	$font_weight				= false;
-	foreach($value as $breakpoint => $val) {
-		if($val) {
-			$f							= $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
-			$font_family[$breakpoint]	= $f['family'];
-			$font_weight[$breakpoint]	= $f['weight'];
-		}else{
-			$font_family[$breakpoint]	= false;
-			$font_weight[$breakpoint]	= false;
+
+	if($value) {
+		foreach ($value as $breakpoint => $val) {
+			if ($val) {
+				$f = $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
+				$font_family[$breakpoint] = $f['family'];
+				$font_weight[$breakpoint] = $f['weight'];
+			} else {
+				$font_family[$breakpoint] = false;
+				$font_weight[$breakpoint] = false;
+			}
 		}
 	}
 	if($font_family && (count(array_unique($font_family)) > 1 || array_unique($font_family)['mobile'] !== false)){
@@ -61,16 +64,20 @@
 	$value						= $font_link;
 	$font_family				= false;
 	$font_weight				= false;
-	foreach($value as $breakpoint => $val) {
-		if($val) {
-			$f							= $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
-			$font_family[$breakpoint]	= $f['family'];
-			$font_weight[$breakpoint]	= $f['weight'];
-		}else{
-			$font_family[$breakpoint]	= false;
-			$font_weight[$breakpoint]	= false;
+
+	if($value) {
+		foreach ($value as $breakpoint => $val) {
+			if ($val) {
+				$f = $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
+				$font_family[$breakpoint] = $f['family'];
+				$font_weight[$breakpoint] = $f['weight'];
+			} else {
+				$font_family[$breakpoint] = false;
+				$font_weight[$breakpoint] = false;
+			}
 		}
 	}
+
 	if($font_family){
 		$properties['font-family']		= $setting->prepare_css_property_responsive($font_family,'',', sans-serif;');
 		$properties['font-weight']		= $setting->prepare_css_property_responsive($font_weight,'','');
@@ -132,9 +139,9 @@
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull.'px' : '100vw'; ?>;
-	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>px;
-	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>px;
+	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull : '100vw'; ?>;
+	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>;
+	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>;
 }
 
 *::selection {
