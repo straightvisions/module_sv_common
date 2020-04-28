@@ -1,4 +1,34 @@
 <?php
+
+	echo $_s->build_css(
+		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body',
+		array_merge(
+			$script->get_parent()->get_setting('font')->get_css_data('font-family'),
+			$script->get_parent()->get_setting('font_size')->get_css_data('font-size','','px'),
+			$script->get_parent()->get_setting('line_height')->get_css_data('line-height'),
+			$script->get_parent()->get_setting('text_color')->get_css_data(),
+			$script->get_parent()->get_setting('bg_color')->get_css_data('background-color')
+		)
+	);
+
+	echo $_s->build_css(
+		is_admin() ? '.editor-styles-wrapper a, .editor-styles-wrapper a:visited' : 'a, a:visited',
+		array_merge(
+			$script->get_parent()->get_setting('font_link')->get_css_data('font-family'),
+			$script->get_parent()->get_setting('text_color_link')->get_css_data(),
+			$script->get_parent()->get_setting('text_deco_link')->get_css_data('text-decoration')
+		)
+	);
+
+	echo $_s->build_css(
+		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a, a:visited',
+		array_merge(
+			$script->get_parent()->get_setting('text_color_link_hover')->get_css_data(),
+			$script->get_parent()->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
+		)
+	);
+
+
 	// ##### SETTINGS #####
 
 	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
@@ -8,109 +38,6 @@
 			${ $setting->get_ID() } = $setting->get_data();
 		}
 	}
-
-	$properties					= array();
-
-	// Font
-	// @todo: double code
-	$value						= $font;
-	$font_family				= false;
-	$font_weight				= false;
-
-	if($value) {
-		foreach ($value as $breakpoint => $val) {
-			if ($val) {
-				$f = $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
-				$font_family[$breakpoint] = $f['family'];
-				$font_weight[$breakpoint] = $f['weight'];
-			} else {
-				$font_family[$breakpoint] = false;
-				$font_weight[$breakpoint] = false;
-			}
-		}
-	}
-	if($font_family && (count(array_unique($font_family)) > 1 || array_unique($font_family)['mobile'] !== false)){
-		$properties['font-family']	= $setting->prepare_css_property_responsive($font_family,'',', sans-serif');
-		$properties['font-weight']	= $setting->prepare_css_property_responsive($font_weight,'','');
-	}else{
-		$properties['font-family']	= 'sans-serif';
-	}
-
-	if($font_size) {
-		$properties['font-size']	= $setting->prepare_css_property_responsive($font_size,'','px');
-	}
-
-	if($line_height) {
-		$properties['line-height']	= $setting->prepare_css_property_responsive($line_height);
-	}
-
-	if($text_color){
-		$properties['color']		= $setting->prepare_css_property_responsive($text_color,'rgba(',')');
-	}
-
-	if($bg_color){
-		$properties['background-color']		= $setting->prepare_css_property_responsive($bg_color,'rgba(',')');
-	}
-
-	echo $setting->build_css(
-		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body',
-		$properties
-	);
-
-	$properties					= array();
-
-	// Font
-	// @todo: double code
-	$value						= $font_link;
-	$font_family				= false;
-	$font_weight				= false;
-
-	if($value) {
-		foreach ($value as $breakpoint => $val) {
-			if ($val) {
-				$f = $setting->get_parent()->get_module('sv_webfontloader')->get_font_by_label($val);
-				$font_family[$breakpoint] = $f['family'];
-				$font_weight[$breakpoint] = $f['weight'];
-			} else {
-				$font_family[$breakpoint] = false;
-				$font_weight[$breakpoint] = false;
-			}
-		}
-	}
-
-	if($font_family){
-		$properties['font-family']		= $setting->prepare_css_property_responsive($font_family,'',', sans-serif;');
-		$properties['font-weight']		= $setting->prepare_css_property_responsive($font_weight,'','');
-	}
-
-	if($text_color_link){
-		$properties['color']			= $setting->prepare_css_property_responsive($text_color_link,'rgba(',')');
-	}
-
-	if($text_deco_link){
-		$properties['text-decoration']	= $setting->prepare_css_property_responsive($text_deco_link,'','');
-	}
-
-	echo $setting->build_css(
-		is_admin() ? '.editor-styles-wrapper a, .editor-styles-wrapper a:visited' : 'a, a:visited',
-		$properties
-	);
-
-
-	$properties					= array();
-
-	if($text_color_link_hover){
-		$properties['color']			= $setting->prepare_css_property_responsive($text_color_link_hover,'rgba(',')');
-	}
-
-	if($text_deco_link_hover){
-		$properties['text-decoration']	= $setting->prepare_css_property_responsive($text_deco_link_hover,'','');
-	}
-
-	echo $setting->build_css(
-		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a, a:visited',
-		$properties
-	);
 
 	// Global Font Size Vars
 	// CSS Vars
@@ -135,13 +62,23 @@
 			$properties
 		);
 	}
+
+
+
+	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
+	// This reduces the lines of code for the needed setting values.
+	foreach ( $script->get_parent()->get_settings() as $setting ) {
+		if ( $setting->get_type() !== false ) {
+			${ $setting->get_ID() } = $setting->get_data();
+		}
+	}
 ?>
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull : '100vw'; ?>;
-	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>;
-	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>;
+	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull.'px' : '100vw'; ?>;
+	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>px;
+	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>px;
 }
 
 *::selection {
