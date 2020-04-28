@@ -85,35 +85,3 @@
 	background-color: rgba(<?php echo $selection_color_background; ?>);
 	color: rgba(<?php echo $selection_color; ?>);
 }
-
-body {
-	margin: 0;
-	padding: 0;
-}
-
-*{
-box-sizing: border-box;
--webkit-hyphens: auto;
--ms-hyphens: auto;
-hyphens: auto;
-}
-
-iframe{
-	display:block;
-}
-
-#wp-toolbar {
-    display: flex;
-}
-
-@media ( min-width: 782px ) {
-    #wp-toolbar {
-        display: inherit;
-    }
-}
-
-/* FIX IMAGE OVERLAPPING PICTURE ELEMENT */
-picture img{
-	max-width:100%;
-	height:auto;
-}
