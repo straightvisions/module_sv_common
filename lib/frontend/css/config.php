@@ -1,80 +1,87 @@
 <?php
-	// Text Settings
-	$font_family				= $script->get_parent()->get_setting( 'font_family' )->run_type()->get_data();
-	
-	if ( $font_family ) {
-		$font					= $script->get_parent()->get_module( 'sv_webfontloader' )->get_font_by_label( $font_family );
-	} else {
-		$font                     = false;
-	 }
 
-	$font_size					= $script->get_parent()->get_setting( 'font_size' )->run_type()->get_data();
-	$text_color					= $script->get_parent()->get_setting( 'text_color' )->run_type()->get_data();
-	$line_height				= $script->get_parent()->get_setting( 'line_height' )->run_type()->get_data();
-	
-	// Background Settings
-	$bg_color					= $script->get_parent()->get_setting( 'bg_color' )->run_type()->get_data();
-	$bg_image					= $script->get_parent()->get_setting( 'bg_image' )->run_type()->get_data();
-	$bg_media_size				= $script->get_parent()->get_setting( 'bg_media_size' )->run_type()->get_data();
-	$bg_position				= $script->get_parent()->get_setting( 'bg_position' )->run_type()->get_data();
-	$bg_size					= $script->get_parent()->get_setting( 'bg_size' )->run_type()->get_data();
-	$bg_fit						= $script->get_parent()->get_setting( 'bg_fit' )->run_type()->get_data();
-	$bg_repeat					= $script->get_parent()->get_setting( 'bg_repeat' )->run_type()->get_data();
-	$bg_attachment				= $script->get_parent()->get_setting( 'bg_attachment' )->run_type()->get_data();
-	
-	// Selection Settings
-	$selection_color			= $script->get_parent()->get_setting( 'selection_color' )->run_type()->get_data();
-	$selection_color_bg			= $script->get_parent()->get_setting( 'selection_color_background' )->run_type()->get_data();
+	echo $_s->build_css(
+		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body',
+		array_merge(
+			$script->get_parent()->get_setting('font')->get_css_data('font-family'),
+			$script->get_parent()->get_setting('font_size')->get_css_data('font-size','','px'),
+			$script->get_parent()->get_setting('line_height')->get_css_data('line-height'),
+			$script->get_parent()->get_setting('text_color')->get_css_data(),
+			$script->get_parent()->get_setting('bg_color')->get_css_data('background-color')
+		)
+	);
+
+	echo $_s->build_css(
+		is_admin() ? '.editor-styles-wrapper a, .editor-styles-wrapper a:visited' : 'a, a:visited',
+		array_merge(
+			$script->get_parent()->get_setting('font_link')->get_css_data('font-family'),
+			$script->get_parent()->get_setting('text_color_link')->get_css_data(),
+			$script->get_parent()->get_setting('text_deco_link')->get_css_data('text-decoration')
+		)
+	);
+
+	echo $_s->build_css(
+		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a, a:visited',
+		array_merge(
+			$script->get_parent()->get_setting('text_color_link_hover')->get_css_data(),
+			$script->get_parent()->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
+		)
+	);
+
+
+	// ##### SETTINGS #####
+
+	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
+	// This reduces the lines of code for the needed setting values.
+	foreach ( $script->get_parent()->get_settings() as $setting ) {
+		if ( $setting->get_type() !== false ) {
+			${ $setting->get_ID() } = $setting->get_data();
+		}
+	}
+
+	// Global Font Size Vars
+	// CSS Vars
+	$properties					= array();
+
+	foreach($setting->get_parent()->get_editor_font_sizes() as $font_size){
+		$properties['--sv100_sv_common_font_size_'.$font_size['slug']]		= $setting->prepare_css_property($font_size['size'],'','px');
+	}
+
+	echo $setting->build_css(
+		':root',
+		$properties
+	);
+
+	// CSS Classes
+	$properties					= array();
+
+	foreach($setting->get_parent()->get_editor_font_sizes() as $font_size){
+		$properties['font-size']		= $setting->prepare_css_property($font_size['size'],'','px !important');
+		echo $setting->build_css(
+			'.has-'.$font_size['slug'].'-font-size',
+			$properties
+		);
+	}
+
+
+
+	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
+	// This reduces the lines of code for the needed setting values.
+	foreach ( $script->get_parent()->get_settings() as $setting ) {
+		if ( $setting->get_type() !== false ) {
+			${ $setting->get_ID() } = $setting->get_data();
+		}
+	}
 ?>
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-padding: <?php echo $script->get_parent()->get_setting( 'padding' )->run_type()->get_data() . 'px' ?>;
-	--sv100_sv_common-max-width-lg: 1300px;
-	--sv100_sv_common-max-width-dt: 1000px;
-	--sv100_sv_common-max-width-mb: 800px;
-	--sv100_sv_common-max-width-txt: 620px;
-}
-
-/* General */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-	word-break: break-word;
+	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull.'px' : '100vw'; ?>;
+	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>px;
+	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>px;
 }
 
 *::selection {
-	background-color: <?php echo $selection_color_bg; ?>;
-	color: <?php echo $selection_color; ?>;
-}
-
-html, body {
-	margin: 0;
-	padding: 0;
-	overflow-x: hidden;
-	font-size: <?php echo $font_size; ?>px;
-}
-
-body {
-	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
-	font-weight: <?php echo ( $font ? '"' . $font['weight'] . '", ' : '400' ); ?>;
-	color: <?php echo $text_color; ?>;
-	line-height: <?php echo $line_height; ?>px;
-	background-color: <?php echo $bg_color; ?>;
-
-	<?php
-		if ( $bg_image ) {
-			$bg_size = $bg_size > 0 ? $bg_size . 'px' : $bg_fit;
-			?>
-		background-image: url( '<?php echo wp_get_attachment_image_src( $bg_image, $bg_media_size )[0]; ?>' );
-		background-position:<?php echo $bg_position; ?>;
-		background-size:<?php echo $bg_size; ?>;
-		background-repeat:<?php echo $bg_repeat; ?>;
-		background-attachment:<?php echo $bg_attachment; ?>;
-	<?php } ?>
-}
-
-input, textarea {
-	font-family: <?php echo ( $font ? '"' . $font['family'] . '", ' : '' ); ?>sans-serif;
+	background-color: rgba(<?php echo $selection_color_background; ?>);
+	color: rgba(<?php echo $selection_color; ?>);
 }
