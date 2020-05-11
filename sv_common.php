@@ -268,7 +268,6 @@
 			$this->get_script( 'common' )
 				->set_path( 'lib/frontend/css/common.css' )
 				->set_inline( true )
-				->set_is_gutenberg()
 				->set_is_enqueued();
 
 			$this->get_script( 'config' )
