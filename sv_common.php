@@ -123,19 +123,19 @@
 				->load_type( 'color' );
 
 			$this->get_setting( 'max_width_alignfull' )
-				->set_title( __( 'Full Max width', 'sv100' ) )
+				->set_title( __( 'Full Max Width', 'sv100' ) )
 				->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
 				->set_default_value( '100vw' )
 				->load_type( 'number' );
 
 			$this->get_setting( 'max_width_alignwide' )
-				 ->set_title( __( 'Wide Max width', 'sv100' ) )
+				 ->set_title( __( 'Wide Max Width', 'sv100' ) )
 				 ->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
 				 ->set_default_value( 1300 )
 				 ->load_type( 'number' );
 			
 			$this->get_setting( 'max_width_text' )
-				 ->set_title( __( 'Text Max width', 'sv100' ) )
+				 ->set_title( __( 'Text Max Width', 'sv100' ) )
 				 ->set_description( __( 'Sets the max width for text inside the content, in pixel.', 'sv100' ) )
 				 ->set_default_value( 620 )
 				 ->load_type( 'number' );
@@ -229,12 +229,20 @@
 			return $this;
 		}
 		public function get_max_width_options(): array{
+			$alignfull_value = (is_numeric($this->get_setting( 'max_width_alignfull' )->get_data())) ?
+				$this->get_setting( 'max_width_alignfull' )->get_data().'px' :
+				$this->get_setting( 'max_width_alignfull' )->get_data();
+
+			$alignwide_value = $this->get_setting( 'max_width_alignwide' )->get_data().'px';
+			$text_value = $this->get_setting( 'max_width_text' )->get_data().'px';
+
+
 			return array(
-				'100vw'																		=> '100% Screen Width',
-				'100%'																		=> '100% Box Width',
-				$this->get_setting( 'max_width_alignfull' )->get_data().'px'		=> 	$this->get_setting( 'max_width_alignfull' )->get_title(),
-				$this->get_setting( 'max_width_alignwide' )->get_data().'px'		=> 	$this->get_setting( 'max_width_alignwide' )->get_title(),
-				$this->get_setting( 'max_width_text' )->get_data().'px'				=> 	$this->get_setting( 'max_width_text' )->get_title()
+				'100vw'					=> 'Full Screen Width (100vw)',
+				'100%'					=> 'Full Box Width (100%)',
+				$alignfull_value		=> 	$this->get_setting( 'max_width_alignfull' )->get_title().' ('.$alignfull_value.')',
+				$alignwide_value		=> 	$this->get_setting( 'max_width_alignwide' )->get_title().' ('.$alignwide_value.')',
+				$text_value				=> 	$this->get_setting( 'max_width_text' )->get_title().' ('.$text_value.')'
 			);
 		}
 		public function get_editor_font_sizes(): array{
