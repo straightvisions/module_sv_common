@@ -21,7 +21,7 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a, a:visited',
+		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a:hover, a:focus',
 		array_merge(
 			$script->get_parent()->get_setting('text_color_link_hover')->get_css_data(),
 			$script->get_parent()->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
