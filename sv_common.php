@@ -137,7 +137,7 @@
 			$this->get_setting( 'max_width_text' )
 				 ->set_title( __( 'Text Max Width', 'sv100' ) )
 				 ->set_description( __( 'Sets the max width for text inside the content, in pixel.', 'sv100' ) )
-				 ->set_default_value( 620 )
+				 ->set_default_value( 820 )
 				 ->load_type( 'number' );
 			
 			// Text Settings
