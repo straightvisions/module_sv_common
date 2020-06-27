@@ -143,16 +143,16 @@
 			// Text Settings
 			$this->get_setting( 'font' )
 				 ->set_title( __( 'Font Family', 'sv100' ) )
-				 ->set_description( __( 'Choose a font for your text.', 'sv100' ) )
+				 ->set_description( __( 'Set a Font Family', 'sv100' ) )
 				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
-				->set_is_responsive(true)
+				 ->set_is_responsive(true)
 				 ->load_type( 'select' );
 
 			$this->get_setting( 'font_size' )
 				 ->set_title( __( 'Font Size', 'sv100' ) )
-				 ->set_description( __( 'Font Size in pixel.', 'sv100' ) )
+				 ->set_description( __( 'Font Size in Pixel', 'sv100' ) )
 				 ->set_default_value( 16 )
-				->set_is_responsive(true)
+				 ->set_is_responsive(true)
 				 ->load_type( 'number' );
 
 			$this->get_setting( 'line_height' )

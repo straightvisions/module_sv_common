@@ -1,8 +1,5 @@
-*:focus{
-	outline: none;
-}
-figure{
-	margin:0;
+html{
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -15,6 +12,14 @@ body {
 	-webkit-hyphens: auto;
 	-ms-hyphens: auto;
 	hyphens: auto;
+}
+
+*:focus{
+    outline: none;
+}
+
+figure{
+    margin:0;
 }
 
 iframe{
