@@ -12,19 +12,81 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper a, .editor-styles-wrapper a:visited' : 'a, a:visited',
+		is_admin() ? '.editor-styles-wrapper p:not(.has-text-color) a, .editor-styles-wrapper p:not(.has-text-color) a:visited' : 'a, a:visited',
 		array_merge(
 			$script->get_parent()->get_setting('font_link')->get_css_data('font-family'),
-			$script->get_parent()->get_setting('text_color_link')->get_css_data(),
-			$script->get_parent()->get_setting('text_deco_link')->get_css_data('text-decoration')
+			$script->get_parent()->get_setting('text_color_link')->get_css_data()
 		)
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper a:hover, .editor-styles-wrapper a:focus' : 'a:hover, a:focus',
+		is_admin() ? '.editor-styles-wrapper p:not(.has-text-color) a:hover, .editor-styles-wrapper p:not(.has-text-color) a:focus' : 'a:hover, a:focus',
 		array_merge(
-			$script->get_parent()->get_setting('text_color_link_hover')->get_css_data(),
-			$script->get_parent()->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
+			$script->get_parent()->get_setting('text_color_link_hover')->get_css_data()
+		)
+	);
+
+
+	// Text Decoration
+	$properties			= array();
+
+	$value				= $script->get_parent()->get_setting('text_deco_link')->get_data();
+	if($value){
+		$imploded		= false;
+		foreach($value as $breakpoint => $val) {
+			if(strlen($val) > 0) {
+				if($val == 'underline'){
+					$imploded['width'][$breakpoint] = '100%';
+					$imploded['border-bottom'][$breakpoint] = '1px solid';
+				}elseif($val == 'underline_dashed'){
+					$imploded['width'][$breakpoint] = '100%';
+					$imploded['border-bottom'][$breakpoint] = '1px dashed';
+				}
+			}
+		}
+
+		if($imploded) {
+			$properties['width'] = $_s->prepare_css_property_responsive($imploded['width'], '', '');
+			$properties['border-bottom'] = $_s->prepare_css_property_responsive($imploded['border-bottom'], '', '');
+		}
+	}
+
+	echo $_s->build_css(
+		is_admin() ? '.editor-styles-wrapper a::before, .editor-styles-wrapper a:visited::before' : 'article p a::before, article p a:visited::before',
+		array_merge(
+			$properties
+		)
+	);
+
+	// Text Decoration Hover
+	// @todo doubled code
+	$properties			= array();
+
+	$value				= $script->get_parent()->get_setting('text_deco_link_hover')->get_data();
+
+	if($value){
+		$imploded		= false;
+		foreach($value as $breakpoint => $val) {
+			if(strlen($val) > 0){
+				if($val == 'underline'){
+					$imploded['border-bottom'][$breakpoint] = '1px solid';
+				}elseif($val == 'underline_dashed'){
+					$imploded['border-bottom'][$breakpoint] = '1px dashed';
+				}
+			}else{
+				$imploded['border-bottom'][$breakpoint] = 'none';
+			}
+		}
+
+		if($imploded) {
+			$properties['border-bottom'] = $_s->prepare_css_property_responsive($imploded['border-bottom'], '', '');
+		}
+	}
+
+	echo $_s->build_css(
+		is_admin() ? '.editor-styles-wrapper a:hover::before, .editor-styles-wrapper a:focus::before' : 'article p a:hover::before, article p a:focus::before',
+		array_merge(
+			$properties
 		)
 	);
 
@@ -33,9 +95,9 @@
 
 	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
 	// This reduces the lines of code for the needed setting values.
-	foreach ( $script->get_parent()->get_settings() as $setting ) {
-		if ( $setting->get_type() !== false ) {
-			${ $setting->get_ID() } = $setting->get_data();
+	foreach ( $script->get_parent()->get_settings() as $_s ) {
+		if ( $_s->get_type() !== false ) {
+			${ $_s->get_ID() } = $_s->get_data();
 		}
 	}
 
@@ -43,11 +105,11 @@
 	// CSS Vars
 	$properties					= array();
 
-	foreach($setting->get_parent()->get_editor_font_sizes() as $font_size){
-		$properties['--sv100_sv_common_font_size_'.$font_size['slug']]		= $setting->prepare_css_property($font_size['size'],'','px');
+	foreach($_s->get_parent()->get_editor_font_sizes() as $font_size){
+		$properties['--sv100_sv_common_font_size_'.$font_size['slug']]		= $_s->prepare_css_property($font_size['size'],'','px');
 	}
 
-	echo $setting->build_css(
+	echo $_s->build_css(
 		':root',
 		$properties
 	);
@@ -55,21 +117,19 @@
 	// CSS Classes
 	$properties					= array();
 
-	foreach($setting->get_parent()->get_editor_font_sizes() as $font_size){
-		$properties['font-size']		= $setting->prepare_css_property($font_size['size'],'','px !important');
-		echo $setting->build_css(
+	foreach($_s->get_parent()->get_editor_font_sizes() as $font_size){
+		$properties['font-size']		= $_s->prepare_css_property($font_size['size'],'','px !important');
+		echo $_s->build_css(
 			'.has-'.$font_size['slug'].'-font-size',
 			$properties
 		);
 	}
 
-
-
 	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
 	// This reduces the lines of code for the needed setting values.
-	foreach ( $script->get_parent()->get_settings() as $setting ) {
-		if ( $setting->get_type() !== false ) {
-			${ $setting->get_ID() } = $setting->get_data();
+	foreach ( $script->get_parent()->get_settings() as $_s ) {
+		if ( $_s->get_type() !== false ) {
+			${ $_s->get_ID() } = $_s->get_data();
 		}
 	}
 ?>

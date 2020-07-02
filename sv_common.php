@@ -187,10 +187,9 @@
 				 ->set_default_value( 'underline' )
 				->set_is_responsive(true)
 				 ->set_options( array(
-					'none'			=> __( 'None', 'sv100' ),
-					'underline'		=> __( 'Underline', 'sv100' ),
-					'line-through'	=> __( 'Line Through', 'sv100' ),
-					'overline'		=> __( 'Overline', 'sv100' ),
+					''					=> __( 'None', 'sv100' ),
+					'underline'			=> __( 'Underline', 'sv100' ),
+					'underline_dashed'	=> __( 'Underline Dashed', 'sv100' ),
 				 ) )
 				 ->load_type( 'select' );
 			
@@ -205,10 +204,9 @@
 				 ->set_title( __( 'Text Decoration', 'sv100' ) )
 				 ->set_default_value( 'none' )
 				 ->set_options( array(
-					'none'			=> __( 'None', 'sv100' ),
-					'underline'		=> __( 'Underline', 'sv100' ),
-					'line-through'	=> __( 'Line Through', 'sv100' ),
-					'overline'		=> __( 'Overline', 'sv100' ),
+					''					=> __( 'None', 'sv100' ),
+					'underline'			=> __( 'Underline', 'sv100' ),
+					'underline_dashed'	=> __( 'Underline Dashed', 'sv100' ),
 				 ) )
 				->set_is_responsive(true)
 				 ->load_type( 'select' );
@@ -276,6 +274,7 @@
 			$this->get_script( 'common' )
 				->set_path( 'lib/frontend/css/common.css' )
 				->set_inline( true )
+				->set_is_gutenberg()
 				->set_is_enqueued();
 
 			$this->get_script( 'config' )
