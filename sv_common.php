@@ -125,7 +125,7 @@
 			$this->get_setting( 'max_width_alignfull' )
 				->set_title( __( 'Full Max Width', 'sv100' ) )
 				->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
-				->set_default_value( '100vw' )
+				->set_default_value( '' )
 				->load_type( 'number' );
 
 			$this->get_setting( 'max_width_alignwide' )
@@ -290,6 +290,7 @@
 			global $content_width;
 			$content_width = intval($this->get_setting( 'max_width_alignwide' )->get_data());
 
+			/*
 			add_image_size(
 				'sv100_large',
 				$this->get_setting( 'max_width_alignwide' )->get_data()
@@ -302,6 +303,31 @@
 			add_image_size(
 				'sv100_thumbnail', 400
 			);
+			*/
+
+			update_option( 'thumbnail_size_w', 400 );
+			update_option( 'thumbnail_size_h', 0 );
+			update_option( 'thumbnail_crop', 0 );
+
+			update_option( 'thumb_size_w', 400 );
+			update_option( 'thumb_size_h', 0 );
+			update_option( 'thumb_crop', 0 );
+
+			update_option( 'medium_size_w', $this->get_setting( 'max_width_text' )->get_data() );
+			update_option( 'medium_size_h', 0 );
+			update_option( 'medium_crop', 0 );
+
+			update_option( 'medium_large_size_w', $this->get_setting( 'max_width_alignwide' )->get_data());
+			update_option( 'medium_large_size_h', 0 );
+			update_option( 'medium_large_crop', 0 );
+
+			update_option( 'large_size_w', $this->get_setting( 'max_width_alignwide' )->get_data() * 1.5  );
+			update_option( 'large_size_h', 0 );
+			update_option( 'large_crop', 0 );
+
+			update_option( 'post-thumbnail_size_w', $this->get_setting( 'max_width_alignwide' )->get_data() );
+			update_option( 'post-thumbnail_size_h', 0 );
+			update_option( 'post-thumbnail_crop', 0 );
 
 			add_theme_support( 'post-thumbnails' );
 			add_theme_support( 'title-tag' );
