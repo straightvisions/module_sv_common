@@ -1,7 +1,7 @@
 <?php
 
 	echo $_s->build_css(
-		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body, button, input', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
+		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body, button, input, select', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
 		array_merge(
 			$script->get_parent()->get_setting('font')->get_css_data('font-family'),
 			$script->get_parent()->get_setting('font_size')->get_css_data('font-size','','px'),
