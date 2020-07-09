@@ -108,6 +108,17 @@
 				->set_default_value( 1200 )
 				->load_type( 'number' );
 
+			$this->get_setting( 'hyphens' )
+				->set_title( __( 'Hyphens', 'sv100' ) )
+				->set_description( __( 'Browser Behavior', 'sv100' ) )
+				->set_options( array(
+					'none'		=> 'none',
+					'manual'	=> 'manual',
+					'auto'		=> 'auto'
+				) )
+				->set_default_value( 'auto' )
+				->load_type( 'select' );
+
 			// Mobile
 			$this->get_setting( 'mobile_zoom' )
 				 ->set_title( __( 'Mobile Zoom', 'sv100' ) )

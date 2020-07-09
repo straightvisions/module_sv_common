@@ -4,20 +4,18 @@
 
     <div class="sv_setting_flex">
 		<?php
-			echo $module->get_setting( 'bg_color' )->form();
 			echo $module->get_setting( 'max_width_alignfull' )->form();
 			echo $module->get_setting( 'max_width_alignwide' )->form();
 			echo $module->get_setting( 'max_width_text' )->form();
 		?>
     </div>
-
-    <h3 class="divider"><?php _e( 'Mobile Settings', 'sv100' ); ?></h3>
-    <div class="sv_setting_flex">
+	<div class="sv_setting_flex">
 		<?php
-		echo $module->get_setting( 'mobile_zoom' )->form();
+			echo $module->get_setting( 'bg_color' )->form();
+			echo $module->get_setting( 'hyphens' )->form();
+			echo $module->get_setting( 'mobile_zoom' )->form();
 		?>
-    </div>
-
+	</div>
     <h3 class="divider"><?php _e( 'Text Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">
 		<?php
