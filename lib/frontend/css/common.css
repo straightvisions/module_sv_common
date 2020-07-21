@@ -56,7 +56,7 @@ article p a:focus::before, article p a:hover::before{
 }
 
 /* Fix WP-Admin-Bar overlapping content on mobile */
-html #wpadminbar {
+html #wpadminbar:not(:hover) {
 	overflow-x: auto;
 }
 @media screen and (max-width: 782px) {
