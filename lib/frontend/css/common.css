@@ -66,5 +66,5 @@ html #wpadminbar {
 }
 
 .wp-block{
-	max-width:initial;
+	max-width:var( --sv100_sv_common-max-width-text );
 }
