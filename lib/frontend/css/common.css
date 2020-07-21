@@ -54,3 +54,10 @@ article p a:focus::before, article p a:hover::before{
 	width:100%;
 	transition: width .25s ease-in-out;
 }
+
+/* Fix WP-Admin-Bar overlapping content on mobile */
+@media screen and (max-width: 782px) {
+	html #wpadminbar {
+		overflow: hidden;
+	}
+}
