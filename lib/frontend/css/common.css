@@ -63,7 +63,3 @@ html #wpadminbar:not(:hover) {
 		overflow: hidden;
 	}
 }
-
-.wp-block{
-	max-width:var( --sv100_sv_common-max-width-text );
-}
