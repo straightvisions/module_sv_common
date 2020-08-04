@@ -47,6 +47,7 @@ article p a::before {
 	display: block;
 	height: 2px;
 	width:0;
+	left:0;
 	transition: width .25s ease-in-out;
 }
 article p a:focus::before, article p a:hover::before{
