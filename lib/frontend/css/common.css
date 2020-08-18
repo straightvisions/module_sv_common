@@ -64,3 +64,8 @@ html #wpadminbar:not(:hover) {
 		overflow: hidden;
 	}
 }
+
+/* fix search fields in safari */
+input[type="search"]{
+	-webkit-appearance:none;
+}
