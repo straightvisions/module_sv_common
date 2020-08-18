@@ -69,3 +69,10 @@ html #wpadminbar:not(:hover) {
 input[type="search"]{
 	-webkit-appearance:none;
 }
+
+
+/* wp 5.5 fixes */
+/* fix for distored images */
+figure:not(.is-resized) > img{
+	height:auto;
+}
