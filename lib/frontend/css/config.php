@@ -21,7 +21,7 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper p:not(.has-text-color) a, .editor-styles-wrapper p:not(.has-text-color) a:visited' : 'a, a:visited',
+		is_admin() ? '.editor-styles-wrapper :not(.has-text-color) a, .editor-styles-wrapper :not(.has-text-color) a:visited' : 'a, a:visited',
 		array_merge(
 			$script->get_parent()->get_setting('font_link')->get_css_data('font-family'),
 			$script->get_parent()->get_setting('text_color_link')->get_css_data()
