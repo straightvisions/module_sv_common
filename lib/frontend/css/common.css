@@ -40,7 +40,8 @@ a, a:hover, a:focus{
 	position:relative;
 }
 
-article p a::before {
+.sv100_sv_content_wrapper p a::before,
+.editor-styles-wrapper p a::before{
 	content: '';
 	position: absolute;
 	top: 100%;
@@ -50,9 +51,19 @@ article p a::before {
 	left:0;
 	transition: width .25s ease-in-out;
 }
-article p a:focus::before, article p a:hover::before{
+.sv100_sv_content_wrapper p a:focus::before,
+.sv100_sv_content_wrapper p a:hover::before,
+.editor-styles-wrapper p a:focus::before,
+.editor-styles-wrapper p a:hover::before{
 	width:100%;
 	transition: width .25s ease-in-out;
+}
+
+.editor-styles-wrapper .has-text-color a,
+.editor-styles-wrapper .has-text-color a:visited,
+.sv100_sv_content_wrapper .has-text-color a,
+.sv100_sv_content_wrapper .has-text-color a:visited{
+	color: inherit;
 }
 
 /* Fix WP-Admin-Bar overlapping content on mobile */

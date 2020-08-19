@@ -21,7 +21,10 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper :not(.has-text-color) a, .editor-styles-wrapper :not(.has-text-color) a:visited' : 'a, a:visited',
+		is_admin() ? '
+		.editor-styles-wrapper a,
+		.editor-styles-wrapper a:visited'
+		: 'a, a:visited',
 		array_merge(
 			$script->get_parent()->get_setting('font_link')->get_css_data('font-family'),
 			$script->get_parent()->get_setting('text_color_link')->get_css_data()
@@ -61,7 +64,7 @@
 	}
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper a::before, .editor-styles-wrapper a:visited::before' : 'article p a::before, article p a:visited::before',
+		is_admin() ? '.editor-styles-wrapper p a::before, .editor-styles-wrapper p a:visited::before' : '.sv100_sv_content_wrapper p a::before, .sv100_sv_content_wrapper p a:visited::before',
 		array_merge(
 			$properties
 		)
@@ -93,7 +96,7 @@
 	}
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper a:hover::before, .editor-styles-wrapper a:focus::before' : 'article p a:hover::before, article p a:focus::before',
+		is_admin() ? '.editor-styles-wrapper p a:hover::before, .editor-styles-wrapper p a:focus::before' : '.sv100_sv_content_wrapper p a:hover::before, .sv100_sv_content_wrapper p a:focus::before',
 		array_merge(
 			$properties
 		)
