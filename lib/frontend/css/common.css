@@ -84,6 +84,6 @@ input[type="search"]{
 
 /* wp 5.5 fixes */
 /* fix for distored images */
-figure:not(.is-resized) > img{
+figure:not(.is-resized) img{
 	height:auto;
 }
