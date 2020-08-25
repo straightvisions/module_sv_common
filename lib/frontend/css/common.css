@@ -29,6 +29,10 @@ iframe{
 	}
 }
 
+article img{
+	object-fit:contain;
+}
+
 /* FIX IMAGE OVERLAPPING PICTURE ELEMENT */
 picture img{
 	max-width:100%;
