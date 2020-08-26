@@ -15,34 +15,6 @@
 		private $editor_font_sizes		= false;
 
 		public function init() {
-			$this->editor_font_sizes	= array(
-				array(
-					'name' => __( 'Small', 'sv100' ),
-					'size' => 12,
-					'slug' => 'small'
-				),
-				array(
-					'name' => __( 'Normal', 'sv100' ),
-					'size' => 16,
-					'slug' => 'normal'
-				),
-				array(
-					'name' => __( 'Medium', 'sv100' ),
-					'size' => 24,
-					'slug' => 'medium'
-				),
-				array(
-					'name' => __( 'Large', 'sv100' ),
-					'size' => 32,
-					'slug' => 'large'
-				),
-				array(
-					'name' => __( 'Huge', 'sv100' ),
-					'size' => 64,
-					'slug' => 'huge'
-				)
-			);
-
 			$this->set_module_title( __( 'SV Common', 'sv100' ) )
 				->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
 				->load_settings()
@@ -150,6 +122,42 @@
 				 ->set_description( __( 'Sets the max width for text inside the content, in pixel.', 'sv100' ) )
 				 ->set_default_value( 820 )
 				 ->load_type( 'number' );
+
+			// Font Sizes
+			$this->get_setting( 'font_size_normal' ) // default && normal
+				->set_title( __( 'Default', 'sv100' ) )
+				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
+				->set_default_value( 16 )
+				->set_is_responsive(true)
+				->load_type( 'number' );
+
+			$this->get_setting( 'font_size_small' ) // default
+			->set_title( __( 'Small', 'sv100' ) )
+				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
+				->set_default_value( 12 )
+				->set_is_responsive(true)
+				->load_type( 'number' );
+
+			$this->get_setting( 'font_size_medium' ) // default
+			->set_title( __( 'Medium', 'sv100' ) )
+				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
+				->set_default_value( 24 )
+				->set_is_responsive(true)
+				->load_type( 'number' );
+
+			$this->get_setting( 'font_size_large' ) // default
+			->set_title( __( 'Large', 'sv100' ) )
+				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
+				->set_default_value( 32 )
+				->set_is_responsive(true)
+				->load_type( 'number' );
+
+			$this->get_setting( 'font_size_huge' ) // default
+			->set_title( __( 'Huge', 'sv100' ) )
+				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
+				->set_default_value( 64 )
+				->set_is_responsive(true)
+				->load_type( 'number' );
 			
 			// Text Settings
 			$this->get_setting( 'font' )
@@ -158,13 +166,6 @@
 				 ->set_options( $this->get_module( 'sv_webfontloader' )->get_font_options() )
 				 ->set_is_responsive(true)
 				 ->load_type( 'select' );
-
-			$this->get_setting( 'font_size' )
-				 ->set_title( __( 'Font Size', 'sv100' ) )
-				 ->set_description( __( 'Font Size in Pixel', 'sv100' ) )
-				 ->set_default_value( 16 )
-				 ->set_is_responsive(true)
-				 ->load_type( 'number' );
 
 			$this->get_setting( 'line_height' )
 				 ->set_title( __( 'Line Height', 'sv100' ) )
@@ -255,6 +256,34 @@
 			);
 		}
 		public function get_editor_font_sizes(): array{
+			$this->editor_font_sizes	= array(
+				array(
+					'name' => __( 'Small', 'sv100' ),
+					'size' => $this->get_setting( 'font_size_small' )->get_data()['desktop'],
+					'slug' => 'small'
+				),
+				array(
+					'name' => __( 'Normal', 'sv100' ),
+					'size' => $this->get_setting( 'font_size_normal' )->get_data()['desktop'],
+					'slug' => 'normal'
+				),
+				array(
+					'name' => __( 'Medium', 'sv100' ),
+					'size' => $this->get_setting( 'font_size_medium' )->get_data()['desktop'],
+					'slug' => 'medium'
+				),
+				array(
+					'name' => __( 'Large', 'sv100' ),
+					'size' => $this->get_setting( 'font_size_large' )->get_data()['desktop'],
+					'slug' => 'large'
+				),
+				array(
+					'name' => __( 'Huge', 'sv100' ),
+					'size' => $this->get_setting( 'font_size_huge' )->get_data()['desktop'],
+					'slug' => 'huge'
+				)
+			);
+
 			return apply_filters($this->get_prefix('editor_font_sizes'), $this->editor_font_sizes);
 		}
 		protected function load_settings_editor_font_sizes(): sv_common{
@@ -300,21 +329,6 @@
 		public function add_theme_support(): sv_common {
 			global $content_width;
 			$content_width = intval($this->get_setting( 'max_width_alignwide' )->get_data());
-
-			/*
-			add_image_size(
-				'sv100_large',
-				$this->get_setting( 'max_width_alignwide' )->get_data()
-			);
-			add_image_size(
-				'sv100_medium',
-				$this->get_setting( 'max_width_text' )->get_data()
-			);
-
-			add_image_size(
-				'sv100_thumbnail', 400
-			);
-			*/
 
 			update_option( 'thumbnail_size_w', 400 );
 			update_option( 'thumbnail_size_h', 0 );

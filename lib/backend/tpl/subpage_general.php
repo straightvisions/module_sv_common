@@ -20,11 +20,25 @@
     <div class="sv_setting_flex">
 		<?php
 		echo $module->get_setting( 'font' )->form();
-		echo $module->get_setting( 'font_size' )->form();
 		echo $module->get_setting( 'text_color' )->form();
 		echo $module->get_setting( 'line_height' )->form();
 		?>
     </div>
+
+	<h3 class="divider"><?php _e( 'Font Sizes', 'sv100' ); ?></h3>
+	<div class="sv_setting_flex">
+		<?php
+			echo $module->get_setting( 'font_size_normal' )->form();
+			echo $module->get_setting( 'font_size_small' )->form();
+			echo $module->get_setting( 'font_size_medium' )->form();
+		?>
+	</div>
+	<div class="sv_setting_flex">
+		<?php
+			echo $module->get_setting( 'font_size_large' )->form();
+			echo $module->get_setting( 'font_size_huge' )->form();
+		?>
+	</div>
 
     <h3 class="divider"><?php _e( 'Link Settings', 'sv100' ); ?></h3>
     <div class="sv_setting_flex">

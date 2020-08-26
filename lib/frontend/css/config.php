@@ -13,7 +13,7 @@
 		is_admin() ? '.edit-post-visual-editor.editor-styles-wrapper' : 'body, button, input, select, textarea', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
 		array_merge(
 			$script->get_parent()->get_setting('font')->get_css_data('font-family'),
-			$script->get_parent()->get_setting('font_size')->get_css_data('font-size','','px'),
+			$script->get_parent()->get_setting('font_size_normal')->get_css_data('font-size','','px'),
 			$script->get_parent()->get_setting('line_height')->get_css_data('line-height'),
 			$script->get_parent()->get_setting('text_color')->get_css_data(),
 			$script->get_parent()->get_setting('bg_color')->get_css_data('background-color')
@@ -102,58 +102,26 @@
 		)
 	);
 
-
-	// ##### SETTINGS #####
-
-	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
-	// This reduces the lines of code for the needed setting values.
-	foreach ( $script->get_parent()->get_settings() as $_s ) {
-		if ( $_s->get_type() !== false ) {
-			${ $_s->get_ID() } = $_s->get_data();
-		}
-	}
-
-	// Global Font Size Vars
-	// CSS Vars
-	$properties					= array();
-
-	foreach($_s->get_parent()->get_editor_font_sizes() as $font_size){
-		$properties['--sv100_sv_common_font_size_'.$font_size['slug']]		= $_s->prepare_css_property($font_size['size'],'','px');
-	}
-
-	echo $_s->build_css(
-		':root',
-		$properties
-	);
-
 	// CSS Classes
 	$properties					= array();
 
 	foreach($_s->get_parent()->get_editor_font_sizes() as $font_size){
-		$properties['font-size']		= $_s->prepare_css_property($font_size['size'],'','px !important');
+		$properties['font-size']		= $_s->prepare_css_property_responsive($script->get_parent()->get_setting( 'font_size_'. $font_size['slug'])->get_data(),'','px !important');
 		echo $_s->build_css(
 			'.has-'.$font_size['slug'].'-font-size',
 			$properties
 		);
 	}
-
-	// Fetches all settings and creates new variables with the setting ID as name and setting data as value.
-	// This reduces the lines of code for the needed setting values.
-	foreach ( $script->get_parent()->get_settings() as $_s ) {
-		if ( $_s->get_type() !== false ) {
-			${ $_s->get_ID() } = $_s->get_data();
-		}
-	}
 ?>
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-max-width-alignfull: <?php echo $max_width_alignfull ? $max_width_alignfull.'px' : '100vw'; ?>;
-	--sv100_sv_common-max-width-alignwide: <?php echo $max_width_alignwide; ?>px;
-	--sv100_sv_common-max-width-text: <?php echo $max_width_text; ?>px;
+	--sv100_sv_common-max-width-alignfull: <?php echo $script->get_parent()->get_setting('max_width_alignfull')->get_data() ? $script->get_parent()->get_setting('max_width_alignfull')->get_data().'px' : '100vw'; ?>;
+	--sv100_sv_common-max-width-alignwide: <?php echo $script->get_parent()->get_setting('max_width_alignwide')->get_data(); ?>px;
+	--sv100_sv_common-max-width-text: <?php echo $script->get_parent()->get_setting('max_width_text')->get_data(); ?>px;
 }
 
 *::selection {
-	background-color: rgba(<?php echo $selection_color_background; ?>);
-	color: rgba(<?php echo $selection_color; ?>);
+	background-color: rgba(<?php echo $script->get_parent()->get_setting('selection_color_background')->get_data(); ?>);
+	color: rgba(<?php echo $script->get_parent()->get_setting('selection_color')->get_data(); ?>);
 }
