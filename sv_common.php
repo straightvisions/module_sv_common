@@ -43,6 +43,8 @@
 				'mobile_landscape'				=> $this->get_setting( 'breakpoint_mobile_landscape' )->get_data(),
 				'tablet'						=> $this->get_setting( 'breakpoint_tablet' )->get_data(),
 				'tablet_landscape'				=> $this->get_setting( 'breakpoint_tablet_landscape' )->get_data(),
+				'tablet_pro'					=> $this->get_setting( 'breakpoint_tablet_pro' )->get_data(),
+				'tablet_pro_landscape'			=> $this->get_setting( 'breakpoint_tablet_pro_landscape' )->get_data(),
 				'desktop'						=> $this->get_setting( 'breakpoint_desktop' )->get_data(),
 			);
 		}
@@ -52,32 +54,44 @@
 			$this->get_setting( 'breakpoint_mobile' )
 				->set_title( __( 'Mobile', 'sv100' ) )
 				->set_description( __( 'Minimum Size', 'sv100' ) )
-				->set_default_value( 0 )
+				//->set_default_value( 0 )
 				->set_disabled(true)
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_mobile_landscape' )
 				->set_title( __( 'Mobile (Landscape)', 'sv100' ) )
 				->set_description( __( 'Small devices like landscape phones and less.', 'sv100' ) )
-				->set_default_value( 576 )
+				//->set_default_value(  )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_tablet' )
 				->set_title( __( 'Tablet', 'sv100' ) )
 				->set_description( __( 'Medium devices like tablets and less.', 'sv100' ) )
-				->set_default_value( 768 )
+				//->set_default_value(  )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_tablet_landscape' )
 				->set_title( __( 'Tablet (Landscape)', 'sv100' ) )
 				->set_description( __( 'Large devices like landscape tablets and up.', 'sv100' ) )
-				->set_default_value( 992 )
+				//->set_default_value(  )
+				->load_type( 'number' );
+
+			$this->get_setting( 'breakpoint_tablet_pro' )
+				->set_title( __( 'Tablet', 'sv100' ) )
+				->set_description( __( 'Medium devices like bigger tablets and less.', 'sv100' ) )
+				//->set_default_value(  )
+				->load_type( 'number' );
+
+			$this->get_setting( 'breakpoint_tablet_pro_landscape' )
+				->set_title( __( 'Tablet (Landscape)', 'sv100' ) )
+				->set_description( __( 'Large devices like landscape tablets and up.', 'sv100' ) )
+				//->set_default_value(  )
 				->load_type( 'number' );
 
 			$this->get_setting( 'breakpoint_desktop' )
 				->set_title( __( 'Desktop', 'sv100' ) )
 				->set_description( __( 'Desktop Devices', 'sv100' ) )
-				->set_default_value( 1200 )
+				//->set_default_value( )
 				->load_type( 'number' );
 
 			$this->get_setting( 'hyphens' )
