@@ -14,6 +14,12 @@
 		echo $module->get_setting( 'breakpoint_tablet_landscape' )->form();
 		?>
     </div>
+    <div class="sv_setting_flex">
+		<?php
+		echo $module->get_setting( 'breakpoint_tablet_pro' )->form();
+		echo $module->get_setting( 'breakpoint_tablet_pro_landscape' )->form();
+		?>
+    </div>
 	<div class="sv_setting_flex">
 		<?php
 			echo $module->get_setting( 'breakpoint_desktop' )->form();
