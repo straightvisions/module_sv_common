@@ -1,31 +1,19 @@
 <?php
 	namespace sv100;
-	
-	/**
-	 * @version         4.150
-	 * @author			straightvisions GmbH
-	 * @package			sv100
-	 * @copyright		2019 straightvisions GmbH
-	 * @link			https://straightvisions.com
-	 * @since			1.000
-	 * @license			See license.txt or https://straightvisions.com
-	 */
-	
+
 	class sv_common extends init {
 		private $editor_font_sizes		= false;
 
 		public function init() {
 			$this->set_module_title( __( 'SV Common', 'sv100' ) )
-				->set_module_desc( __( 'Manage general styles, scripts & dependencies.', 'sv100' ) )
-				->load_settings()
-				->load_settings_editor_font_sizes()
-				->register_scripts()
-				->add_theme_support()
-				->set_section_title( __( 'Common', 'sv100' ) )
-				->set_section_desc( __( 'Common settings for your website', 'sv100' ) )
+				->set_module_desc( __( 'Common settings for your website', 'sv100' ) )
+				->set_css_cache_active()
+				->set_section_title( $this->get_module_title() )
+				->set_section_desc( $this->get_module_desc() )
 				->set_section_type( 'settings' )
-				->set_section_template_path( $this->get_path( 'lib/backend/tpl/settings.php' ) )
-				->set_section_order(10)
+				->set_section_template_path()
+				->set_section_order(5000)
+				->add_theme_support()
 				->get_root()
 				->add_section( $this );
 
@@ -35,6 +23,17 @@
 			add_action( 'enqueue_block_editor_assets', function() {
 				wp_add_inline_style('sv_core_gutenberg_style', wp_get_custom_css());
 			});
+		}
+		public function enqueue_scripts() {
+			if(!is_admin()){
+				$this->load_settings()->register_scripts();
+
+				foreach($this->get_scripts() as $script){
+					$script->set_inline( true )->set_is_enqueued();
+				}
+			}
+
+			return $this;
 		}
 
 		public function set_breakpoints(array $breakpoints){
@@ -250,6 +249,8 @@
 				 ->set_description( __( 'Background color of selected text', 'sv100' ) )
 				 ->set_default_value( '50,140,230,0.5' )
 				 ->load_type( 'color' );
+
+			$this->load_settings_editor_font_sizes();
 			
 			return $this;
 		}
@@ -312,7 +313,6 @@
 					->set_default_value($font_size['size'])
 					->load_type('number');
 
-
 				$font_sizes_filtered[]		= array(
 					'name'		=> $font_size['name'],
 					'slug'		=> $font_size['slug'],
@@ -324,23 +324,6 @@
 
 			return $this;
 		}
-		
-		protected function register_scripts(): sv_common {
-			$this->get_script( 'common' )
-				->set_path( 'lib/frontend/css/common.css' )
-				->set_inline( true )
-				->set_is_gutenberg()
-				->set_is_enqueued();
-
-			$this->get_script( 'config' )
-				 ->set_path( 'lib/frontend/css/config.php' )
-				 ->set_inline( true )
-				->set_is_gutenberg()
-				 ->set_is_enqueued();
-
-			return $this;
-		}
-
 		public function add_theme_support(): sv_common {
 			global $content_width;
 			$content_width = intval($this->get_setting( 'max_width_alignwide' )->get_data());

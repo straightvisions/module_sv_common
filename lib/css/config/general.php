@@ -24,7 +24,7 @@
 		is_admin() ? '
 		.editor-styles-wrapper a,
 		.editor-styles-wrapper a:visited'
-		: 'a, a:visited',
+			: 'a, a:visited',
 		array_merge(
 			$script->get_parent()->get_setting('font_link')->get_css_data('font-family'),
 			$script->get_parent()->get_setting('text_color_link')->get_css_data()
@@ -116,12 +116,12 @@
 
 /* Global Vars */
 :root {
-	--sv100_sv_common-max-width-alignfull: <?php echo $script->get_parent()->get_setting('max_width_alignfull')->get_data() ? $script->get_parent()->get_setting('max_width_alignfull')->get_data().'px' : '100vw'; ?>;
-	--sv100_sv_common-max-width-alignwide: <?php echo $script->get_parent()->get_setting('max_width_alignwide')->get_data(); ?>px;
-	--sv100_sv_common-max-width-text: <?php echo $script->get_parent()->get_setting('max_width_text')->get_data(); ?>px;
+--sv100_sv_common-max-width-alignfull: <?php echo $script->get_parent()->get_setting('max_width_alignfull')->get_data() ? $script->get_parent()->get_setting('max_width_alignfull')->get_data().'px' : '100vw'; ?>;
+--sv100_sv_common-max-width-alignwide: <?php echo $script->get_parent()->get_setting('max_width_alignwide')->get_data(); ?>px;
+--sv100_sv_common-max-width-text: <?php echo $script->get_parent()->get_setting('max_width_text')->get_data(); ?>px;
 }
 
 *::selection {
-	background-color: rgba(<?php echo $script->get_parent()->get_setting('selection_color_background')->get_data(); ?>);
-	color: rgba(<?php echo $script->get_parent()->get_setting('selection_color')->get_data(); ?>);
+background-color: rgba(<?php echo $script->get_parent()->get_setting('selection_color_background')->get_data(); ?>);
+color: rgba(<?php echo $script->get_parent()->get_setting('selection_color')->get_data(); ?>);
 }
