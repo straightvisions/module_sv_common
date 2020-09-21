@@ -214,7 +214,7 @@
 				 ->set_default_value( 'underline' )
 				->set_is_responsive(true)
 				 ->set_options( array(
-					''					=> __( 'None', 'sv100' ),
+					'none'				=> __( 'None', 'sv100' ),
 					'underline'			=> __( 'Underline', 'sv100' ),
 					'underline_dashed'	=> __( 'Underline Dashed', 'sv100' ),
 				 ) )
@@ -229,9 +229,9 @@
 
 			$this->get_setting( 'text_deco_link_hover' )
 				 ->set_title( __( 'Text Decoration', 'sv100' ) )
-				 ->set_default_value( 'none' )
+				 ->set_default_value( '' )
 				 ->set_options( array(
-					''					=> __( 'None', 'sv100' ),
+					'none'				=> __( 'None', 'sv100' ),
 					'underline'			=> __( 'Underline', 'sv100' ),
 					'underline_dashed'	=> __( 'Underline Dashed', 'sv100' ),
 				 ) )
