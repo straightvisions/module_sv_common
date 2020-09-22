@@ -3,8 +3,8 @@
 	<div class="sv_setting_subpages">
 		<ul class="sv_setting_subpages_nav"></ul>
 		<?php
-			require_once( $module->get_path( 'lib/backend/tpl/breakpoints.php' ) );
-			require_once( $module->get_path( 'lib/backend/tpl/general.php' ) );
+			require_once( $module->get_path( 'lib/tpl/settings/breakpoints.php' ) );
+			require_once( $module->get_path( 'lib/tpl/settings/general.php' ) );
 		?>
 	</div>
 	<?php
