@@ -7,6 +7,7 @@
 		public function init() {
 			$this->set_module_title( __( 'SV Common', 'sv100' ) )
 				->set_module_desc( __( 'Common settings for your website', 'sv100' ) )
+				->load_settings()
 				->set_css_cache_active()
 				->set_section_title( $this->get_module_title() )
 				->set_section_desc( $this->get_module_desc() )
@@ -26,7 +27,7 @@
 		}
 		public function enqueue_scripts() {
 			if(!is_admin()){
-				$this->load_settings()->register_scripts();
+				$this->register_scripts();
 
 				foreach($this->get_scripts() as $script){
 					$script->set_inline( true )->set_is_enqueued();
@@ -177,6 +178,7 @@
 			$this->get_setting( 'font' )
 				 ->set_title( __( 'Font Family', 'sv100' ) )
 				 ->set_description( __( 'Set a Font Family', 'sv100' ) )
+				 ->set_default_value('sans-serif')
 				 ->set_options( $this->get_module( 'sv_webfontloader' ) ? $this->get_module( 'sv_webfontloader' )->get_font_options() : array('' => __('Please activate module SV Webfontloader for this Feature.', 'sv100')) )
 				 ->set_is_responsive(true)
 				 ->load_type( 'select' );
