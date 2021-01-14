@@ -22,9 +22,7 @@
 
 	echo $_s->build_css(
 		is_admin() ? '
-		.editor-styles-wrapper a,
-		.editor-styles-wrapper a:visited'
-			: 'a, a:visited',
+		.editor-styles-wrapper a' : 'a',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data()
