@@ -2,10 +2,8 @@
 
 	echo $_s->build_css(
 		is_admin() ? '.editor-styles-wrapper *' : '*', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
-		array(
-			'-webkit-hyphens' => $module->get_setting('hyphens')->get_data(),
-			'-ms-hyphens' => $module->get_setting('hyphens')->get_data(),
-			'hyphens' => $module->get_setting('hyphens')->get_data()
+		array_merge(
+			$module->get_setting('hyphens')->get_css_data('hyphens')
 		)
 	);
 

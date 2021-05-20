@@ -98,12 +98,13 @@
 			$this->get_setting( 'hyphens' )
 				->set_title( __( 'Hyphens', 'sv100' ) )
 				->set_description( __( 'Browser Behavior', 'sv100' ) )
-				->set_options( array(
-					'none'		=> 'none',
-					'manual'	=> 'manual',
-					'auto'		=> 'auto'
-				) )
+				->set_options(array(
+					'none'		=> __('none', 'sv100'),
+					'manual'	=> __('manual', 'sv100'),
+					'auto'		=> __('auto', 'sv100')
+				))
 				->set_default_value( 'auto' )
+				->set_is_responsive(true)
 				->load_type( 'select' );
 
 			// Mobile
