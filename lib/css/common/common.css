@@ -107,11 +107,13 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .alignwide, /* Frontend */
 .wp-block[data-align="wide"], /* Gutenberg */
 .wp-block[data-align="wide"] > div[role="group"]{ /* Gutenberg Group Blocks */
+	width:100%;
 	max-width:var( --sv100_sv_common-max-width-alignwide );
 }
 
 .alignfull, /* Frontend */
 .wp-block[data-align="full"], /* Gutenberg */
 .editor-styles-wrapper .is-root-container div.wp-block[data-align="full"] > div.wp-block.wp-block-group{ /* Gutenberg Group Blocks */
+	width:100%;
 	max-width:var( --sv100_sv_common-max-width-alignfull ) !important;
 }
