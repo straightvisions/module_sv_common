@@ -64,10 +64,8 @@ a, a:hover, a:focus{
 	transition: width .25s ease-in-out;
 }
 
-.editor-styles-wrapper .has-text-color a,
-.editor-styles-wrapper .has-text-color a:visited,
-.sv100_sv_content_wrapper .has-text-color a,
-.sv100_sv_content_wrapper .has-text-color a:visited{
+.has-text-color a,
+.has-text-color a:visited{
 	color: inherit;
 }
 
