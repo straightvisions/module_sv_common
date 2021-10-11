@@ -92,7 +92,7 @@
 	}
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper p a:hover::before, .editor-styles-wrapper p a:focus::before' : 'a:hover::before, p a:focus::before',
+		is_admin() ? '.editor-styles-wrapper p a:hover::before, .editor-styles-wrapper p a:focus::before' : 'article a:hover::before, article a:focus::before',
 		array_merge(
 			$properties
 		)
