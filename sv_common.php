@@ -363,7 +363,8 @@
 			add_theme_support( 'custom-background' );
 			add_theme_support( 'custom-header' );
 			add_theme_support( 'align-wide' );
-	
+			add_theme_support( 'custom-spacing' );
+			add_theme_support( 'custom-units' );
 			add_post_type_support( 'page', 'excerpt' );
 
 			add_theme_support( 'editor-font-sizes', $this->get_editor_font_sizes());
