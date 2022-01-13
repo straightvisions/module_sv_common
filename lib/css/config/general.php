@@ -104,7 +104,7 @@
 	foreach($_s->get_parent()->get_editor_font_sizes() as $font_size){
 		$properties['font-size']		= $_s->prepare_css_property_responsive($module->get_setting( 'font_size_'. $font_size['slug'])->get_data(),'','px !important');
 		echo $_s->build_css(
-			'.has-'.$font_size['slug'].'-font-size',
+			'.has-'.$font_size['slug'].'-font-size, .block-editor .editor-styles-wrapper .has-'.$font_size['slug'].'-font-size',
 			$properties
 		);
 	}
