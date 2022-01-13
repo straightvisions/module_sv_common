@@ -183,28 +183,6 @@ p.has-text-color a {
 	background: linear-gradient(135deg, #020381 0%, #2874fc 100%);
 }
 
-.has-small-font-size {
-	font-size: 0.8125em;
-}
-
-.has-regular-font-size,
-.has-normal-font-size {
-	font-size: 1em;
-}
-
-.has-medium-font-size {
-	font-size: 1.25em;
-}
-
-.has-large-font-size {
-	font-size: 2.25em;
-}
-
-.has-larger-font-size,
-.has-huge-font-size {
-	font-size: 2.625em;
-}
-
 .has-text-align-center {
 	text-align: center;
 }
