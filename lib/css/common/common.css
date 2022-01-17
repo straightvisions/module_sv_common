@@ -45,7 +45,7 @@ a, a:hover, a:focus{
 	position:relative;
 }
 
-.sv100_sv_content_wrapper p a::before,
+article p a::before,
 .editor-styles-wrapper p a::before{
 	content: '';
 	position: absolute;
@@ -56,8 +56,8 @@ a, a:hover, a:focus{
 	left:0;
 	transition: width .25s ease-in-out;
 }
-.sv100_sv_content_wrapper p a:focus::before,
-.sv100_sv_content_wrapper p a:hover::before,
+article p a:focus::before,
+article p a:hover::before,
 .editor-styles-wrapper p a:focus::before,
 .editor-styles-wrapper p a:hover::before{
 	width:100%;

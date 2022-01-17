@@ -3,6 +3,8 @@
 	echo $_s->build_css(
 		is_admin() ? '.editor-styles-wrapper *' : '*', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
 		array_merge(
+			$module->get_setting('hyphens')->get_css_data('-webkit-hyphens'),
+			$module->get_setting('hyphens')->get_css_data('-moz-hyphens'),
 			$module->get_setting('hyphens')->get_css_data('hyphens')
 		)
 	);
@@ -60,7 +62,7 @@
 	}
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper p a::before, .editor-styles-wrapper p a:visited::before' : 'p a::before, p a:visited::before',
+		is_admin() ? '.editor-styles-wrapper p a::before, .editor-styles-wrapper p a:visited::before' : 'article p a::before, article p a:visited::before',
 		array_merge(
 			$properties
 		)
