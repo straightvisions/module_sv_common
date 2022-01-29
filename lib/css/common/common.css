@@ -115,3 +115,10 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 	width:100%;
 	max-width:var( --sv100_sv_common-max-width-alignfull ) !important;
 }
+
+a img{
+	height:fit-content;
+	width: auto !important;
+	vertical-align: text-bottom;
+	max-width:100%;
+}
