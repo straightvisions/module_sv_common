@@ -118,7 +118,7 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 a img{
 	height:fit-content;
-	width: auto !important;
+	width: auto;
 	vertical-align: text-bottom;
 	max-width:100%;
 }
