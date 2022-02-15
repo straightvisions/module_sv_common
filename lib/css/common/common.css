@@ -34,12 +34,6 @@ iframe{
 	}
 }
 
-/* FIX IMAGE OVERLAPPING PICTURE ELEMENT */
-.wp-block-image:not(.is-style-rounded) picture img{
-	max-width:100%;
-	height:auto;
-}
-
 a, a:hover, a:focus{
 	text-decoration:none;
 	position:relative;
@@ -114,11 +108,4 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .editor-styles-wrapper .is-root-container div.wp-block[data-align="full"] > div.wp-block.wp-block-group{ /* Gutenberg Group Blocks */
 	width:100%;
 	max-width:var( --sv100_sv_common-max-width-alignfull ) !important;
-}
-
-a img{
-	height:fit-content;
-	width: auto;
-	vertical-align: text-bottom;
-	max-width:100%;
 }
