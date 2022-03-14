@@ -24,6 +24,8 @@
 			add_action( 'enqueue_block_editor_assets', function() {
 				wp_add_inline_style('sv_core_gutenberg_style', wp_get_custom_css());
 			});
+
+			remove_filter( 'the_content', 'wpautop' );
 		}
 		public function enqueue_scripts() {
 			if(!is_admin()){
