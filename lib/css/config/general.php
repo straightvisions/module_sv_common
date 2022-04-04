@@ -110,6 +110,13 @@
 			$properties
 		);
 	}
+
+	echo $_s->build_css(
+		':root',
+		array_merge(
+			$module->get_setting( 'spacing' )->get_css_data('--sv100_sv_common-spacing','','px')
+		)
+	);
 ?>
 
 /* Global Vars */

@@ -23,6 +23,7 @@
 	<div class="sv_setting_flex">
 		<?php
 			echo $module->get_setting( 'breakpoint_desktop' )->form();
+			echo $module->get_setting( 'spacing' )->form();
 		?>
 	</div>
 </div>

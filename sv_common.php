@@ -97,6 +97,13 @@
 				->set_default_value( $breakpoints['desktop'] )
 				->load_type( 'number' );
 
+			$this->get_setting( 'spacing' )
+				->set_title( __( 'Spacing', 'sv100' ) )
+				->set_description( __( 'The distance to the viewport left & right', 'sv100' ) )
+				->set_default_value('32')
+				->set_is_responsive(true)
+				->load_type( 'number' );
+
 			$this->get_setting( 'hyphens' )
 				->set_title( __( 'Hyphens', 'sv100' ) )
 				->set_description( __( 'Browser Behavior', 'sv100' ) )
