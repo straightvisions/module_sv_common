@@ -27,6 +27,17 @@
 
 			remove_filter( 'the_content', 'wpautop' );
 		}
+		protected function register_scripts(): sv_common {
+			parent::register_scripts();
+
+			// Register Styles
+			$this->get_script( 'fix_svg_non_width' )
+			     ->set_path( 'lib/css/common/fix_svg_non_width.css' )
+			     ->set_is_gutenberg()
+			     ->set_is_enqueued();
+
+			return $this;
+		}
 		public function enqueue_scripts() {
 			if(!is_admin()){
 				$this->register_scripts();
@@ -374,9 +385,15 @@
 			add_theme_support( 'align-wide' );
 			add_theme_support( 'custom-spacing' );
 			add_theme_support( 'custom-units' );
+			add_theme_support( 'editor-styles' );
 			add_post_type_support( 'page', 'excerpt' );
 
 			add_theme_support( 'editor-font-sizes', $this->get_editor_font_sizes());
+
+			// Gutenberg
+
+			// Load block styles in separate files on demand only
+			add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
 			return $this;
 		}

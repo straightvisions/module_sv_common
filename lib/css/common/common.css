@@ -123,3 +123,11 @@ sub{
 sup{
 	vertical-align:top;
 }
+
+/* Global Spacing */
+.wp-site-blocks > header > *:not(.alignfull),
+.wp-site-blocks > main > *:not(.alignfull),
+.wp-site-blocks > footer > *:not(.alignfull){
+	padding-left: var(--sv100_sv_common-spacing);
+	padding-right: var(--sv100_sv_common-spacing);
+}
