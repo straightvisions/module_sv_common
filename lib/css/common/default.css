@@ -90,6 +90,8 @@ p.has-text-color a {
 	position: absolute;
 	width: 1px;
 	word-wrap: normal !important;
+	/* SV/MB: fix horizontal scrollbar */
+	left:0;
 }
 
 .screen-reader-text:focus {

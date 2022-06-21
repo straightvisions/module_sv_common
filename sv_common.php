@@ -17,15 +17,6 @@
 				->add_theme_support()
 				->get_root()
 				->add_section( $this );
-
-			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
-
-			// add customizer CSS to Block Editor
-			add_action( 'enqueue_block_editor_assets', function() {
-				wp_add_inline_style('sv_core_gutenberg_style', wp_get_custom_css());
-			});
-
-			remove_filter( 'the_content', 'wpautop' );
 		}
 		protected function register_scripts(): sv_common {
 			parent::register_scripts();
@@ -38,18 +29,6 @@
 
 			return $this;
 		}
-		public function enqueue_scripts() {
-			if(!is_admin()){
-				$this->register_scripts();
-
-				foreach($this->get_scripts() as $script){
-					$script->set_inline( true )->set_is_enqueued();
-				}
-			}
-
-			return $this;
-		}
-
 		public function set_breakpoints(array $breakpoints){
 			return array( // number = min width
 				'mobile'						=> $this->get_setting( 'breakpoint_mobile' )->get_data(),		// mobile first!
@@ -390,11 +369,30 @@
 
 			add_theme_support( 'editor-font-sizes', $this->get_editor_font_sizes());
 
+			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
+
 			// Gutenberg
+			add_action( 'wp_print_styles', array( $this, 'wp_print_styles' ), 100 );
+
+			add_filter( 'styles_inline_size_limit', '__return_zero' );
 
 			// Load block styles in separate files on demand only
 			add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
+			// Legacy
+			// add customizer CSS to Block Editor
+			add_action( 'enqueue_block_editor_assets', function() {
+				wp_add_inline_style('sv_core_gutenberg_style', wp_get_custom_css());
+			});
+
+			remove_filter( 'the_content', 'wpautop' );
+
 			return $this;
+		}
+		public function wp_print_styles() {
+			// Gutenberg: load Styles inline for Pagespeed purposes
+			wp_deregister_style( 'wp-block-library' );
+			wp_dequeue_style( 'wp-block-library' );
+			wp_dequeue_style( 'wp-block-library-theme' );
 		}
 	}
