@@ -1,7 +1,7 @@
 <?php
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper *' : '*', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
+		is_admin() ? '.editor-styles-wrapper' : 'body', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
 		array_merge(
 			$module->get_setting('hyphens')->get_css_data('-webkit-hyphens'),
 			$module->get_setting('hyphens')->get_css_data('-moz-hyphens'),
@@ -10,7 +10,7 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? 'body' : 'body, button, input, select, textarea', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
+		is_admin() ? '.editor-styles-wrapper' : 'body, button, input, select, textarea', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
 		array_merge(
 			$module->get_setting('font')->get_css_data('font-family'),
 			$module->get_setting('font_size_normal')->get_css_data('font-size','','px'),
