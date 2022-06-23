@@ -13,7 +13,7 @@
 		is_admin() ? '.editor-styles-wrapper' : 'body, button, input, select, textarea', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
 		array_merge(
 			$module->get_setting('font')->get_css_data('font-family'),
-			$module->get_setting('font_size_normal')->get_css_data('font-size','','px'),
+			$module->get_setting('font_size')->get_css_data('font-size','','px'),
 			$module->get_setting('line_height')->get_css_data('line-height'),
 			$module->get_setting('text_color')->get_css_data(),
 			$module->get_setting('bg_color')->get_css_data('background-color')
@@ -100,33 +100,17 @@
 		)
 	);
 
-	// CSS Classes
-	$properties					= array();
-
-	foreach($_s->get_parent()->get_editor_font_sizes() as $font_size){
-		$properties['font-size']		= $_s->prepare_css_property_responsive($module->get_setting( 'font_size_'. $font_size['slug'])->get_data(),'','px !important');
-		echo $_s->build_css(
-			'.has-'.$font_size['slug'].'-font-size, .block-editor .editor-styles-wrapper .has-'.$font_size['slug'].'-font-size',
-			$properties
-		);
-	}
+	echo $_s->build_css(
+		'body',
+		$module->get_setting( 'spacing' )->get_css_data('--wp--custom--sv-spacing', '', ' !important')
+	);
 
 	echo $_s->build_css(
-		':root',
+		'*::selection',
 		array_merge(
-			$module->get_setting( 'spacing' )->get_css_data('--sv100_sv_common-spacing','','px')
+			$module->get_setting( 'selection_color_background' )->get_css_data('background-color'),
+			$module->get_setting( 'selection_color' )->get_css_data('color'),
+
 		)
 	);
 ?>
-
-/* Global Vars */
-:root {
---sv100_sv_common-max-width-alignfull: <?php echo $module->get_setting('max_width_alignfull')->get_data() ? $module->get_setting('max_width_alignfull')->get_data().'px' : '100vw'; ?>;
---sv100_sv_common-max-width-alignwide: <?php echo $module->get_setting('max_width_alignwide')->get_data(); ?>px;
---sv100_sv_common-max-width-text: <?php echo $module->get_setting('max_width_text')->get_data(); ?>px;
-}
-
-*::selection {
-background-color: rgba(<?php echo $module->get_setting('selection_color_background')->get_data(); ?>);
-color: rgba(<?php echo $module->get_setting('selection_color')->get_data(); ?>);
-}

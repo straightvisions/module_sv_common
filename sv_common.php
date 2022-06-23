@@ -2,8 +2,6 @@
 	namespace sv100;
 
 	class sv_common extends init {
-		private $editor_font_sizes		= false;
-
 		public function init() {
 			$this->set_module_title( __( 'SV Common', 'sv100' ) )
 				->set_module_desc( __( 'Common settings for your website', 'sv100' ) )
@@ -17,6 +15,18 @@
 				->add_theme_support()
 				->get_root()
 				->add_section( $this );
+		}
+		public function theme_json_update_data(){
+			$theme_json     = $this->theme_json_get_data();
+
+			// max width
+			$theme_json['settings']['layout']['contentSize']        = $this->get_setting( 'max_width_content' )->get_data();
+			$theme_json['settings']['layout']['wideSize']           = $this->get_setting( 'max_width_wide' )->get_data();
+			$theme_json['settings']['custom']['sv-content-size']    = $this->get_setting( 'max_width_content' )->get_data();
+			$theme_json['settings']['custom']['sv-wide-size']       = $this->get_setting( 'max_width_wide' )->get_data();
+			$theme_json['settings']['custom']['sv-spacing']         = $this->get_setting( 'spacing' )->get_data()['desktop'];
+
+			return $theme_json;
 		}
 		protected function register_scripts(): sv_common {
 			parent::register_scripts();
@@ -90,9 +100,9 @@
 			$this->get_setting( 'spacing' )
 				->set_title( __( 'Spacing', 'sv100' ) )
 				->set_description( __( 'The distance to the viewport left & right', 'sv100' ) )
-				->set_default_value('32')
+				->set_default_value('32px')
 				->set_is_responsive(true)
-				->load_type( 'number' );
+				->load_type( 'text' );
 
 			$this->get_setting( 'hyphens' )
 				->set_title( __( 'Hyphens', 'sv100' ) )
@@ -120,59 +130,15 @@
 				->set_is_responsive(true)
 				->load_type( 'color' );
 
-			$this->get_setting( 'max_width_alignfull' )
-				->set_title( __( 'Full Max Width', 'sv100' ) )
-				->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
-				->set_default_value( '' )
-				->load_type( 'number' );
+			$this->get_setting( 'max_width_content' )
+			     ->set_title( __( 'Content Max Width', 'sv100' ) )
+			     ->set_default_value( '820px' )
+			     ->load_type( 'text' );
 
-			$this->get_setting( 'max_width_alignwide' )
+			$this->get_setting( 'max_width_wide' )
 				 ->set_title( __( 'Wide Max Width', 'sv100' ) )
-				 ->set_description( __( 'Sets the max width for the content, in pixel.', 'sv100' ) )
-				 ->set_default_value( 1300 )
-				 ->load_type( 'number' );
-			
-			$this->get_setting( 'max_width_text' )
-				 ->set_title( __( 'Text Max Width', 'sv100' ) )
-				 ->set_description( __( 'Sets the max width for text inside the content, in pixel.', 'sv100' ) )
-				 ->set_default_value( 820 )
-				 ->load_type( 'number' );
-
-			// Font Sizes
-			$this->get_setting( 'font_size_normal' ) // default && normal
-				->set_title( __( 'Default', 'sv100' ) )
-				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
-				->set_default_value( 16 )
-				->set_is_responsive(true)
-				->load_type( 'number' );
-
-			$this->get_setting( 'font_size_small' ) // default
-			->set_title( __( 'Small', 'sv100' ) )
-				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
-				->set_default_value( 12 )
-				->set_is_responsive(true)
-				->load_type( 'number' );
-
-			$this->get_setting( 'font_size_medium' ) // default
-			->set_title( __( 'Medium', 'sv100' ) )
-				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
-				->set_default_value( 24 )
-				->set_is_responsive(true)
-				->load_type( 'number' );
-
-			$this->get_setting( 'font_size_large' ) // default
-			->set_title( __( 'Large', 'sv100' ) )
-				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
-				->set_default_value( 32 )
-				->set_is_responsive(true)
-				->load_type( 'number' );
-
-			$this->get_setting( 'font_size_huge' ) // default
-			->set_title( __( 'Huge', 'sv100' ) )
-				->set_description( __( 'Font Size in Pixel', 'sv100' ) )
-				->set_default_value( 64 )
-				->set_is_responsive(true)
-				->load_type( 'number' );
+				 ->set_default_value( '1300px' )
+				 ->load_type( 'text' );
 			
 			// Text Settings
 			$this->get_setting( 'font' )
@@ -182,6 +148,13 @@
 				 ->set_options( $this->get_module( 'sv_webfontloader' ) ? $this->get_module( 'sv_webfontloader' )->get_font_options() : array('' => __('Please activate module SV Webfontloader for this Feature.', 'sv100')) )
 				 ->set_is_responsive(true)
 				 ->load_type( 'select' );
+
+			$this->get_setting( 'font_size' ) // default && normal
+			     ->set_title( __( 'Font Size', 'sv100' ) )
+			     ->set_description( __( 'Font Size in Pixel', 'sv100' ) )
+			     ->set_default_value( 16 )
+			     ->set_is_responsive(true)
+			     ->load_type( 'number' );
 
 			$this->get_setting( 'line_height' )
 				 ->set_title( __( 'Line Height', 'sv100' ) )
@@ -244,16 +217,16 @@
 				 ->set_title( __( 'Selection color', 'sv100' ) )
 				 ->set_description( __( 'Color of selected text', 'sv100' ) )
 				 ->set_default_value( '255,255,255,1' )
+				 ->set_is_responsive(true)
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'selection_color_background' )
 				 ->set_title( __( 'Selection background color', 'sv100' ) )
 				 ->set_description( __( 'Background color of selected text', 'sv100' ) )
 				 ->set_default_value( '50,140,230,0.5' )
+				 ->set_is_responsive(true)
 				 ->load_type( 'color' );
 
-			$this->load_settings_editor_font_sizes();
-			
 			return $this;
 		}
 		public function get_max_width_options(): array{
@@ -272,59 +245,6 @@
 				$alignwide_value		=> 	$this->get_setting( 'max_width_alignwide' )->get_title().' ('.$alignwide_value.')',
 				$text_value				=> 	$this->get_setting( 'max_width_text' )->get_title().' ('.$text_value.')'
 			);
-		}
-		public function get_editor_font_sizes(): array{
-			$this->editor_font_sizes	= array(
-				array(
-					'name' => __( 'Small', 'sv100' ),
-					'size' => $this->get_setting( 'font_size_small' )->get_data()['desktop'],
-					'slug' => 'small'
-				),
-				array(
-					'name' => __( 'Normal', 'sv100' ),
-					'size' => $this->get_setting( 'font_size_normal' )->get_data()['desktop'],
-					'slug' => 'normal'
-				),
-				array(
-					'name' => __( 'Medium', 'sv100' ),
-					'size' => $this->get_setting( 'font_size_medium' )->get_data()['desktop'],
-					'slug' => 'medium'
-				),
-				array(
-					'name' => __( 'Large', 'sv100' ),
-					'size' => $this->get_setting( 'font_size_large' )->get_data()['desktop'],
-					'slug' => 'large'
-				),
-				array(
-					'name' => __( 'Huge', 'sv100' ),
-					'size' => $this->get_setting( 'font_size_huge' )->get_data()['desktop'],
-					'slug' => 'huge'
-				)
-			);
-
-			return apply_filters($this->get_prefix('editor_font_sizes'), $this->editor_font_sizes);
-		}
-		protected function load_settings_editor_font_sizes(): sv_common{
-			$font_sizes					= $this->get_editor_font_sizes();
-			$font_sizes_filtered		= array();
-
-			foreach($font_sizes as $font_size) {
-				$this->get_setting('editor_font_size_' . $font_size['slug'])
-					->set_title(__('Font Size ', 'sv100').$font_size['name'])
-					->set_description(__('Font Size in pixel.', 'sv100'))
-					->set_default_value($font_size['size'])
-					->load_type('number');
-
-				$font_sizes_filtered[]		= array(
-					'name'		=> $font_size['name'],
-					'slug'		=> $font_size['slug'],
-					'size'		=> $this->get_setting('editor_font_size_' . $font_size['slug'])->get_data()
-				);
-			}
-
-			add_filter($this->get_prefix('editor_font_sizes'), function() use($font_sizes_filtered){ return $font_sizes_filtered; });
-
-			return $this;
 		}
 		public function add_theme_support(): sv_common {
 			global $content_width;
@@ -367,8 +287,6 @@
 			add_theme_support( 'editor-styles' );
 			add_post_type_support( 'page', 'excerpt' );
 
-			add_theme_support( 'editor-font-sizes', $this->get_editor_font_sizes());
-
 			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
 
 			// Gutenberg
@@ -378,12 +296,6 @@
 
 			// Load block styles in separate files on demand only
 			add_filter( 'should_load_separate_core_block_assets', '__return_true' );
-
-			// Legacy
-			// add customizer CSS to Block Editor
-			add_action( 'enqueue_block_editor_assets', function() {
-				wp_add_inline_style('sv_core_gutenberg_style', wp_get_custom_css());
-			});
 
 			remove_filter( 'the_content', 'wpautop' );
 
