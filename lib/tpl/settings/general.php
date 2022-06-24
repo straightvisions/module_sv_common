@@ -6,6 +6,7 @@
 		<?php
 			echo $module->get_setting( 'max_width_content' )->form();
 			echo $module->get_setting( 'max_width_wide' )->form();
+			echo $module->get_setting( 'units' )->form();
 		?>
 	</div>
 	<div class="sv_setting_flex">

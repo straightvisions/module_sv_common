@@ -26,6 +26,14 @@
 			$theme_json['settings']['custom']['sv-wide-size']       = $this->get_setting( 'max_width_wide' )->get_data();
 			$theme_json['settings']['custom']['sv-spacing']         = $this->get_setting( 'spacing' )->get_data()['desktop'];
 
+			// units
+			if($this->get_setting( 'units' )->get_data()){
+				$units  = explode(',',$this->get_setting( 'units' )->get_data());
+				if($units && is_array($units) && count($units) > 0){
+					$theme_json['settings']['spacing']['units']     = $units;
+				}
+			}
+
 			return $theme_json;
 		}
 		protected function register_scripts(): sv_common {
@@ -103,6 +111,12 @@
 				->set_default_value('32px')
 				->set_is_responsive(true)
 				->load_type( 'text' );
+
+			$this->get_setting( 'units' )
+			     ->set_title( __( 'Units', 'sv100' ) )
+			     ->set_description( __( 'comma separated list of available CSS unites', 'sv100' ) )
+			     ->set_default_value('px,em,rem,%,vh,vw')
+			     ->load_type( 'text' );
 
 			$this->get_setting( 'hyphens' )
 				->set_title( __( 'Hyphens', 'sv100' ) )
