@@ -12,12 +12,59 @@
 				->set_section_template_path()
 				->set_section_order(1000)
 				->set_section_icon('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 2c1.654 0 3 1.346 3 3v14c0 1.654-1.346 3-3 3h-14c-1.654 0-3-1.346-3-3v-14c0-1.654 1.346-3 3-3h14zm5 3c0-2.761-2.238-5-5-5h-14c-2.762 0-5 2.239-5 5v14c0 2.761 2.238 5 5 5h14c2.762 0 5-2.239 5-5v-14zm-13 12h-2v3h-2v-3h-2v-3h6v3zm-2-13h-2v8h2v-8zm10 5h-6v3h2v8h2v-8h2v-3zm-2-5h-2v3h2v-3z"/></svg>')
-				->add_theme_support()
 				->get_root()
 				->add_section( $this );
+
+			update_option( 'thumbnail_size_w', 400 );
+			update_option( 'thumbnail_size_h', 0 );
+			update_option( 'thumbnail_crop', 0 );
+
+			update_option( 'thumb_size_w', 400 );
+			update_option( 'thumb_size_h', 0 );
+			update_option( 'thumb_crop', 0 );
+
+			update_option( 'medium_size_w', $this->get_setting( 'max_width_content' )->get_data() );
+			update_option( 'medium_size_h', 0 );
+			update_option( 'medium_crop', 0 );
+
+			update_option( 'medium_large_size_w', $this->get_setting( 'max_width_wide' )->get_data());
+			update_option( 'medium_large_size_h', 0 );
+			update_option( 'medium_large_crop', 0 );
+
+			update_option( 'large_size_w', $this->get_setting( 'max_width_wide' )->get_data() * 1.5  );
+			update_option( 'large_size_h', 0 );
+			update_option( 'large_crop', 0 );
+
+			update_option( 'post-thumbnail_size_w', $this->get_setting( 'max_width_wide' )->get_data() );
+			update_option( 'post-thumbnail_size_h', 0 );
+			update_option( 'post-thumbnail_crop', 0 );
+
+			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
+
+			// Gutenberg
+			add_action( 'wp_print_styles', array( $this, 'wp_print_styles' ), 100 );
+
+			add_filter( 'styles_inline_size_limit', '__return_zero' );
+
+			// Load block styles in separate files on demand only
+			add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+
+			remove_filter( 'the_content', 'wpautop' );
+
+			return $this;
 		}
 		public function theme_json_update_data(){
 			$theme_json     = $this->theme_json_get_data();
+
+			// default values
+			$theme_json['settings']['color']['defaultPalette']     = false;
+			$theme_json['settings']['typography']['lineHeight']    = true;
+			$theme_json['settings']['spacing']['padding']          = true;
+
+			// @todo: allow custom colors as setting
+			$theme_json['settings']['color']['custom']             = true;
+			$theme_json['settings']['color']['customGradient']     = true;
+
 
 			// max width
 			$theme_json['settings']['layout']['contentSize']        = $this->get_setting( 'max_width_content' )->get_data();
@@ -259,61 +306,6 @@
 				$alignwide_value		=> 	$this->get_setting( 'max_width_alignwide' )->get_title().' ('.$alignwide_value.')',
 				$text_value				=> 	$this->get_setting( 'max_width_text' )->get_title().' ('.$text_value.')'
 			);
-		}
-		public function add_theme_support(): sv_common {
-			global $content_width;
-			$content_width = intval($this->get_setting( 'max_width_alignwide' )->get_data());
-
-			update_option( 'thumbnail_size_w', 400 );
-			update_option( 'thumbnail_size_h', 0 );
-			update_option( 'thumbnail_crop', 0 );
-
-			update_option( 'thumb_size_w', 400 );
-			update_option( 'thumb_size_h', 0 );
-			update_option( 'thumb_crop', 0 );
-
-			update_option( 'medium_size_w', $this->get_setting( 'max_width_text' )->get_data() );
-			update_option( 'medium_size_h', 0 );
-			update_option( 'medium_crop', 0 );
-
-			update_option( 'medium_large_size_w', $this->get_setting( 'max_width_alignwide' )->get_data());
-			update_option( 'medium_large_size_h', 0 );
-			update_option( 'medium_large_crop', 0 );
-
-			update_option( 'large_size_w', $this->get_setting( 'max_width_alignwide' )->get_data() * 1.5  );
-			update_option( 'large_size_h', 0 );
-			update_option( 'large_crop', 0 );
-
-			update_option( 'post-thumbnail_size_w', $this->get_setting( 'max_width_alignwide' )->get_data() );
-			update_option( 'post-thumbnail_size_h', 0 );
-			update_option( 'post-thumbnail_crop', 0 );
-
-			add_theme_support( 'post-thumbnails' );
-			add_theme_support( 'title-tag' );
-			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
-			add_theme_support( 'automatic-feed-links' );
-			add_theme_support( 'custom-logo' );
-			add_theme_support( 'custom-background' );
-			add_theme_support( 'custom-header' );
-			add_theme_support( 'align-wide' );
-			add_theme_support( 'custom-spacing' );
-			add_theme_support( 'custom-units' );
-			add_theme_support( 'editor-styles' );
-			add_post_type_support( 'page', 'excerpt' );
-
-			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
-
-			// Gutenberg
-			add_action( 'wp_print_styles', array( $this, 'wp_print_styles' ), 100 );
-
-			add_filter( 'styles_inline_size_limit', '__return_zero' );
-
-			// Load block styles in separate files on demand only
-			add_filter( 'should_load_separate_core_block_assets', '__return_true' );
-
-			remove_filter( 'the_content', 'wpautop' );
-
-			return $this;
 		}
 		public function wp_print_styles() {
 			// Gutenberg: load Styles inline for Pagespeed purposes
