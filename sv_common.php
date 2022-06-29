@@ -89,6 +89,7 @@
 			// Register Styles
 			$this->get_script( 'fix_svg_non_width' )
 			     ->set_path( 'lib/css/common/fix_svg_non_width.css' )
+				 ->set_inline()
 			     ->set_is_gutenberg()
 			     ->set_is_enqueued();
 
