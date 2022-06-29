@@ -27,8 +27,8 @@ iframe{
 	max-height:100%;
 }
 
-body #wpadminbar:hover{
-	z-index: 1000000;
+body #wpadminbar{
+	z-index: 10000;
 }
 #wp-toolbar {
 	display: flex;
