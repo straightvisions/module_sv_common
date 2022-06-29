@@ -23,19 +23,19 @@
 			update_option( 'thumb_size_h', 0 );
 			update_option( 'thumb_crop', 0 );
 
-			update_option( 'medium_size_w', $this->get_setting( 'max_width_content' )->get_data() );
+			update_option( 'medium_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) );
 			update_option( 'medium_size_h', 0 );
 			update_option( 'medium_crop', 0 );
 
-			update_option( 'medium_large_size_w', $this->get_setting( 'max_width_wide' )->get_data());
+			update_option( 'medium_large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()));
 			update_option( 'medium_large_size_h', 0 );
 			update_option( 'medium_large_crop', 0 );
 
-			update_option( 'large_size_w', $this->get_setting( 'max_width_wide' )->get_data() * 1.5  );
+			update_option( 'large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) * 1.5  );
 			update_option( 'large_size_h', 0 );
 			update_option( 'large_crop', 0 );
 
-			update_option( 'post-thumbnail_size_w', $this->get_setting( 'max_width_wide' )->get_data() );
+			update_option( 'post-thumbnail_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) );
 			update_option( 'post-thumbnail_size_h', 0 );
 			update_option( 'post-thumbnail_crop', 0 );
 
@@ -67,10 +67,10 @@
 
 
 			// max width
-			$theme_json['settings']['layout']['contentSize']        = $this->get_setting( 'max_width_content' )->get_data();
-			$theme_json['settings']['layout']['wideSize']           = $this->get_setting( 'max_width_wide' )->get_data();
-			$theme_json['settings']['custom']['sv-content-size']    = $this->get_setting( 'max_width_content' )->get_data();
-			$theme_json['settings']['custom']['sv-wide-size']       = $this->get_setting( 'max_width_wide' )->get_data();
+			$theme_json['settings']['layout']['contentSize']        = $this->get_setting( 'max_width_content' )->get_data().'px';
+			$theme_json['settings']['layout']['wideSize']           = $this->get_setting( 'max_width_wide' )->get_data().'px';
+			$theme_json['settings']['custom']['sv-content-size']    = $this->get_setting( 'max_width_content' )->get_data().'px';
+			$theme_json['settings']['custom']['sv-wide-size']       = $this->get_setting( 'max_width_wide' )->get_data().'px';
 			$theme_json['settings']['custom']['sv-spacing']         = $this->get_setting( 'spacing' )->get_data()['desktop'];
 
 			// units
@@ -193,14 +193,14 @@
 				->load_type( 'color' );
 
 			$this->get_setting( 'max_width_content' )
-			     ->set_title( __( 'Content Max Width', 'sv100' ) )
-			     ->set_default_value( '820px' )
-			     ->load_type( 'text' );
+			     ->set_title( __( 'Content Max Width in Pixel', 'sv100' ) )
+			     ->set_default_value( '820' )
+			     ->load_type( 'number' );
 
 			$this->get_setting( 'max_width_wide' )
-				 ->set_title( __( 'Wide Max Width', 'sv100' ) )
-				 ->set_default_value( '1300px' )
-				 ->load_type( 'text' );
+				 ->set_title( __( 'Wide Max Width in Pixel', 'sv100' ) )
+				 ->set_default_value( '1300' )
+				 ->load_type( 'number' );
 			
 			// Text Settings
 			$this->get_setting( 'font' )

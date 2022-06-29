@@ -199,4 +199,5 @@ html :where(.wp-block.is-reusable){
 
 a img{
 	vertical-align:middle;
+	height:auto;
 }
