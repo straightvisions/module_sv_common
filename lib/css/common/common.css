@@ -201,3 +201,39 @@ a img{
 	vertical-align:middle;
 	height:auto;
 }
+
+/* Links */
+a, a:hover, a:focus{
+	text-decoration:none;
+	position:relative;
+}
+
+article p > a::before,
+article li > a::before,
+.wp-block-term-description p > a::before,
+.wp-block-term-description li > a::before{
+	content: '';
+	position: absolute;
+	top: 100%;
+	display: block;
+	height: 2px;
+	width:0;
+	left:0;
+	transition: width .25s ease-in-out;
+}
+article p > a:focus::before,
+article p > a:hover::before,
+article li > a:focus::before,
+article li > a:hover::before,
+.wp-block-term-description p > a:focus::before,
+.wp-block-term-description p > a:hover::before,
+.wp-block-term-description li > a:focus::before,
+.wp-block-term-description li > a:hover::before{
+	width:100%;
+	transition: width .25s ease-in-out;
+}
+
+.has-text-color a,
+.has-text-color a:visited{
+	color: inherit;
+}

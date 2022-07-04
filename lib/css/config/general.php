@@ -62,7 +62,16 @@
 	}
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper p a::before, .editor-styles-wrapper p a:visited::before' : 'article p a::before, article p a:visited::before',
+		'
+		article p > a::before,
+		article p > a:visited::before,
+		article li > a::before,
+		article li > a:visited::before,
+		.wp-block-term-description p > a::before,
+		.wp-block-term-description p > a:visited::before,
+		.wp-block-term-description li > a::before,
+		.wp-block-term-description li > a:visited::before
+		',
 		array_merge(
 			$properties
 		)
@@ -94,7 +103,16 @@
 	}
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper p a:hover::before, .editor-styles-wrapper p a:focus::before' : 'article a:hover::before, article a:focus::before',
+		'
+		article p > a:hover::before,
+		article p > a:focus::before,
+		article li > a:hover::before,
+		article li > a:focus::before,
+		.wp-block-term-description p > a:hover::before,
+		.wp-block-term-description p > a:focus::before,
+		.wp-block-term-description li > a:hover::before,
+		.wp-block-term-description li > a:focus::before
+		',
 		array_merge(
 			$properties
 		)
