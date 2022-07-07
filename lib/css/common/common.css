@@ -126,7 +126,7 @@ sup{
 
 /* Global Spacing */
 .wp-site-blocks > header > *:not(.alignfull),
-.wp-site-blocks > main > *:not(.alignfull),
+.wp-site-blocks > main > .wp-block-post-content > *:not(.alignfull),
 .wp-site-blocks > footer > *:not(.alignfull){
 	padding-left: var(--wp--custom--sv-spacing);
 	padding-right: var(--wp--custom--sv-spacing);
@@ -141,7 +141,7 @@ sup{
 .alignfull,
 	/*.wp-site-blocks header > *,
 	.wp-site-blocks footer > *,*/
-.wp-site-blocks main > *
+.wp-site-blocks main > .wp-block-post-content > *
 {
 	margin-left: auto;
 	margin-right: auto;
@@ -161,7 +161,7 @@ sup{
 .sv100_sv_content_wrapper .widget_block > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
 	/*.wp-site-blocks header > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
 	.wp-site-blocks footer > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),*/
-.wp-site-blocks main > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide)
+.wp-site-blocks main > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide)
 {
 	max-width:var( --wp--custom--sv-content-size );
 }
@@ -203,7 +203,7 @@ a img{
 }
 
 /* Links */
-a, a:hover, a:focus{
+body a, body a:hover, body a:focus{
 	text-decoration:none;
 	position:relative;
 }

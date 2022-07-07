@@ -21,8 +21,7 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '
-		.editor-styles-wrapper a' : 'a',
+		'main a',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data()
@@ -30,7 +29,7 @@
 	);
 
 	echo $_s->build_css(
-		is_admin() ? '.editor-styles-wrapper p:not(.has-text-color) a:hover, .editor-styles-wrapper p:not(.has-text-color) a:focus' : 'a:hover, a:focus',
+		'main a:hover, main a:focus',
 		array_merge(
 			$module->get_setting('text_color_link_hover')->get_css_data()
 		)
@@ -63,10 +62,10 @@
 
 	echo $_s->build_css(
 		'
-		article p > a::before,
-		article p > a:visited::before,
-		article li > a::before,
-		article li > a:visited::before,
+		main p > a::before,
+		main p > a:visited::before,
+		main li > a::before,
+		main li > a:visited::before,
 		.wp-block-term-description p > a::before,
 		.wp-block-term-description p > a:visited::before,
 		.wp-block-term-description li > a::before,
@@ -104,10 +103,10 @@
 
 	echo $_s->build_css(
 		'
-		article p > a:hover::before,
-		article p > a:focus::before,
-		article li > a:hover::before,
-		article li > a:focus::before,
+		main p > a:hover::before,
+		main p > a:focus::before,
+		main li > a:hover::before,
+		main li > a:focus::before,
 		.wp-block-term-description p > a:hover::before,
 		.wp-block-term-description p > a:focus::before,
 		.wp-block-term-description li > a:hover::before,
@@ -131,4 +130,3 @@
 
 		)
 	);
-?>
