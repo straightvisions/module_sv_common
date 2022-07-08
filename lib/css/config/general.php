@@ -21,7 +21,7 @@
 	);
 
 	echo $_s->build_css(
-		'main a',
+		'.wp-site-blocks a',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data()
@@ -29,7 +29,7 @@
 	);
 
 	echo $_s->build_css(
-		'main a:hover, main a:focus',
+		'.wp-site-blocks a:hover, .wp-site-blocks a:focus',
 		array_merge(
 			$module->get_setting('text_color_link_hover')->get_css_data()
 		)
@@ -62,10 +62,10 @@
 
 	echo $_s->build_css(
 		'
-		main p > a::before,
-		main p > a:visited::before,
-		main li > a::before,
-		main li > a:visited::before,
+		.wp-site-blocks p > a::before,
+		.wp-site-blocks p > a:visited::before,
+		.wp-site-blocks li > a::before,
+		.wp-site-blocks li > a:visited::before,
 		.wp-block-term-description p > a::before,
 		.wp-block-term-description p > a:visited::before,
 		.wp-block-term-description li > a::before,
@@ -103,10 +103,10 @@
 
 	echo $_s->build_css(
 		'
-		main p > a:hover::before,
-		main p > a:focus::before,
-		main li > a:hover::before,
-		main li > a:focus::before,
+		.wp-site-blocks p > a:hover::before,
+		.wp-site-blocks p > a:focus::before,
+		.wp-site-blocks li > a:hover::before,
+		.wp-site-blocks li > a:focus::before,
 		.wp-block-term-description p > a:hover::before,
 		.wp-block-term-description p > a:focus::before,
 		.wp-block-term-description li > a:hover::before,
