@@ -45,7 +45,9 @@ a, a:hover, a:focus{
 	position:relative;
 }
 
+main p a::before,
 article p a::before,
+aside p a::before,
 .editor-styles-wrapper p a::before{
 	content: '';
 	position: absolute;
@@ -56,8 +58,12 @@ article p a::before,
 	left:0;
 	transition: width .25s ease-in-out;
 }
+main p a:focus::before,
 article p a:focus::before,
+aside p a:focus::before,
+main p a:hover::before,
 article p a:hover::before,
+aside p a:hover::before,
 .editor-styles-wrapper p a:focus::before,
 .editor-styles-wrapper p a:hover::before{
 	width:100%;
@@ -147,22 +153,17 @@ sup{
 	margin-right: auto;
 }
 
-.sv100_sv_content_wrapper > article > *:not(.alignfull),
-.sv100_sv_content_wrapper > aside > .sv100_sv_sidebar > *:not(.alignfull){
+.wp-site-blocks > main > .wp-block-post-content > *:not(.alignfull),
+.wp-site-blocks > article > .wp-block-post-content > *:not(.alignfull),
+.wp-site-blocks > aside > .wp-block-post-content > .sv100_sv_sidebar > *:not(.alignfull){
 	padding-left: var(--wp--custom--sv-spacing);
 	padding-right: var(--wp--custom--sv-spacing);
 }
 
-.sv100_sv_content_wrapper > aside{
-	max-width:100%;
-}
-
 /* content wides */
-.sv100_sv_content_wrapper .widget_block > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
-	/*.wp-site-blocks header > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
-	.wp-site-blocks footer > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),*/
-.wp-site-blocks main > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide)
-{
+.wp-site-blocks > main > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
+.wp-site-blocks > article > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
+.wp-site-blocks > aside > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide){
 	max-width:var( --wp--custom--sv-content-size );
 }
 
@@ -208,8 +209,12 @@ body a, body a:hover, body a:focus{
 	position:relative;
 }
 
+main p > a::before,
 article p > a::before,
+aside p > a::before,
+main li > a::before,
 article li > a::before,
+aside li > a::before,
 .wp-block-term-description p > a::before,
 .wp-block-term-description li > a::before{
 	content: '';
@@ -221,10 +226,18 @@ article li > a::before,
 	left:0;
 	transition: width .25s ease-in-out;
 }
+main p > a:focus::before,
+main p > a:hover::before,
+main li > a:focus::before,
+main li > a:hover::before,
 article p > a:focus::before,
 article p > a:hover::before,
 article li > a:focus::before,
 article li > a:hover::before,
+aside p > a:focus::before,
+aside p > a:hover::before,
+aside li > a:focus::before,
+aside li > a:hover::before,
 .wp-block-term-description p > a:focus::before,
 .wp-block-term-description p > a:hover::before,
 .wp-block-term-description li > a:focus::before,
