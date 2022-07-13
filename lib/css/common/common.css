@@ -147,7 +147,9 @@ sup{
 .alignfull,
 	/*.wp-site-blocks header > *,
 	.wp-site-blocks footer > *,*/
-.wp-site-blocks main > .wp-block-post-content > *
+.wp-site-blocks main > .wp-block-post-content > *,
+.wp-site-blocks article > .wp-block-post-content > *,
+.wp-site-blocks aside > .wp-block-post-content > *
 {
 	margin-left: auto;
 	margin-right: auto;
