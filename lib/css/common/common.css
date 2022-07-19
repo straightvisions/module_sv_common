@@ -131,47 +131,28 @@ sup{
 }
 
 /* Global Spacing */
-.wp-site-blocks > header > *:not(.alignfull),
-.wp-site-blocks > main > .wp-block-post-content > *:not(.alignfull),
-.wp-site-blocks > footer > *:not(.alignfull){
+.wp-site-blocks > * > * > *:not(.alignfull):not(li):not(nav){
 	padding-left: var(--wp--custom--sv-spacing);
 	padding-right: var(--wp--custom--sv-spacing);
 }
-
-.sv100_sv_content_wrapper{
-	margin:0 auto;
+.wp-site-blocks > * > div.wp-block-group
+	*:not(.alignfull)
+	:not(.alignwide)
+	:not(.alignleft)
+	:not(.alignright)
+	:not(.is-style-wide)
+	:not(.wp-block-column)
+	:not(nav)
+	:not(.wp-block-navigation__container){
+	max-width:var( --wp--custom--sv-content-size );
 }
 
 .widget_block,
 .alignwide,
 .alignfull,
-	/*.wp-site-blocks header > *,
-	.wp-site-blocks footer > *,*/
-.wp-site-blocks main > .wp-block-post-content > *,
-.wp-site-blocks article > .wp-block-post-content > *,
-.wp-site-blocks aside > .wp-block-post-content > *
-{
+.wp-site-blocks > * > div.wp-block-group > * {
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.wp-site-blocks > main > .wp-block-post-content > *:not(.alignfull),
-.wp-site-blocks > article > .wp-block-post-content > *:not(.alignfull),
-.wp-site-blocks > aside > .wp-block-post-content > .sv100_sv_sidebar > *:not(.alignfull){
-	padding-left: var(--wp--custom--sv-spacing);
-	padding-right: var(--wp--custom--sv-spacing);
-}
-
-/* content wides */
-.wp-site-blocks > main > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
-.wp-site-blocks > article > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide),
-.wp-site-blocks > aside > .wp-block-post-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide){
-	max-width:var( --wp--custom--sv-content-size );
-}
-
-[class*="__inner-container"] > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide):not(.wp-block-image) {
-	max-width:var( --wp--custom--sv-content-size );
-	width: 100%;
 }
 
 /* global wides */
