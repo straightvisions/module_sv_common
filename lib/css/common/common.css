@@ -131,7 +131,7 @@ sup{
 }
 
 /* Global Spacing */
-.wp-site-blocks > * > * > *:not(.alignfull):not(li):not(nav){
+.wp-site-blocks > * > * > *:not(li):not(nav){
 	padding-left: var(--wp--custom--sv-spacing);
 	padding-right: var(--wp--custom--sv-spacing);
 }
