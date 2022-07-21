@@ -40,15 +40,12 @@ body #wpadminbar{
 	}
 }
 
-a, a:hover, a:focus{
+body a, body a:hover, body a:focus, body a:not(.wp-element-button){
 	text-decoration:none;
 	position:relative;
 }
 
-main p a::before,
-article p a::before,
-aside p a::before,
-.editor-styles-wrapper p a::before{
+body p a::before{
 	content: '';
 	position: absolute;
 	top: 100%;
@@ -58,14 +55,8 @@ aside p a::before,
 	left:0;
 	transition: width .25s ease-in-out;
 }
-main p a:focus::before,
-article p a:focus::before,
-aside p a:focus::before,
-main p a:hover::before,
-article p a:hover::before,
-aside p a:hover::before,
-.editor-styles-wrapper p a:focus::before,
-.editor-styles-wrapper p a:hover::before{
+body p a:focus::before,
+body a:hover::before{
 	width:100%;
 	transition: width .25s ease-in-out;
 }
