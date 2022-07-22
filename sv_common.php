@@ -27,15 +27,15 @@
 			update_option( 'medium_size_h', 0 );
 			update_option( 'medium_crop', 0 );
 
-			update_option( 'medium_large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()));
+			update_option( 'medium_large_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) * 1.5 );
 			update_option( 'medium_large_size_h', 0 );
 			update_option( 'medium_large_crop', 0 );
 
-			update_option( 'large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) * 1.5  );
+			update_option( 'large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) );
 			update_option( 'large_size_h', 0 );
 			update_option( 'large_crop', 0 );
 
-			update_option( 'post-thumbnail_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) );
+			update_option( 'post-thumbnail_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) * 1.5 );
 			update_option( 'post-thumbnail_size_h', 0 );
 			update_option( 'post-thumbnail_crop', 0 );
 
