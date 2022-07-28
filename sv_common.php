@@ -51,6 +51,10 @@
 
 			remove_filter( 'the_content', 'wpautop' );
 
+			// @todo: https://github.com/WordPress/gutenberg/issues/38299
+			remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+			remove_action( 'wp_body_open', 'gutenberg_global_styles_render_svg_filters' );
+
 			return $this;
 		}
 		public function theme_json_update_data(){
@@ -58,6 +62,8 @@
 
 			// default values
 			$theme_json['settings']['color']['defaultPalette']     = false;
+			$theme_json['settings']['color']['defaultGradients']   = false;
+			$theme_json['settings']['color']['duotone']            = [];
 			$theme_json['settings']['typography']['lineHeight']    = true;
 			$theme_json['settings']['spacing']['padding']          = true;
 
