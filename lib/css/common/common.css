@@ -122,10 +122,12 @@ sup{
 }
 
 /* Global Spacing */
-.wp-site-blocks > * > * > *:not(li):not(nav){
+.wp-site-blocks > * > * > *:not(li):not(nav):not(.alignfull),
+.wp-site-blocks > * > * > .wp-block-group.alignfull{
 	padding-left: var(--wp--custom--sv-spacing);
 	padding-right: var(--wp--custom--sv-spacing);
 }
+
 .wp-site-blocks > * > div.wp-block-group
 	*:not(.alignfull)
 	:not(.alignwide)
