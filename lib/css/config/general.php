@@ -1,22 +1,35 @@
 <?php
-
+	
 	echo $_s->build_css(
-		'body .wp-site-blocks, body, .editor-styles-wrapper', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
+		'.wp-site-blocks, .editor-styles-wrapper',
 		array_merge(
 			$module->get_setting('hyphens')->get_css_data('-webkit-hyphens'),
 			$module->get_setting('hyphens')->get_css_data('-moz-hyphens'),
-			$module->get_setting('hyphens')->get_css_data('hyphens')
+			$module->get_setting('hyphens')->get_css_data('hyphens'),
+			$module->get_setting('bg_color')->get_css_data('background-color')
 		)
 	);
-
+	
+	// we need to explicitly define that for form fields, too,
+	// to avoid that Chrome will override it with user agent style sheets.
 	echo $_s->build_css(
-		'body .wp-site-blocks, body, button, input, select, textarea, .editor-styles-wrapper', // we need to explicitly define that for form fields, too, to avoid that Chrome will override it with user agent style sheets.
+		'.wp-site-blocks,
+		.editor-styles-wrapper,
+		.wp-site-blocks button,
+		.wp-site-blocks input,
+		.wp-site-blocks select,
+		.wp-site-blocks textarea,
+		.editor-styles-wrapper button,
+		.editor-styles-wrapper input,
+		.editor-styles-wrapper select,
+		.editor-styles-wrapper textarea
+		',
 		array_merge(
 			$module->get_setting('font')->get_css_data('font-family'),
 			$module->get_setting('font_size')->get_css_data('font-size','','px'),
 			$module->get_setting('line_height')->get_css_data('line-height'),
 			$module->get_setting('text_color')->get_css_data(),
-			$module->get_setting('bg_color')->get_css_data('background-color')
+			
 		)
 	);
 
@@ -102,8 +115,7 @@
 	}
 
 	echo $_s->build_css(
-		'
-		.wp-site-blocks p > a:hover::before,
+		'.wp-site-blocks p > a:hover::before,
 		.wp-site-blocks p > a:focus::before,
 		.wp-site-blocks li > a:hover::before,
 		.wp-site-blocks li > a:focus::before,
