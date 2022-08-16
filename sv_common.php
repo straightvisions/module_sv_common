@@ -257,8 +257,7 @@
 				->set_is_responsive(true)
 				 ->set_options( array(
 					'none'					=> __( 'None', 'sv100' ),
-					'underline'			=> __( 'Underline', 'sv100' ),
-					'underline_dashed'	=> __( 'Underline Dashed', 'sv100' ),
+					'underline'			=> __( 'Underline', 'sv100' )
 				 ) )
 				 ->load_type( 'select' );
 			
@@ -274,8 +273,7 @@
 				 ->set_default_value( 'none' )
 				 ->set_options( array(
 					'none'					=> __( 'None', 'sv100' ),
-					'underline'			=> __( 'Underline', 'sv100' ),
-					'underline_dashed'	=> __( 'Underline Dashed', 'sv100' ),
+					'underline'			=> __( 'Underline', 'sv100' )
 				 ) )
 				->set_is_responsive(true)
 				 ->load_type( 'select' );

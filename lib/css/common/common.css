@@ -40,27 +40,6 @@ body #wpadminbar{
 	}
 }
 
-body a, body a:hover, body a:focus, body a:not(.wp-element-button){
-	text-decoration:none;
-	position:relative;
-}
-
-body p a::before{
-	content: '';
-	position: absolute;
-	top: 100%;
-	display: block;
-	height: 2px;
-	width:0;
-	left:0;
-	transition: width .25s ease-in-out;
-}
-body p a:focus::before,
-body a:hover::before{
-	width:100%;
-	transition: width .25s ease-in-out;
-}
-
 .has-text-color a,
 .has-text-color a:visited{
 	color: inherit;
@@ -180,7 +159,7 @@ a img{
 }
 
 /* Links */
-body a, body a:hover, body a:focus{
+.wp-site-blocks a, .wp-site-blocks a:hover, .wp-site-blocks a:focus{
 	text-decoration:none;
 	position:relative;
 }

@@ -14,15 +14,10 @@
 	// to avoid that Chrome will override it with user agent style sheets.
 	echo $_s->build_css(
 		'.wp-site-blocks,
-		.editor-styles-wrapper,
 		.wp-site-blocks button,
 		.wp-site-blocks input,
 		.wp-site-blocks select,
-		.wp-site-blocks textarea,
-		.editor-styles-wrapper button,
-		.editor-styles-wrapper input,
-		.editor-styles-wrapper select,
-		.editor-styles-wrapper textarea
+		.wp-site-blocks textarea
 		',
 		array_merge(
 			$module->get_setting('font')->get_css_data('font-family'),
@@ -37,7 +32,14 @@
 		'.wp-site-blocks a',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
-			$module->get_setting('text_color_link')->get_css_data()
+			$module->get_setting('text_color_link')->get_css_data(),
+		)
+	);
+
+	echo $_s->build_css(
+		'.wp-site-blocks main a',
+		array_merge(
+			$module->get_setting('text_deco_link')->get_css_data('text-decoration')
 		)
 	);
 
@@ -48,84 +50,10 @@
 		)
 	);
 
-
-	// Text Decoration
-	$properties			= array();
-
-	$value				= $module->get_setting('text_deco_link')->get_data();
-	if($value){
-		$imploded		= false;
-		foreach($value as $breakpoint => $val) {
-			if(strlen($val) > 0) {
-				if($val == 'underline'){
-					$imploded['width'][$breakpoint] = '100%';
-					$imploded['border-bottom'][$breakpoint] = '1px solid';
-				}elseif($val == 'underline_dashed'){
-					$imploded['width'][$breakpoint] = '100%';
-					$imploded['border-bottom'][$breakpoint] = '1px dashed';
-				}
-			}
-		}
-
-		if($imploded) {
-			$properties['width'] = $_s->prepare_css_property_responsive($imploded['width'], '', '');
-			$properties['border-bottom'] = $_s->prepare_css_property_responsive($imploded['border-bottom'], '', '');
-		}
-	}
-
 	echo $_s->build_css(
-		'
-		.wp-site-blocks p > a::before,
-		.wp-site-blocks p > a:visited::before,
-		.wp-site-blocks li > a::before,
-		.wp-site-blocks li > a:visited::before,
-		.wp-block-term-description p > a::before,
-		.wp-block-term-description p > a:visited::before,
-		.wp-block-term-description li > a::before,
-		.wp-block-term-description li > a:visited::before
-		',
+		'.wp-site-blocks main a:hover, .wp-site-blocks main a:focus',
 		array_merge(
-			$properties
-		)
-	);
-
-	// Text Decoration Hover
-	// @todo doubled code
-	$properties			= array();
-
-	$value				= $module->get_setting('text_deco_link_hover')->get_data();
-
-	if($value){
-		$imploded		= false;
-		foreach($value as $breakpoint => $val) {
-			if(strlen($val) > 0){
-				if($val == 'underline'){
-					$imploded['border-bottom'][$breakpoint] = '1px solid';
-				}elseif($val == 'underline_dashed'){
-					$imploded['border-bottom'][$breakpoint] = '1px dashed';
-				}
-			}else{
-				$imploded['border-bottom'][$breakpoint] = 'none';
-			}
-		}
-
-		if($imploded) {
-			$properties['border-bottom'] = $_s->prepare_css_property_responsive($imploded['border-bottom'], '', '');
-		}
-	}
-
-	echo $_s->build_css(
-		'.wp-site-blocks p > a:hover::before,
-		.wp-site-blocks p > a:focus::before,
-		.wp-site-blocks li > a:hover::before,
-		.wp-site-blocks li > a:focus::before,
-		.wp-block-term-description p > a:hover::before,
-		.wp-block-term-description p > a:focus::before,
-		.wp-block-term-description li > a:hover::before,
-		.wp-block-term-description li > a:focus::before
-		',
-		array_merge(
-			$properties
+			$module->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
 		)
 	);
 
