@@ -161,7 +161,7 @@ a img{
 /* Links */
 .wp-site-blocks a, .wp-site-blocks a:hover, .wp-site-blocks a:focus{
 	text-decoration:none;
-	position:relative;
+	color:inherit;
 }
 
 main p > a::before,
