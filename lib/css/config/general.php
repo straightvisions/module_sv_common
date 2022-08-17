@@ -14,6 +14,7 @@
 	// to avoid that Chrome will override it with user agent style sheets.
 	echo $_s->build_css(
 		'.wp-site-blocks,
+		.editor-styles-wrapper,
 		.wp-site-blocks button,
 		.wp-site-blocks input,
 		.wp-site-blocks select,
@@ -29,7 +30,7 @@
 	);
 
 	echo $_s->build_css(
-		'.wp-site-blocks p a',
+		'.wp-site-blocks p a, .editor-styles-wrapper p a',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data(),
