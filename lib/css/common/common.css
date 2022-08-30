@@ -115,6 +115,9 @@ sup{
 	:not(.is-style-wide)
 	:not(.wp-block-column)
 	:not(nav)
+	:not(.wp-block-navigation__container)
+	:not(.wp-block-navigation__responsive-dialog)
+	:not(.wp-block-navigation__responsive-container-content)
 	:not(.wp-block-navigation__container){
 	max-width:var( --wp--custom--sv-content-size );
 }
