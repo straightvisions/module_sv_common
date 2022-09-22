@@ -201,3 +201,7 @@ aside li > a:hover::before,
 .has-text-color a:visited{
 	color: inherit;
 }
+
+video{
+	max-width:100%;
+}
