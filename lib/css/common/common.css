@@ -143,58 +143,16 @@ html :where(.wp-block.is-reusable){
 	max-width:initial;
 }
 
-/* Password Protected Post */
-.post-password-form{
-	margin: 200px auto;
-	padding: 200px 0;
-}
-
 a img{
 	vertical-align:middle;
 	height:auto;
 }
 
-/* Links */
-.wp-site-blocks a, .wp-site-blocks a:hover, .wp-site-blocks a:focus{
+header a, header a:hover, header a:focus,
+footer a, footer a:hover, footer a:focus,
+section a, section a:hover, section a:focus{
 	text-decoration:none;
 	color:inherit;
-}
-
-main p > a::before,
-article p > a::before,
-aside p > a::before,
-main li > a::before,
-article li > a::before,
-aside li > a::before,
-.wp-block-term-description p > a::before,
-.wp-block-term-description li > a::before{
-	content: '';
-	position: absolute;
-	top: 100%;
-	display: block;
-	height: 2px;
-	width:0;
-	left:0;
-	transition: width .25s ease-in-out;
-}
-main p > a:focus::before,
-main p > a:hover::before,
-main li > a:focus::before,
-main li > a:hover::before,
-article p > a:focus::before,
-article p > a:hover::before,
-article li > a:focus::before,
-article li > a:hover::before,
-aside p > a:focus::before,
-aside p > a:hover::before,
-aside li > a:focus::before,
-aside li > a:hover::before,
-.wp-block-term-description p > a:focus::before,
-.wp-block-term-description p > a:hover::before,
-.wp-block-term-description li > a:focus::before,
-.wp-block-term-description li > a:hover::before{
-	width:100%;
-	transition: width .25s ease-in-out;
 }
 
 .has-text-color a,

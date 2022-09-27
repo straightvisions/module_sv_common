@@ -30,30 +30,18 @@
 	);
 
 	echo $_s->build_css(
-		'.wp-site-blocks p a, .editor-styles-wrapper p a',
+		'main a',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data(),
-		)
-	);
-
-	echo $_s->build_css(
-		'.wp-site-blocks main p a',
-		array_merge(
 			$module->get_setting('text_deco_link')->get_css_data('text-decoration')
 		)
 	);
 
 	echo $_s->build_css(
-		'.wp-site-blocks p a:hover, .wp-site-blocks p a:focus',
+		'main a:hover, main a:focus',
 		array_merge(
-			$module->get_setting('text_color_link_hover')->get_css_data()
-		)
-	);
-
-	echo $_s->build_css(
-		'.wp-site-blocks main p a:hover, .wp-site-blocks main p a:focus',
-		array_merge(
+			$module->get_setting('text_color_link_hover')->get_css_data(),
 			$module->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
 		)
 	);
