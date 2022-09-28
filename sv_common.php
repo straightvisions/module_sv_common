@@ -69,7 +69,7 @@
 
 			// disable default link underline
 			// a:where(:not(.wp-element-button)){text-decoration: underline;}
-			$theme_json['settings']['styles']['elements']['link']['typography']['textDecoration']          = false;
+			$theme_json['styles']['elements']['link']['typography']['textDecoration']          = false;
 
 			// @todo: allow custom colors as setting
 			$theme_json['settings']['color']['custom']             = true;
