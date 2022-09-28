@@ -148,16 +148,9 @@ a img{
 	height:auto;
 }
 
-header a, header a:hover, header a:focus,
-footer a, footer a:hover, footer a:focus,
-section a, section a:hover, section a:focus{
+a, a:hover, a:focus{
 	text-decoration:none;
 	color:inherit;
-}
-
-.has-text-color a,
-.has-text-color a:visited{
-	color: inherit;
 }
 
 video{

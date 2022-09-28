@@ -67,6 +67,10 @@
 			$theme_json['settings']['typography']['lineHeight']    = true;
 			$theme_json['settings']['spacing']['padding']          = true;
 
+			// disable default link underline
+			// a:where(:not(.wp-element-button)){text-decoration: underline;}
+			$theme_json['settings']['styles']['elements']['link']['typography']['textDecoration']          = false;
+
 			// @todo: allow custom colors as setting
 			$theme_json['settings']['color']['custom']             = true;
 			$theme_json['settings']['color']['customGradient']     = true;

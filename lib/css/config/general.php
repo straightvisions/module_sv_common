@@ -30,7 +30,7 @@
 	);
 
 	echo $_s->build_css(
-		'main a',
+		'main p a:where(:not(.wp-element-button)), main li a:where(:not(.wp-element-button))',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data(),
@@ -39,7 +39,8 @@
 	);
 
 	echo $_s->build_css(
-		'main a:hover, main a:focus',
+		'main p a:where(:not(.wp-element-button)):hover, main p a:where(:not(.wp-element-button)):focus,
+		main li a:where(:not(.wp-element-button)):hover, main li a:where(:not(.wp-element-button)):focus',
 		array_merge(
 			$module->get_setting('text_color_link_hover')->get_css_data(),
 			$module->get_setting('text_deco_link_hover')->get_css_data('text-decoration')
