@@ -9,7 +9,7 @@
 			$module->get_setting('bg_color')->get_css_data('background-color')
 		)
 	);
-	
+
 	// we need to explicitly define that for form fields, too,
 	// to avoid that Chrome will override it with user agent style sheets.
 	echo $_s->build_css(
@@ -24,8 +24,7 @@
 			$module->get_setting('font')->get_css_data('font-family'),
 			$module->get_setting('font_size')->get_css_data('font-size','','px'),
 			$module->get_setting('line_height')->get_css_data('line-height'),
-			$module->get_setting('text_color')->get_css_data(),
-			
+			$module->get_setting('text_color')->get_css_data()
 		)
 	);
 
