@@ -156,3 +156,7 @@ a, a:hover, a:focus{
 video{
 	max-width:100%;
 }
+
+.has-background {
+	padding: var(--wp--custom--sv-spacing);
+}

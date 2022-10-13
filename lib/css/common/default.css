@@ -32,10 +32,6 @@ p.has-drop-cap.has-background {
 	overflow: hidden;
 }
 
-p.has-background {
-	padding: 1.25em 2.375em;
-}
-
 p.has-text-color a {
 	color: inherit;
 }
@@ -110,11 +106,6 @@ p.has-text-color a {
 	top: 5px;
 	width: auto;
 	z-index: 100000;
-}
-
-ol.has-background,
-ul.has-background {
-	padding: 20px;
 }
 
 .block-editor-image-alignment-control__row .components-base-control__field {
