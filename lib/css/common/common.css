@@ -157,6 +157,6 @@ video{
 	max-width:100%;
 }
 
-.has-background {
+.has-background:not(.wp-block-separator) {
 	padding: var(--wp--custom--sv-spacing);
 }
