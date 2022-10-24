@@ -29,7 +29,8 @@
 	);
 
 	echo $_s->build_css(
-		'main p a:where(:not(.wp-element-button)), main li a:where(:not(.wp-element-button))',
+		'main p a:where(:not(.wp-element-button)), main li a:where(:not(.wp-element-button)),
+		.editor-styles-wrapper p a:where(:not(.wp-element-button)), .editor-styles-wrapper li a:where(:not(.wp-element-button))',
 		array_merge(
 			$module->get_setting('font_link')->get_css_data('font-family'),
 			$module->get_setting('text_color_link')->get_css_data(),
