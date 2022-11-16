@@ -63,9 +63,17 @@
 			// default values
 			$theme_json['settings']['color']['defaultPalette']     = false;
 			$theme_json['settings']['color']['defaultGradients']   = false;
-			$theme_json['settings']['color']['duotone']            = [];
 			$theme_json['settings']['typography']['lineHeight']    = true;
 			$theme_json['settings']['spacing']['padding']          = true;
+
+			// Duotones
+			if(!$this->get_setting( 'duotones' )->get_data()){
+				$theme_json['settings']['color']['duotone']        = null;
+				$theme_json['settings']['color']['customDuotone']  = false;
+			}else{
+				$theme_json['settings']['color']['duotone']        = [];
+				$theme_json['settings']['color']['customDuotone']  = true;
+			}
 
 			// disable default link underline
 			// a:where(:not(.wp-element-button)){text-decoration: underline;}
@@ -74,7 +82,6 @@
 			// @todo: allow custom colors as setting
 			$theme_json['settings']['color']['custom']             = true;
 			$theme_json['settings']['color']['customGradient']     = true;
-
 
 			// max width
 			$theme_json['settings']['layout']['contentSize']        = $this->get_setting( 'max_width_content' )->get_data().'px';
@@ -169,6 +176,11 @@
 				->set_default_value('32px')
 				->set_is_responsive(true)
 				->load_type( 'text' );
+
+			$this->get_setting( 'duotones' )
+				->set_title( __( 'Enable Duotones', 'sv100' ) )
+				->set_description( __( 'Duotones Support in Block Editor', 'sv100' ) )
+				->load_type( 'checkbox' );
 
 			$this->get_setting( 'units' )
 			     ->set_title( __( 'Units', 'sv100' ) )
