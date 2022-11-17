@@ -68,7 +68,9 @@
 
 			// Duotones
 			if(!$this->get_setting( 'duotones' )->get_data()){
-				$theme_json['settings']['color']['duotone']        = null;
+				// js error in site editor with wp 6.1.1
+				//$theme_json['settings']['color']['duotone']        = null;
+				$theme_json['settings']['color']['duotone']        = [];
 				$theme_json['settings']['color']['customDuotone']  = false;
 			}else{
 				$theme_json['settings']['color']['duotone']        = [];
