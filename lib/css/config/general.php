@@ -1,7 +1,9 @@
 <?php
 	
 	echo $_s->build_css(
-		'.wp-site-blocks, .editor-styles-wrapper',
+		'.wp-site-blocks,
+		.editor-styles-wrapper,
+		body.wp-custom-logo',
 		array_merge(
 			$module->get_setting('hyphens')->get_css_data('-webkit-hyphens'),
 			$module->get_setting('hyphens')->get_css_data('-moz-hyphens'),
@@ -18,8 +20,8 @@
 		.wp-site-blocks button,
 		.wp-site-blocks input,
 		.wp-site-blocks select,
-		.wp-site-blocks textarea
-		',
+		.wp-site-blocks textarea,
+		body.wp-custom-logo',
 		array_merge(
 			$module->get_setting('font')->get_css_data('font-family'),
 			$module->get_setting('font_size')->get_css_data('font-size','','px'),
