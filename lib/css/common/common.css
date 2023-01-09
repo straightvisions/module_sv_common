@@ -151,6 +151,7 @@ a img{
 a, a:hover, a:focus{
 	text-decoration:none;
 	color:inherit;
+	cursor:pointer;
 }
 
 video{
