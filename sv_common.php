@@ -212,7 +212,6 @@
 			// Content Settings
 			$this->get_setting( 'bg_color' )
 				->set_title( __( 'Background Color', 'sv100' ) )
-				->set_default_value( '255,255,255,1' )
 				->set_is_responsive(true)
 				->load_type( 'color' );
 
@@ -251,7 +250,6 @@
 
 			$this->get_setting( 'text_color' )
 				 ->set_title( __( 'Text Color', 'sv100' ) )
-				 ->set_default_value( '30,30,30,1' )
 				->set_is_responsive(true)
 				 ->load_type( 'color' );
 			
@@ -265,7 +263,6 @@
 
 			$this->get_setting( 'text_color_link' )
 				 ->set_title( __( 'Text Color', 'sv100' ) )
-				 ->set_default_value( '50,140,230,1' )
 				->set_is_responsive(true)
 				 ->load_type( 'color' );
 
@@ -282,7 +279,6 @@
 			// Link Settings (Hover/Focus)
 			$this->get_setting( 'text_color_link_hover' )
 				 ->set_title( __( 'Text Color', 'sv100' ) )
-				 ->set_default_value( '50,140,230,1' )
 				->set_is_responsive(true)
 				 ->load_type( 'color' );
 
@@ -300,14 +296,12 @@
 			$this->get_setting( 'selection_color' )
 				 ->set_title( __( 'Selection color', 'sv100' ) )
 				 ->set_description( __( 'Color of selected text', 'sv100' ) )
-				 ->set_default_value( '255,255,255,1' )
 				 ->set_is_responsive(true)
 				 ->load_type( 'color' );
 			
 			$this->get_setting( 'selection_color_background' )
 				 ->set_title( __( 'Selection background color', 'sv100' ) )
 				 ->set_description( __( 'Background color of selected text', 'sv100' ) )
-				 ->set_default_value( '50,140,230,0.5' )
 				 ->set_is_responsive(true)
 				 ->load_type( 'color' );
 
