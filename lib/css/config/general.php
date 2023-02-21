@@ -1,16 +1,4 @@
 <?php
-	
-	echo $_s->build_css(
-		'.wp-site-blocks,
-		.editor-styles-wrapper,
-		body.wp-custom-logo',
-		array_merge(
-			$module->get_setting('hyphens')->get_css_data('-webkit-hyphens'),
-			$module->get_setting('hyphens')->get_css_data('-moz-hyphens'),
-			$module->get_setting('hyphens')->get_css_data('hyphens'),
-			$module->get_setting('bg_color')->get_css_data('background-color')
-		)
-	);
 
 	// we need to explicitly define that for form fields, too,
 	// to avoid that Chrome will override it with user agent style sheets.
@@ -21,12 +9,25 @@
 		.wp-site-blocks input,
 		.wp-site-blocks select,
 		.wp-site-blocks textarea,
-		body.wp-custom-logo',
+		body.theme-sv100',
 		array_merge(
 			$module->get_setting('font')->get_css_data('font-family'),
 			$module->get_setting('font_size')->get_css_data('font-size','','px'),
 			$module->get_setting('line_height')->get_css_data('line-height'),
-			$module->get_setting('text_color')->get_css_data()
+			$module->get_setting('text_color')->get_css_data(),
+			$module->get_setting('hyphens')->get_css_data('-webkit-hyphens'),
+			$module->get_setting('hyphens')->get_css_data('-moz-hyphens'),
+			$module->get_setting('hyphens')->get_css_data('hyphens'),
+			$module->get_setting('bg_color')->get_css_data('background-color')
+		)
+	);
+
+	echo $_s->build_css(
+		'.wp-site-blocks button,
+		.wp-site-blocks input[type="submit"]',
+		array_merge(
+			$module->get_setting('text_color')->get_css_data('background-color'),
+			$module->get_setting('bg_color')->get_css_data()
 		)
 	);
 
