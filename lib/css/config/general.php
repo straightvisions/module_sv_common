@@ -5,7 +5,7 @@
 	echo $_s->build_css(
 		'.wp-site-blocks,
 		.editor-styles-wrapper,
-		.wp-site-blocks button,
+		.wp-site-blocks button.wp-block-button__link,
 		.wp-site-blocks input,
 		.wp-site-blocks select,
 		.wp-site-blocks textarea,
@@ -23,7 +23,7 @@
 	);
 
 	echo $_s->build_css(
-		'.wp-site-blocks button,
+		'.wp-site-blocks button.wp-block-button__link,
 		.wp-site-blocks input[type="submit"]',
 		array_merge(
 			$module->get_setting('text_color')->get_css_data('background-color'),
