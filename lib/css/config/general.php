@@ -51,8 +51,8 @@
 	);
 
 	echo $_s->build_css(
-		'body',
-		$module->get_setting( 'spacing' )->get_css_data('--wp--custom--sv-spacing', '', ' !important')
+		'html body',
+		$module->get_setting( 'spacing' )->get_css_data('--wp--custom--sv-spacing')
 	);
 
 	echo $_s->build_css(
