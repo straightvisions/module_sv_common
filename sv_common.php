@@ -15,29 +15,7 @@
 				->get_root()
 				->add_section( $this );
 
-			update_option( 'thumbnail_size_w', 400 );
-			update_option( 'thumbnail_size_h', 0 );
-			update_option( 'thumbnail_crop', 0 );
-
-			update_option( 'thumb_size_w', 400 );
-			update_option( 'thumb_size_h', 0 );
-			update_option( 'thumb_crop', 0 );
-
-			update_option( 'medium_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) );
-			update_option( 'medium_size_h', 0 );
-			update_option( 'medium_crop', 0 );
-
-			update_option( 'medium_large_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) * 1.5 );
-			update_option( 'medium_large_size_h', 0 );
-			update_option( 'medium_large_crop', 0 );
-
-			update_option( 'large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) );
-			update_option( 'large_size_h', 0 );
-			update_option( 'large_crop', 0 );
-
-			update_option( 'post-thumbnail_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) * 1.5 );
-			update_option( 'post-thumbnail_size_h', 0 );
-			update_option( 'post-thumbnail_crop', 0 );
+			$this->set_image_sizing();
 
 			add_filter('sv100_breakpoints', array($this, 'set_breakpoints'));
 
@@ -56,6 +34,57 @@
 			remove_action( 'wp_body_open', 'gutenberg_global_styles_render_svg_filters' );
 
 			return $this;
+		}
+		public function set_image_sizing(){
+			// override default image sizes just in case
+			add_filter( 'option_thumbnail_size_w', function(){ return intval($this->get_setting( 'max_width_content' )->get_data()) / 2; }, 10, 2 );
+			add_filter( 'option_thumbnail_size_h', function(){ return 0; }, 10, 2 );
+			add_filter( 'option_medium_size_w', function(){ return intval($this->get_setting( 'max_width_content' )->get_data()); }, 10, 2 );
+			add_filter( 'option_medium_size_h', function(){ return 0; }, 10, 2 );
+			add_filter( 'option_medium_large_size_w',  function(){ return intval($this->get_setting( 'max_width_content' )->get_data()) * 1.5; }, 10, 2 );
+			add_filter( 'option_medium_large_size_h', function(){ return 0; }, 10, 2 );
+			add_filter( 'option_large_size_w',  function(){ return intval($this->get_setting( 'max_width_wide' )->get_data()); }, 10, 2 );
+			add_filter( 'option_large_size_h', function(){ return 0; }, 10, 2 );
+
+			// add custom image sizes
+			add_image_size( 'x_large', intval($this->get_setting( 'max_width_wide' )->get_data()) * 1.5, 0, 0 );
+			add_image_size( 'xx_large', intval($this->get_setting( 'max_width_wide' )->get_data()) * 2, 0, 0 );
+
+			add_filter( 'image_size_names_choose', function( $sizes ) {
+				return array_merge( $sizes, array(
+					'x_large' => __( 'XL', 'sv100' ),
+					'xx_large' => __( 'XXL', 'sv100' ),
+				) );
+			} );
+
+			// image scaling is not a reliable feature, currently not working for PNGs. Nevertheless, we set max resolution to 4k.
+			add_filter('big_image_size_threshold', function(){ return 4096; }, 999, 1);
+
+			// Prevent User from trying to change image sizes
+			add_action( 'admin_enqueue_scripts', function () {
+				// Only load this script on the media options page.
+				$screen = get_current_screen();
+				if ( 'options-media' === $screen->id ) {
+					wp_enqueue_script( 'disable_image_sizing_settings', $this->get_url('lib/js/disable_image_sizing_settings.js') );
+				}
+			} );
+		}
+		public function image_sizes_update(){
+			update_option( 'thumbnail_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) / 2 );
+			update_option( 'thumbnail_size_h', 0 );
+			update_option( 'thumbnail_crop', 0 );
+
+			update_option( 'medium_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) );
+			update_option( 'medium_size_h', 0 );
+			update_option( 'medium_crop', 0 );
+
+			update_option( 'medium_large_size_w', intval($this->get_setting( 'max_width_content' )->get_data()) * 1.5 );
+			update_option( 'medium_large_size_h', 0 );
+			update_option( 'medium_large_crop', 0 );
+
+			update_option( 'large_size_w', intval($this->get_setting( 'max_width_wide' )->get_data()) );
+			update_option( 'large_size_h', 0 );
+			update_option( 'large_crop', 0 );
 		}
 		public function theme_json_update_data(){
 			$theme_json     = $this->theme_json_get_data();
@@ -99,6 +128,9 @@
 					$theme_json['settings']['spacing']['units']     = $units;
 				}
 			}
+
+			// update image sizing options on settings change
+			$this->image_sizes_update();
 
 			return $theme_json;
 		}
