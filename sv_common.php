@@ -137,6 +137,15 @@
 		protected function register_scripts(): sv_common {
 			parent::register_scripts();
 
+			// Editor optimization
+			if(is_admin()){
+				$this->get_script( 'optimize_editor' )
+				     ->set_path( 'lib/css/common/editor.css' )
+				     ->set_is_gutenberg()
+				     ->set_is_enqueued();
+			}
+
+
 			// Register Styles
 			$this->get_script( 'fix_svg_non_width' )
 			     ->set_path( 'lib/css/common/fix_svg_non_width.css' )
