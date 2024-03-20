@@ -38,8 +38,7 @@ body #wpadminbar{
 	}
 }
 
-.has-text-color a,
-.has-text-color a:visited{
+.has-text-color a{
 	color: inherit;
 }
 
